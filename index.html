@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <title>Document</title>
+  <link rel="stylesheet/less" href="./lib/index.less">
+  <script src="./lib/less/less.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <ul class="menu"></ul>
+    <h1>CodeJam - Palette</h1>
+  </header>
+  <main>
+    <aside class="control-panel">
+      <ul class="upper-panel">
+        <li class="upper-panel__item-1 upper-panel__item"><span>Pen</span></li>
+        <li class="upper-panel__item-2 upper-panel__item"><span>Mirror Pen</span></li>
+        <li class="upper-panel__item-3 upper-panel__item"><span>Paint Bucket</span></li>
+        <li class="upper-panel__item-4 upper-panel__item"><span>Paint all</span></li>     
+        <li class="upper-panel__item-5 upper-panel__item"><span>Eraser</span></li>
+        <li class="upper-panel__item-6 upper-panel__item"><span>Stroke</span></li>
+        <li class="upper-panel__item-5 upper-panel__item"><span>Rectangle</span></li>
+        <li class="upper-panel__item-5 upper-panel__item"><span>Circle</span></li>
+      </ul>
+      <ul class="lower-panel">
+        <li class="lower-panel__item-1 lower-panel__item">
+          <div class="wrapper"><span>current color</span></div>
+        </li>
+        <li class="lower-panel__item-2 lower-panel__item">
+          <div class="wrapper"><span>previous color</span></div>
+        </li>
+        <li class="lower-panel__item-3 lower-panel__item">   
+         
+        </li>
+        <input class="lower-panel__color-picker" type="color" style="display: none">
+      </ul>
+    </aside>
+    <div class="canvas-wrapper">
+      <canvas class = "canvas layer-main"></canvas>
+    </div>
+    <div class="search-box">
+      <input class="search-field" type="text">
+      <button class="search-button" type="button">SHOW</button>
+    </div>
+    <div class="filters">
+      <button class="button greyscale" type="button">B&W</button>
+    </div>
+   <input class="canvas-size" type="range" min="1" max="3" step="1">
+    </form>
+    </div>
+  </main>
+  <script src="./js/main.js" type="module"></script>
+</body>
+
+</html>
