@@ -17,7 +17,6 @@ function chooseColor() {
     data.colors.set(colors[1], data.colors.get(colors[0]));
     data.colors.set(colors[0], color);
     data.colors.currentColor = data.colorArray.get(e.target);
-
     colors[0].style.background = `linear-gradient(to right, ${color} 14%, white 27%)`;
     colors[1].style.background = `linear-gradient(to right, ${data.colors.get(colors[1])} 14%, white 27%)`;
   })
@@ -28,13 +27,16 @@ function chooseColor() {
     data.colors.currentColor = data.colors.get(colors[1]);
     data.colors.set(colors[1], data.colors.get(colors[0]));
     data.colors.set(colors[0], swap);
-
+   
     colors[1].style.background = `linear-gradient(to right, ${data.colors.get(colors[1])} 42%, white 76%)`;
     colors[0].style.background = `linear-gradient(to right, ${data.colors.get(colors[0])} 14%, white 27%)`;
   });
 
 
   colors[0].addEventListener('click', () => {
+    const currentColor = document.querySelector('.name');
+    currentColor.style.color =`${data.colors.get(colors[0])}`;
+    currentColor.style.filter = 'hue-rotate(180deg)';
     colorPicker.click();
 
     colorPicker.addEventListener('input', function func() {

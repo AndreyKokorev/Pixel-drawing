@@ -9,16 +9,10 @@ function pen() {
     x1,
     y1;
 
-  
-  pen.setColFunc = () => {
-    data.ctx.lineWidth = 1;
-    data.ctx.strokeStyle = data.colors.currentColor;
-    data.ctx.fillStyle = data.colors.currentColor;
-  };
-
   pen.setColFunc();
 
   item.addEventListener('click', () => {
+    pen.setColFunc();
     data.offTools();
     data.tools.isPen = true;
     data.ctx.fillStyle = data.currentColor;
@@ -57,9 +51,12 @@ function pen() {
   });
   item.click();
 }
-
+pen.setColFunc = () => {
+  data.ctx.strokeStyle = data.colors.currentColor;
+  data.ctx.fillStyle = data.colors.currentColor;
+};
 function drawRect(x, y) {
-  data.ctx.fillRect(x, y, 1, 1);
+  data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
   data.ctx.fill();
 }
 

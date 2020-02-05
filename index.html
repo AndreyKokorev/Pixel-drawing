@@ -18,6 +18,26 @@
   </header>
   <main>
     <aside class="control-panel">
+      <div class="pixel-size-panel">
+        <div class="pixel-size-panel_wrapper" data="1">
+          <div class="pixel-size-panel_pixel-1" data="1"></div>
+        </div>
+        <div class="pixel-size-panel_wrapper"  data="2">
+          <div class="pixel-size-panel_pixel-2" data="2"></div>
+        </div>
+        <div class="pixel-size-panel_wrapper"  data="3">
+          <div class="pixel-size-panel_pixel-3" data="3"></div>
+        </div>
+        <div class="pixel-size-panel_wrapper"  data="4">
+          <div class="pixel-size-panel_pixel-4" data="4"></div>
+        </div>
+        <div class="pixel-size-panel_wrapper"  data="5">
+          <div class="pixel-size-panel_pixel-5" data="5"></div>
+        </div>
+        <div class="pixel-size-panel_wrapper"  data="6">
+          <div class="pixel-size-panel_pixel-6" data="6"></div>
+        </div>
+      </div>
       <ul class="upper-panel">
         <li class="upper-panel__item-1 upper-panel__item"><span>Pen</span></li>
         <li class="upper-panel__item-2 upper-panel__item"><span>Mirror Pen</span></li>
@@ -30,19 +50,22 @@
       </ul>
       <ul class="lower-panel">
         <li class="lower-panel__item-1 lower-panel__item">
-          <div class="wrapper"><span>current color</span></div>
+          <div class="wrapper"><span class='name'>current color</span></div>
         </li>
         <li class="lower-panel__item-2 lower-panel__item">
-          <div class="wrapper"><span>previous color</span></div>
+          <div class="wrapper"><span class='name'>previous color</span></div>
         </li>
         <li class="lower-panel__item-3 lower-panel__item">   
-         
+         <div class="color"></div>
+         <div class="color"></div>
+         <div class="color"></div>
         </li>
         <input class="lower-panel__color-picker" type="color" style="display: none">
       </ul>
     </aside>
     <div class="canvas-wrapper">
       <canvas class = "canvas layer-main"></canvas>
+      <canvas class = "canvas layer-upper"></canvas>
     </div>
     <div class="search-box">
       <input class="search-field" type="text">

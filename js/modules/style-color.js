@@ -1,7 +1,6 @@
 import {
   data
 } from '../main.js';
-import pen from './tools/pen.js';
 
 function styleColor() {
   const colors = document.querySelectorAll('.lower-panel__item');
@@ -30,21 +29,22 @@ function styleColor() {
  
   colors.forEach((item) => {
     const sameItem = item;
-    sameItem.addEventListener('mouseover', () => {
-      sameItem.addEventListener('mouseout', function out() {
-        percent1 = 10;
-        percent2 = 20;
-        i = 20;
-        sameItem.style.background = `linear-gradient(to right, ${data.colors.get(item)} ${percent1 += 4}%, white ${percent2 += 7}%)`;
-        clearInterval(int);
-        sameItem.removeEventListener('mouseout', out);
-      });
+    sameItem.addEventListener('mouseenter', () => {
 
-      let int = setInterval(() => {
-        sameItem.style.background = `linear-gradient(to right, ${data.colors.get(item)} ${percent1 += 4}%, white ${percent2 += 7}%)`;
-
-        if (percent1 > 40) clearInterval(int);
-      }, i -= 1);
+        sameItem.addEventListener('mouseleave', function out() {
+          percent1 = 10;
+          percent2 = 20;
+          i = 20;
+          sameItem.style.background = `linear-gradient(to right, ${data.colors.get(item)} ${percent1 += 4}%, white ${percent2 += 7}%)`;
+          clearInterval(int);
+          sameItem.removeEventListener('mouseleave', out);
+        });
+  
+        let int = setInterval(() => {
+          sameItem.style.background = `linear-gradient(to right, ${data.colors.get(item)} ${percent1 += 4}%, white ${percent2 += 7}%)`;
+  
+          if (percent1 > 40) clearInterval(int);
+        }, i -= 1);   
     });
   });
 }

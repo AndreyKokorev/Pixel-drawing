@@ -78,7 +78,7 @@ function drawBresLine(x2, y2, x3, y3, rect) {
   }
 }
 function drawRect(x, y) {
-  data.ctx.fillRect(x, y, 1, 1);
+  data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
   data.ctx.fill();
 }
 
