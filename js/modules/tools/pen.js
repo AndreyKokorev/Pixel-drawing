@@ -15,8 +15,8 @@ function pen() {
     pen.setColFunc();
     data.offTools();
     data.tools.isPen = true;
-    data.ctx.fillStyle = data.currentColor;
-
+    pen.setColFunc();
+    
     data.canv.addEventListener('mouseup', (e) => {
       if (data.tools.isPen === true) {
         mouseDown = false;
@@ -53,11 +53,13 @@ function pen() {
 }
 pen.setColFunc = () => {
   data.ctx.strokeStyle = data.colors.currentColor;
+  data.currentCtx.strokeStyle = data.colors.currentColor;
   data.ctx.fillStyle = data.colors.currentColor;
+  data.currentCtx.fillStyle = data.colors.currentColor;
 };
 function drawRect(x, y) {
-  data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
-  data.ctx.fill();
+  data.currentCtx.fillRect(x, y, data.pixelSize, data.pixelSize);
+  data.currentCtx.fill();
 }
 
 export default pen;

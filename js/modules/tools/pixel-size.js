@@ -4,7 +4,7 @@ import {
 
 function setPixelSize() {
   const pixelSizePanel = document.querySelector('.pixel-size-panel');
-  const pixelsWrapper = document.querySelectorAll('.pixel-size-panel_wrapper');
+  const pixelsWrapper = document.querySelectorAll('.pixel-size-panel__wrapper');
 
 
   for (let wrapper of pixelsWrapper) {
@@ -23,21 +23,21 @@ function setPixelSize() {
         wrapper.classList.remove('chosen');
       }
 
-      e.target.closest('.pixel-size-panel_wrapper').classList.add('activePixelSize');
-      e.target.closest('.pixel-size-panel_wrapper').classList.add('chosen');
+      e.target.closest('.pixel-size-panel__wrapper').classList.add('activePixelSize');
+      e.target.closest('.pixel-size-panel__wrapper').classList.add('chosen');
     }
   });
 
   pixelSizePanel.addEventListener('mouseover', (e) => {
     if (e.target !== pixelSizePanel) {
-      e.target.closest('.pixel-size-panel_wrapper').classList.add('activePixelSize');
+      e.target.closest('.pixel-size-panel__wrapper').classList.add('activePixelSize');
     }
   });
 
   pixelSizePanel.addEventListener('mouseout', (e) => {
     if (e.target !== pixelSizePanel) {
       if (!e.target.classList.contains('chosen')) {
-        e.target.closest('.pixel-size-panel_wrapper').classList.remove('activePixelSize');
+        e.target.closest('.pixel-size-panel__wrapper').classList.remove('activePixelSize');
       }
     }
   });
