@@ -40,6 +40,7 @@ export const data = {
 }
 
 data.tools.pen = true;
+
 styleColor();
 chooseColor();
 setPixelSize();

@@ -8,9 +8,11 @@ function layersManager() {
   const layersList = document.querySelector('.layers-panel__layers-list');
   const layersListChildren = layersList.children;
   const buttonAddLayer = document.querySelector('.button-add-layer');
-  const buttonDelLayer = document.querySelector('.button-delete-layer');
+  const buttonChangeName = document.querySelector('.button-change-name');
   const buttonUpLayer = document.querySelector('.button-up-layer');
   const buttonDownLayer = document.querySelector('.button-down-layer');
+  const buttonDelLayer = document.querySelector('.button-delete-layer');
+  const buttonMergeLayer = document.querySelector('.button-merge-layer');
   const canvasWrapper = document.querySelector('.canvas-wrapper');
   const layers = new Map();
   let layersAmount = 1;
@@ -22,7 +24,7 @@ function layersManager() {
 
   buttonAddLayer.addEventListener('click', () => {
     const newLayer = document.createElement('canvas');
-    const layerListItem = document.createElement('div');
+    const layerListItem = document.createElement('li');
 
     newLayer.width = data.canvSize;
     newLayer.height = data.canvSize;
@@ -46,16 +48,30 @@ function layersManager() {
     setOpacity(layerListItem);
   })
 
+  buttonChangeName.addEventListener('click', () => {
+    const inputName = document.createElement('input');
+    let layerListItem;
+
+    for (let item of layersListChildren) {
+      if (item.classList.contains('selected')) {
+        layerListItem = item;
+        item.replaceWith(inputName);
+        break;
+      }
+    }
+
+    inputName.addEventListener('keydown', function replace(e) {
+      if (e.keyCode === 13) {
+        layerListItem.textContent = inputName.value;
+        inputName.replaceWith(layerListItem);
+      }
+    })
+    inputName.removeEventListener('click', replace);
+  })
+
   buttonDelLayer.addEventListener('click', () => {
     data.currentLayer = data.basicLayer;
     data.currentCtx = data.basicCtx;
-
-    if (layersListChildren.length === 1) {
-      data.currentLayer = data.basicLayer;
-      data.currentCtx = data.basicCtx;
-      layersAmount = 0;
-      zIndex = 2;
-    }
 
     for (let layer of layersListChildren) {
       if (layer.classList.contains('selected')) {
@@ -66,53 +82,109 @@ function layersManager() {
           layer.nextElementSibling.classList.add('selected');
           layer.nextElementSibling.style.boxShadow = '0 0 0 2px black';
 
+          setOpacity(layer.nextElementSibling);
+
         } else if (layer.previousElementSibling) {
           data.currentLayer = layers.get(layer.previousElementSibling).canv;
           data.currentCtx = layers.get(layer.previousElementSibling).ctx;
 
           layer.previousElementSibling.classList.add('selected')
           layer.previousElementSibling.style.boxShadow = '0 0 0 2px black';
+
+          setOpacity(layer.previousElementSibling);
         }
 
         layers.get(layer).canv.remove();
         layers.delete(layer)
         layer.remove();
+
+        if (layersListChildren.length === 0) {
+          layersAmount = 0;
+          zIndex = 2;
+        }
+        break;
       }
     }
   });
 
   buttonUpLayer.addEventListener('click', () => {
-    for (let layer of layersListChildren) {
-      if (layer.classList.contains('selected') && layer.previousElementSibling) {
-        layer.previousElementSibling.before(layer);
+    for (let item of layersListChildren) {
+      if (item.classList.contains('selected') && item.previousElementSibling) {
+        item.previousElementSibling.before(item);
+        break;
       }
     }
+
+    setZIndex();
   })
 
   buttonDownLayer.addEventListener('click', () => {
-    for (let layer of layersListChildren) {
-      if (layer.classList.contains('selected') && layer.nextElementSibling) {
-        layer.nextElementSibling.after(layer);
+    let layerListItem;
+
+    for (let item of layersListChildren) {
+      if (item.classList.contains('selected') && item.nextElementSibling) {
+        layerListItem = item;
+        break;
+      }
+    }
+    if (layerListItem) layerListItem.nextElementSibling.after(layerListItem);
+
+    setZIndex();
+  })
+
+  buttonMergeLayer.addEventListener('click', () => {
+    let layer_1, layer_2, dataLayer_1, dataLayer_2;
+
+    for (let item of layersListChildren) {
+      if (item.classList.contains('selected') && item.nextElementSibling) {
+        const ctxLayer_1 = layers.get(item).ctx;
+        const ctxLayer_2 = layers.get(item.nextElementSibling).ctx;
+
+        layer_1 = ctxLayer_1.getImageData(0, 0, data.canvSize, data.canvSize);
+        layer_2 = ctxLayer_2.getImageData(0, 0, data.canvSize, data.canvSize);
+        let dt_1 = layer_1.data;
+        let dt_2 = layer_2.data;
+
+
+        for (let i = 0; i < dt_2.length; i += 4) {
+          if (dt_1[i] !== 0 || dt_1[i + 1] !== 0 || dt_1[i + 2] !== 0 || dt_1[i + 3] !== 0) {
+            dt_2[i] = dt_1[i];
+            dt_2[i + 1] = dt_1[i + 1];
+            dt_2[i + 2] = dt_1[i + 2];
+            dt_2[i + 3] = dt_1[i + 3];
+          }
+        }
+
+        layers.get(item).ctx.putImageData(layer_2, 0 ,0);
+
+        layers.get(item.nextElementSibling).canv.remove();
+        layers.delete(item.nextElementSibling);
+        item.nextElementSibling.remove();
       }
     }
   })
 
   layersList.addEventListener('click', (e) => {
-    data.currentLayer = layers.get(e.target).canv;
-    data.currentCtx = layers.get(e.target).ctx;
+    if (e.target.nodeName == 'LI') {
+      data.currentLayer = layers.get(e.target).canv;
+      data.currentCtx = layers.get(e.target).ctx;
 
-    for (let i = 0 ; i <= layersListChildren.length - 1; i += 1) {
+      setZIndex();
+      deleteClass();
+      setOpacity(e.target);
+
+      e.target.classList.add('selected');
+      e.target.style.boxShadow = '0 0 0 2px black';
+    }
+  })
+
+  function setZIndex() {
+    for (let i = 0; i <= layersListChildren.length - 1; i += 1) {
       layers.get(layersListChildren[i]).canv.style.zIndex = layersListChildren.length - i;
     }
 
     upperLayer.style.zIndex = layersListChildren.length + 3;
-   
-    deleteClass();
-    setOpacity(e.target);
-  
-    e.target.classList.add('selected');
-    e.target.style.boxShadow = '0 0 0 2px black';
-  })
+  }
 
   function setOpacity(element) {
     const canvasArray = canvasWrapper.querySelectorAll('canvas');
@@ -125,7 +197,6 @@ function layersManager() {
   }
 
   function deleteClass() {
-
     for (let layer of layersListChildren) {
       layer.classList.remove('selected');
       layer.style.boxShadow = 'none';
