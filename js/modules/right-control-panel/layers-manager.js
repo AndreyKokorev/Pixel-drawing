@@ -62,11 +62,17 @@ function layersManager() {
 
     inputName.addEventListener('keydown', function replace(e) {
       if (e.keyCode === 13) {
-        layerListItem.textContent = inputName.value;
-        inputName.replaceWith(layerListItem);
+        if (inputName.value) {
+          layerListItem.textContent = inputName.value;
+          inputName.replaceWith(layerListItem);
+        } else {
+          inputName.replaceWith(layerListItem);
+        }
       }
+      
+      inputName.removeEventListener('click', replace);
     })
-    inputName.removeEventListener('click', replace);
+
   })
 
   buttonDelLayer.addEventListener('click', () => {
@@ -155,7 +161,7 @@ function layersManager() {
           }
         }
 
-        layers.get(item).ctx.putImageData(layer_2, 0 ,0);
+        layers.get(item).ctx.putImageData(layer_2, 0, 0);
 
         layers.get(item.nextElementSibling).canv.remove();
         layers.delete(item.nextElementSibling);
