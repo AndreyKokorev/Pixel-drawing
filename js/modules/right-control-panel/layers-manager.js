@@ -193,7 +193,7 @@ function layersManager() {
   }
 
   function setOpacity(element) {
-    const canvasArray = canvasWrapper.querySelectorAll('canvas');
+    const canvasArray = canvasWrapper.querySelectorAll('.canvas-layer');
 
     for (let layer of canvasArray) {
       layer.style.opacity = '0.2';

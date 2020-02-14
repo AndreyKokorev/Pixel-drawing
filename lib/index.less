@@ -25,24 +25,24 @@
   transition: 0.2s;
 }
 
-html {
-  height: 100vh;
-}
 body {
-  min-height: 900px;
-  height: 100%;
+  min-height: 890px;
+  height: 100vh;
   font-family: Roboto;
   background: url(../img/pictures/pixel_art_8_bit_retro_games-1364327.png);
   background-size: auto 100%;
-  //background: rgba(0, 0, 0, 0.055);
 }
 
 .page-wrapper {
+  display:grid;
+  grid-template-rows: auto 1fr;
+  align-content: flex-start;
   max-width: 1440px;
   height: 100%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.897);
 }
+
 header {
   display: grid;
   grid-template-columns: 40px 1fr;
@@ -68,7 +68,6 @@ header {
 main {
   display: flex;
   justify-content: space-between;
-  height:95%;
   font-family: Comics;
 }
 
@@ -152,7 +151,6 @@ main {
       font-family: Comics;
       font-weight: bold;
       line-height: 48px;
-      background: blue;
 
       span {
         display: block;
@@ -261,7 +259,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:64%;
+  width: 64%;
   overflow: hidden;
 }
 

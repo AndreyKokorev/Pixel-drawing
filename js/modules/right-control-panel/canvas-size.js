@@ -2,7 +2,7 @@ import {
   data
 } from '../../main.js';
 
-function setCanvasSize() {
+function setCanvasWrapperSize() {
   const canvasBase = document.querySelector('.canvas-base');
   const canvasWrapper = document.querySelector('.canvas-wrapper');
   let scale = 1;
@@ -19,4 +19,4 @@ function setCanvasSize() {
 
 
 
-export default setCanvasSize;
+export default setCanvasWrapperSize;

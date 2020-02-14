@@ -3,23 +3,19 @@ import {
 } from '../main.js';
 
 function pointer() {
-  const canvas = document.querySelector('.canvas-layer-upper');
-  const ctx = canvas.getContext('2d');
+  data.ctx.fillStyle = 'rgba(0, 0, 0, 0.055)';
 
+  data.canv.addEventListener('mousemove', (e) => {
+    let x = Math.floor(e.offsetX / data.canvIndex);
+    let y = Math.floor(e.offsetY / data.canvIndex);
 
+    data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);  
+    data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
+    data.ctx.fill();
 
-  canvas.addEventListener('mousemove', (e) => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let x = Math.floor(e.offsetX / data.canvIndexX);
-    let y = Math.floor(e.offsetY / data.canvIndexY);
-
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.055)';
-    ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
-    ctx.fill();
-
-    canvas.addEventListener('mouseout', function deletePointer() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.removeEventListener('mouseout', deletePointer);
+    data.canv.addEventListener('mouseout', function deletePointer() {
+      data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
+      data.canv.removeEventListener('mouseout', deletePointer);
     })
   })
 }
