@@ -28,7 +28,7 @@ export const data = {
   currentLayer: canvasLayer_1,
   currentCtx: ctxLayer_1,
   isDownload: false,
-  canvSize: 32,
+  canvInnerWidth: 32,
   canvIndex: canvasWrapperWidth / canvasLayer_1.width,
   marginX: 0,
   marginY: 0,
@@ -45,6 +45,8 @@ export const data = {
   }
 }
 
+data.canvInnerHeight = canvasLayer_1.height
+
 data.tools.pen = true;
 
 styleColor();
@@ -52,12 +54,13 @@ chooseColor();
 setPixelSize();
 layersManager();
 setCanvasWrapperSize();
-pen();
 pointer();
+pen();
+
 
 
 //To do:
-//настроить рисование линии
 //настроить центровку мыши при больших размерах пера
 //Item.click() delete from pen
 //переписать названия функций
+//Удалить иди доделать изменение цвета текста при выборе цвета

@@ -39,7 +39,7 @@ function pen() {
       const x = e.offsetX;
       const y = e.offsetY;
       if (mouseDown && data.tools.isPen === true) {
-        if (Math.abs(x / data.canvIndex - x0) > 2 || Math.abs(y / data.canvIndex - y0) > 2) {
+        if (Math.abs(x / data.canvIndex - x0) > 0 || Math.abs(y / data.canvIndex - y0) > 0) {
           x1 = Math.floor(e.offsetX / data.canvIndex);
           y1 = Math.floor(e.offsetY / data.canvIndex);
           drawBresLine(x0, y0, x1, y1);

@@ -26,8 +26,8 @@ function layersManager() {
     const newLayer = document.createElement('canvas');
     const layerListItem = document.createElement('li');
 
-    newLayer.width = data.canvSize;
-    newLayer.height = data.canvSize;
+    newLayer.width = data.canvInnerWidth ;
+    newLayer.height = data.canvInnerHeight;
     newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer');
     newLayer.style.zIndex = `${zIndex += 1}`;
     upperLayer.style.zIndex = zIndex + 1;
@@ -146,8 +146,8 @@ function layersManager() {
         const ctxLayer_1 = layers.get(item).ctx;
         const ctxLayer_2 = layers.get(item.nextElementSibling).ctx;
 
-        layer_1 = ctxLayer_1.getImageData(0, 0, data.canvSize, data.canvSize);
-        layer_2 = ctxLayer_2.getImageData(0, 0, data.canvSize, data.canvSize);
+        layer_1 = ctxLayer_1.getImageData(0, 0, data.canvInnerWidth, data.canvInnerHeight);
+        layer_2 = ctxLayer_2.getImageData(0, 0, data.canvInnerWidth, data.canvInnerHeight);
         let dt_1 = layer_1.data;
         let dt_2 = layer_2.data;
 

@@ -255,12 +255,23 @@ main {
   }
 }
 
+.control-panel-right {
+  .canvas-size-wrapper {
+    display:flex;
+    justify-content: space-between;
+  }
+  input {
+    width: 60px;
+  }
+}
 .canvas-base {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 64%;
+  max-height: 888px;
   overflow: hidden;
+  border-left: 2px dotted-dash black;
 }
 
 .canvas-wrapper {
