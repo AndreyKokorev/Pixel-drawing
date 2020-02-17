@@ -2,21 +2,12 @@ import {data} from '../../main.js';
 import drawBresLine from '../bresenham-alg.js';
 
 function pen() {
-  const item = document.querySelector('.upper-panel__item-1');
   let mouseDown = false;
   let x0,
     y0,
     x1,
     y1;
 
-  pen.setColFunc();
-
-  item.addEventListener('click', () => {
-    pen.setColFunc();
-    data.offTools();
-    data.tools.isPen = true;
-    pen.setColFunc();
-    
     data.canv.addEventListener('mouseup', (e) => {
       if (data.tools.isPen === true) {
         mouseDown = false;
@@ -26,7 +17,7 @@ function pen() {
     });
 
     data.canv.addEventListener('mousedown', (e) => {
-      pen.setColFunc();
+      setColFunc();
       if (data.tools.isPen === true) {
         mouseDown = true;
         x0 = Math.floor(e.offsetX / data.canvIndex);
@@ -48,13 +39,9 @@ function pen() {
         }
       }
     });
-  });
-
-
-  item.click();
 }
 
-pen.setColFunc = () => {
+function setColFunc() {
   data.currentCtx.strokeStyle = data.colors.currentColor;
   data.currentCtx.fillStyle = data.colors.currentColor;
 };

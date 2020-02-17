@@ -1,4 +1,6 @@
+import toolsManager from './modules/tools/toolsManager.js';
 import pen from './modules/tools/pen.js';
+import paintBucket from './modules/tools/paint-bucket.js';
 import styleColor from './modules/style-color.js';
 import chooseColor from './modules/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
@@ -35,19 +37,24 @@ export const data = {
   pixelSize: 1,
   tools: {
     isPen: false,
-    isChooseColor: false,
-    isPaintBucket: false
+    isPaintBucket: false,
+    isPaintAll: false,
+    isEraser: false
   },
   offTools() {
     this.tools.isPen = false;
     this.tools.isChooseColor = false;
     this.tools.isPaintBucket = false;
+    this.tools.isEraser = false;
+    this.tools.isStroke = false;
+    this.tools.isRecktangle = false;
+    this.tools.isCircle = false;
   }
 }
 
 data.canvInnerHeight = canvasLayer_1.height
 
-data.tools.pen = true;
+data.tools.isPen = true;
 
 styleColor();
 chooseColor();
@@ -55,12 +62,13 @@ setPixelSize();
 layersManager();
 setCanvasWrapperSize();
 pointer();
+toolsManager();
 pen();
+paintBucket();
 
 
 
 //To do:
 //настроить центровку мыши при больших размерах пера
-//Item.click() delete from pen
 //переписать названия функций
 //Удалить иди доделать изменение цвета текста при выборе цвета
