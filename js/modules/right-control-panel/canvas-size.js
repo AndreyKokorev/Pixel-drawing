@@ -27,7 +27,7 @@ function setCanvasWrapperSize() {
 
     canvasWrapper.style.width = `${canvasWrapperWidth * ratio}px`;
     canvasWrapper.style.height = `${canvasWrapperHeight * ratio}px`;
-    
+    console.log(canvasWrapper.offsetWidth)
     data.canvIndex = canvasWrapper.offsetWidth / data.currentLayer.width;
   });
 

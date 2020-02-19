@@ -1,6 +1,7 @@
 import toolsManager from './modules/tools/toolsManager.js';
 import pen from './modules/tools/pen.js';
 import paintBucket from './modules/tools/paint-bucket.js';
+import eraser from './modules/tools/eraser.js';
 import styleColor from './modules/style-color.js';
 import chooseColor from './modules/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
@@ -58,6 +59,7 @@ pointer();
 toolsManager();
 pen();
 paintBucket();
+eraser();
 
 function renderCanvas() {
   canvasLayer_1.width = localStorage.getItem('canvWidth') || 32;
