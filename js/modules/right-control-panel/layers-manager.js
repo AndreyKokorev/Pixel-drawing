@@ -26,8 +26,8 @@ function layersManager() {
     const newLayer = document.createElement('canvas');
     const layerListItem = document.createElement('li');
 
-    newLayer.width = data.canvInnerWidth ;
-    newLayer.height = data.canvInnerHeight;
+    newLayer.width = data.canv.width;
+    newLayer.height = data.canv.height;
     newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer');
     newLayer.style.zIndex = `${zIndex += 1}`;
     upperLayer.style.zIndex = zIndex + 1;
@@ -139,18 +139,18 @@ function layersManager() {
   })
 
   buttonMergeLayer.addEventListener('click', () => {
-    let layer_1, layer_2, dataLayer_1, dataLayer_2;
+    let layer_1, layer_2;
 
     for (let item of layersListChildren) {
       if (item.classList.contains('selected') && item.nextElementSibling) {
         const ctxLayer_1 = layers.get(item).ctx;
         const ctxLayer_2 = layers.get(item.nextElementSibling).ctx;
 
-        layer_1 = ctxLayer_1.getImageData(0, 0, data.canvInnerWidth, data.canvInnerHeight);
-        layer_2 = ctxLayer_2.getImageData(0, 0, data.canvInnerWidth, data.canvInnerHeight);
+        layer_1 = ctxLayer_1.getImageData(0, 0, data.canv.width, data.canv.height);
+        layer_2 = ctxLayer_2.getImageData(0, 0, data.canv.width, data.canv.height);
+
         let dt_1 = layer_1.data;
         let dt_2 = layer_2.data;
-
 
         for (let i = 0; i < dt_2.length; i += 4) {
           if (dt_1[i] !== 0 || dt_1[i + 1] !== 0 || dt_1[i + 2] !== 0 || dt_1[i + 3] !== 0) {

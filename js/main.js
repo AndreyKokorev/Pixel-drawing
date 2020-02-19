@@ -8,19 +8,15 @@ import layersManager from './modules/right-control-panel/layers-manager.js';
 import setCanvasWrapperSize from './modules/right-control-panel/canvas-size.js';
 import pointer from './modules/pointer.js';
 
+const canvasBase = document.querySelector('.canvas-base');
 const canvasLayer_1 = document.querySelector('.canvas-layer-1');
 const canvasUpper = document.querySelector('.canvas-layer-upper');
 const ctxLayer_1 = canvasLayer_1.getContext('2d');
 const ctxUpper = canvasUpper.getContext('2d');
 const canvasWrapper = document.querySelector('.canvas-wrapper');
-const canvasWrapperWidth = canvasWrapper.offsetWidth;
-const canvasWrapperHeight = canvasWrapper.offsetHeight;
+let canvasPixelWidth;
 
-canvasLayer_1.width = localStorage.getItem('canvWidth') || 32;
-canvasLayer_1.height = localStorage.getItem('canvWidth') || Math.floor(canvasWrapperHeight / (canvasWrapperWidth / 32));
-canvasUpper.width = canvasLayer_1.width;
-canvasUpper.height = canvasLayer_1.height;
-canvasWrapper.style.height = `${canvasWrapperWidth / canvasLayer_1.width * canvasLayer_1.height}px`;
+renderCanvas();
 
 export const data = {
   basicLayer: canvasLayer_1,
@@ -30,8 +26,7 @@ export const data = {
   currentLayer: canvasLayer_1,
   currentCtx: ctxLayer_1,
   isDownload: false,
-  canvInnerWidth: 32,
-  canvIndex: canvasWrapperWidth / canvasLayer_1.width,
+  canvIndex: canvasPixelWidth,
   marginX: 0,
   marginY: 0,
   pixelSize: 1,
@@ -47,12 +42,10 @@ export const data = {
     this.tools.isPaintBucket = false;
     this.tools.isEraser = false;
     this.tools.isStroke = false;
-    this.tools.isRecktangle = false;
+    this.tools.isRectangle = false;
     this.tools.isCircle = false;
   }
 }
-
-data.canvInnerHeight = canvasLayer_1.height
 
 data.tools.isPen = true;
 
@@ -66,7 +59,15 @@ toolsManager();
 pen();
 paintBucket();
 
-
+function renderCanvas() {
+  canvasLayer_1.width = localStorage.getItem('canvWidth') || 32;
+  canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
+  canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
+  canvasLayer_1.height = localStorage.getItem('canvWidth') || Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
+  canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
+  canvasUpper.width = canvasLayer_1.width;
+  canvasUpper.height = canvasLayer_1.height;
+}
 
 //To do:
 //настроить центровку мыши при больших размерах пера

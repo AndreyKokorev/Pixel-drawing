@@ -17,7 +17,7 @@
 
 .active {
   color: red;
-  transform: translate(0px, 4px) scale(1);
+  transform: translate(0px, 4px);
   text-shadow: 0px -4px 2px rgba(35, 37, 35, 0.829);
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .page-wrapper {
-  display:grid;
+  display: grid;
   grid-template-rows: auto 1fr;
   align-content: flex-start;
   max-width: 1440px;
@@ -257,13 +257,15 @@ main {
 
 .control-panel-right {
   .canvas-size-wrapper {
-    display:flex;
+    display: flex;
     justify-content: space-between;
   }
+
   input {
     width: 60px;
   }
 }
+
 .canvas-base {
   display: flex;
   justify-content: center;
@@ -276,7 +278,6 @@ main {
 
 .canvas-wrapper {
   position: relative;
-  justify-items: center;
   align-self: center;
   width: 99%;
   height: 99%;

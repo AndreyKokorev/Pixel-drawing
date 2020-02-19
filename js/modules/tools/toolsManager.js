@@ -23,7 +23,6 @@ function toolsManager() {
     if (e.target.nodeName === 'SPAN') {
       data.offTools();
       data.tools[e.target.parentNode.id] = true;
-      console.log(data.tools)
       toolsManager.delCl(e.target);
     }
   });

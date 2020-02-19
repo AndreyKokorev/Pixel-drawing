@@ -5,7 +5,6 @@ import {
 function paintBucket() {
   data.canv.addEventListener('mousedown', (e) => { 
     if (data.tools.isPaintBucket === true) {
-      console.log('1')
       const x = Math.floor(e.offsetX / data.canvIndex);
       const y = Math.floor(e.offsetY / data.canvIndex);
       const getColor = data.currentCtx.getImageData(x, y, 1, 1);
@@ -24,13 +23,13 @@ function paintBucket() {
 
     const array = m.join(',').split(',').map(number => +number);
     array.push(255);
-console.log(array)
+
     return array;
   }
 }
 
 function floodFill(x, y, workColors, pixelColor) {
-  const imageData = data.currentCtx.getImageData(0, 0, data.canv.width, data.canv.height);
+  const imageData = data.currentCtx.getImageData(0, 0, data.currentLayer.width, data.currentLayer.height);
   const w = imageData.width;
   const h = imageData.height;
   const stack = [
