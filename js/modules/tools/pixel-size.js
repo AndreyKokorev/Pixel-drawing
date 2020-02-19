@@ -17,6 +17,7 @@ function setPixelSize() {
   pixelSizePanel.addEventListener('click', (e) => {
     if (e.target !== pixelSizePanel) {
       data.pixelSize = e.target.getAttribute('data');
+      data.deflection = Math.floor(data.pixelSize / 2);
 
       for (let wrapper of pixelsWrapper) {
         wrapper.classList.remove('activePixelSize');

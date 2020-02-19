@@ -9,7 +9,7 @@ function pointer() {
 
     data.ctx.fillStyle = 'rgba(0, 0, 0, 0.055)';
     data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
-    data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
+    data.ctx.fillRect(x - data.deflection , y - data.deflection, data.pixelSize, data.pixelSize);
     data.ctx.fill();
 
     data.canv.addEventListener('mouseout', function deletePointer() {

@@ -31,6 +31,7 @@ export const data = {
   marginX: 0,
   marginY: 0,
   pixelSize: 1,
+  deflection: localStorage.getItem('deflection') || 0,
   tools: {
     isPen: false,
     isPaintBucket: false,
