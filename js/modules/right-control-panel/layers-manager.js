@@ -19,6 +19,7 @@ function layersManager() {
   let zIndex = 2;
 
   layers.set(basicLayer, new LayerData(data.currentLayer));
+  data.layers = layers;
   basicLayer.classList.add('selected');
   basicLayer.style.boxShadow = '0 0 0 2px black';
 
@@ -42,7 +43,7 @@ function layersManager() {
     layersList.prepend(layerListItem);
 
     layers.set(layerListItem, new LayerData(newLayer));
-    data.currentLayer = layers.get(layerListItem).canvas;
+    data.currentLayer = layers.get(layerListItem).canv;
     data.currentCtx = layers.get(layerListItem).ctx;
 
     setOpacity(layerListItem);
@@ -69,7 +70,7 @@ function layersManager() {
           inputName.replaceWith(layerListItem);
         }
       }
-      
+
       inputName.removeEventListener('click', replace);
     })
 

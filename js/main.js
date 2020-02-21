@@ -69,7 +69,7 @@ rectangle();
 line();
 
 function renderCanvas() {
-  canvasLayer_1.width = 32;
+  canvasLayer_1.width = 48;
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
   canvasLayer_1.height =  Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
@@ -79,6 +79,7 @@ function renderCanvas() {
 }
 
 //To do:
+//доработать алгоритм заливки
 //Переработать алгоритм расчета размера канваса при вводе
 //переписать названия функций
 //Удалить иди доделать изменение цвета текста при выборе цвета

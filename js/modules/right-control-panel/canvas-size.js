@@ -8,10 +8,11 @@ function setCanvasWrapperSize() {
   const canvasArray = canvasWrapper.children;
   const sizeSubmitButton = document.querySelector('.canvas-size-wrapper .button-submit');
   const zoom = document.querySelector('.zoom');
-  const baseWidth = canvasBase.offsetWidth;
-  let canvasWrapperWidth = canvasWrapper.offsetWidth;
-  let canvasWrapperHeight = canvasWrapper.offsetHeight;
+  let baseWidth = canvasBase.offsetWidth;
   let scale = 1;
+
+  let ratio = data.canv.width / data.canv.height;
+  let diff = canvasWrapper.offsetWidth /  canvasBase.offsetWidth;
 
   zoom.textContent = 100 + ' %';
 
@@ -24,10 +25,10 @@ function setCanvasWrapperSize() {
   });
 
   window.addEventListener('resize', () => {
-    const ratio = canvasBase.offsetWidth / baseWidth;
+    baseWidth = canvasBase.offsetWidth;
 
-    canvasWrapper.style.width = `${canvasWrapperWidth * ratio}px`;
-    canvasWrapper.style.height = `${canvasWrapperHeight * ratio}px`;
+    canvasWrapper.style.width = `${baseWidth * diff}px`;
+    canvasWrapper.style.height = `${data.canv.offsetWidth / ratio}px`;
 
     data.canvIndex = canvasWrapper.offsetWidth / data.currentLayer.width;
   });
@@ -38,41 +39,24 @@ function setCanvasWrapperSize() {
     const height = +document.querySelector('.canvas-height-input').value;
 
     if (Number.isInteger(width) && Number.isInteger(height)) {
-      if (width > height) {
-        setWidth();
-        setHeight();
-      } else {
-        setHeight();
-        setWidth();
-      }
-    } else {
-      document.querySelector('.canvas-width-input').value = '';
-      document.querySelector('.canvas-height-input').value = ''
-    }
-
-    canvasWrapperWidth = canvasWrapper.offsetWidth;
-    canvasWrapperHeight = canvasWrapper.offsetHeight;
-
-    function setWidth() {
-      data.currentLayer.width = width;
       data.canv.width = width;
-
-      if (width >= height) {
-        data.canvIndex = Math.floor((canvasBase.offsetWidth * 0.99) / data.canv.width);
-      }
-      
-      canvasWrapper.style.width = `${data.canv.width * data.canvIndex}px`;
-    }
-
-    function setHeight() {
-      data.currentLayer.height = height;
+      data.currentLayer.width = width;
       data.canv.height = height;
+      data.currentLayer.height = height;
 
-      if (height >= width) {
+      if (width > height) {
+        data.canvIndex = Math.floor((canvasBase.offsetWidth * 0.99) / data.canv.width);
+      } else if (height > width) {
         data.canvIndex = Math.floor((canvasBase.offsetHeight * 0.99) / data.canv.height);
-      };
+      } else if (width === height) {
+        data.canvIndex = Math.floor((canvasBase.offsetWidth * 0.99) / height);
+      }
 
+      canvasWrapper.style.width = `${data.canv.width * data.canvIndex}px`;
       canvasWrapper.style.height = `${data.canv.height * data.canvIndex}px`;
+
+      ratio = data.canv.width / data.canv.height;
+      diff = data.canv.offsetWidth / canvasBase.offsetWidth;
     }
   })
 
