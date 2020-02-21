@@ -2,6 +2,8 @@ import toolsManager from './modules/tools/toolsManager.js';
 import pen from './modules/tools/pen.js';
 import paintBucket from './modules/tools/paint-bucket.js';
 import eraser from './modules/tools/eraser.js';
+import rectangle from './modules/tools/rectangle.js';
+import line from './modules/tools/line.js';
 import styleColor from './modules/style-color.js';
 import chooseColor from './modules/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
@@ -36,7 +38,9 @@ export const data = {
     isPen: false,
     isPaintBucket: false,
     isPaintAll: false,
-    isEraser: false
+    isEraser: false,
+    isRectangle: false,
+    isLine: false
   },
   offTools() {
     this.tools.isPen = false;
@@ -49,7 +53,7 @@ export const data = {
   }
 }
 
-data.tools.isPen = true;
+data.tools.isLine = true;
 
 styleColor();
 chooseColor();
@@ -61,18 +65,20 @@ toolsManager();
 pen();
 paintBucket();
 eraser();
+rectangle();
+line();
 
 function renderCanvas() {
-  canvasLayer_1.width = localStorage.getItem('canvWidth') || 32;
+  canvasLayer_1.width = 32;
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
-  canvasLayer_1.height = localStorage.getItem('canvWidth') || Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
+  canvasLayer_1.height =  Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
   canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
   canvasUpper.width = canvasLayer_1.width;
   canvasUpper.height = canvasLayer_1.height;
 }
 
 //To do:
-//настроить центровку мыши при больших размерах пера
+//Переработать алгоритм расчета размера канваса при вводе
 //переписать названия функций
 //Удалить иди доделать изменение цвета текста при выборе цвета

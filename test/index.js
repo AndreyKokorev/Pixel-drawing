@@ -4,14 +4,17 @@ const ctx = canv.getContext('2d');
 const colorPicker = document.querySelector('.lower-panel__color-picker');
 const colors = document.querySelectorAll('.lower-panel__item');
 const search = document.querySelector('.search-field');
+
 canv.width = localStorage.getItem('canvWidth') || 512;
 canv.height = localStorage.getItem('canvWidth') || 512;
+
 const par = {
   isDownload: false,
   canvIndex: 512 / canv.width,
   marginX: 0,
   marginY: 0
 };
+
 const instruments = {
   filters: {
     l: document.querySelector('.filters').addEventListener('click', (e) => {
@@ -120,7 +123,7 @@ function drawingRect() {
   canvLayer1.height = canv.height;
 
   canvLayer1.addEventListener('mousedown', (e) => {
-    ctxLayer1.strokeWidth = 1;
+    ctxLayer1.lineWidth = 256;
     ctxLayer1.strokeStyle = paint.color;
     mouseDown = true;
     x0 =  Math.floor(e.offsetX / par.canvIndex);
@@ -132,13 +135,15 @@ function drawingRect() {
       x1 =  Math.floor(e.offsetX / par.canvIndex);
       y1 =  Math.floor(e.offsetY / par.canvIndex);
       ctxLayer1.strokeRect(x0, y0, x1 - x0, y1 - y0);
-      ctxLayer1.stroke();
+      //ctxLayer1.stroke();
     }   
   })
   canvLayer1.addEventListener('mouseup', () => {
     mouseDown = false;
-    ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+    ctx.lineWidth = 10;
     ctx.strokeStyle = paint.color;
+    ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+    
     ctxLayer1.clearRect(0,0, canv.width, canv.height)
   })
 }

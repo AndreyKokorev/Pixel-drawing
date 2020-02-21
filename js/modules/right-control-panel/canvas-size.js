@@ -5,6 +5,7 @@ import {
 function setCanvasWrapperSize() {
   const canvasBase = document.querySelector('.canvas-base');
   const canvasWrapper = document.querySelector('.canvas-wrapper');
+  const canvasArray = canvasWrapper.children;
   const sizeSubmitButton = document.querySelector('.canvas-size-wrapper .button-submit');
   const zoom = document.querySelector('.zoom');
   const baseWidth = canvasBase.offsetWidth;
@@ -27,7 +28,7 @@ function setCanvasWrapperSize() {
 
     canvasWrapper.style.width = `${canvasWrapperWidth * ratio}px`;
     canvasWrapper.style.height = `${canvasWrapperHeight * ratio}px`;
-    console.log(canvasWrapper.offsetWidth)
+
     data.canvIndex = canvasWrapper.offsetWidth / data.currentLayer.width;
   });
 
@@ -44,6 +45,9 @@ function setCanvasWrapperSize() {
         setHeight();
         setWidth();
       }
+    } else {
+      document.querySelector('.canvas-width-input').value = '';
+      document.querySelector('.canvas-height-input').value = ''
     }
 
     canvasWrapperWidth = canvasWrapper.offsetWidth;

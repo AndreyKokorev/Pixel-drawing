@@ -97,3 +97,4 @@ function floodFill(x, y, workColors, pixelColor) {
 }
 
 export default paintBucket;
+console.log('FFF')
