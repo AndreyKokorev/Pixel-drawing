@@ -47,13 +47,13 @@ export const data = {
     this.tools.isChooseColor = false;
     this.tools.isPaintBucket = false;
     this.tools.isEraser = false;
-    this.tools.isStroke = false;
+    this.tools.isLine = false;
     this.tools.isRectangle = false;
     this.tools.isCircle = false;
   }
 }
 
-data.tools.isLine = true;
+data.tools.isPen = true;
 
 styleColor();
 chooseColor();
@@ -79,7 +79,8 @@ function renderCanvas() {
 }
 
 //To do:
+//Сделать дополнительный слой
+//Оптимизировать количество обработчиков событий
 //доработать алгоритм заливки
-//Переработать алгоритм расчета размера канваса при вводе
 //переписать названия функций
 //Удалить иди доделать изменение цвета текста при выборе цвета
