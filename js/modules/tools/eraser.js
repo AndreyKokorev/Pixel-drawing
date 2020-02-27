@@ -11,7 +11,7 @@ function eraser() {
       let x = Math.floor(e.offsetX / data.canvIndex);
       let y = Math.floor(e.offsetY / data.canvIndex);
 
-      data.currentCtx.clearRect(x, y, data.pixelSize, data.pixelSize);
+      data.currentCtx.clearRect(x - data.deflection, y - data.deflection, data.pixelSize, data.pixelSize);
     }
   })
 
@@ -24,7 +24,7 @@ function eraser() {
       let x = Math.floor(e.offsetX / data.canvIndex);
       let y = Math.floor(e.offsetY / data.canvIndex);
 
-      data.currentCtx.clearRect(x, y, data.pixelSize, data.pixelSize);
+      data.currentCtx.clearRect(x - data.deflection, y - data.deflection, data.pixelSize, data.pixelSize);
     }
   });
 }

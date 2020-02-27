@@ -18,7 +18,7 @@
       <h1>CodeJam - Palette</h1>
     </header>
     <main>
-      <aside class="control-panel-left">
+      <div class="control-panel-left">
         <div class="pixel-size-panel">
           <div class="pixel-size-panel__wrapper" data="1">
             <div class="pixel-size-panel__pixel-1" data="1"></div>
@@ -40,14 +40,14 @@
           </div>
         </div>
         <ul class="upper-panel">
-          <li class="upper-panel__item-1 upper-panel__item" id = "isPen"><span>Pen</span></li>
-          <li class="upper-panel__item-2 upper-panel__item" id = "isMirrorPen"><span>Mirror Pen</span></li>
-          <li class="upper-panel__item-3 upper-panel__item" id = "isPaintBucket"><span>Paint Bucket</span></li>
-          <li class="upper-panel__item-4 upper-panel__item" id = "isPaintAll"><span>Paint all</span></li>
-          <li class="upper-panel__item-5 upper-panel__item" id = "isEraser"><span>Eraser</span></li>
-          <li class="upper-panel__item-6 upper-panel__item" id = "isLine"><span>Line</span></li>
-          <li class="upper-panel__item-5 upper-panel__item" id = "isRectangle"><span>Rectangle</span></li>
-          <li class="upper-panel__item-5 upper-panel__item" id = "isCircle"><span>Circle</span></li>
+          <li class="upper-panel__item-1 upper-panel__item" id="isPen"><span>Pen</span></li>
+          <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen"><span>Mirror Pen</span></li>
+          <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket"><span>Paint Bucket</span></li>
+          <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll"><span>Paint all</span></li>
+          <li class="upper-panel__item-5 upper-panel__item" id="isEraser"><span>Eraser</span></li>
+          <li class="upper-panel__item-6 upper-panel__item" id="isLine"><span>Line</span></li>
+          <li class="upper-panel__item-7 upper-panel__item" id="isRectangle"><span>Rectangle</span></li>
+          <li class="upper-panel__item-8 upper-panel__item" id="isCircle"><span>Circle</span></li>
         </ul>
         <ul class="lower-panel">
           <li class="lower-panel__item-1 lower-panel__item">
@@ -60,11 +60,15 @@
           </li>
           <input class="lower-panel__color-picker" type="color" style="display: none">
         </ul>
-      </aside>
+      </div>
+      <div class="frame-control-panel">
+        <div class="frame-column"></div>
+        <button class="button-add-frame" type='button'>Add new frame</button>
+      </div>
       <div class="canvas-base">
         <div class="canvas-wrapper">
-          <canvas class="canvas-layer canvas-layer-1"></canvas>
-          <canvas class="canvas-layer-upper"></canvas>
+          <canvas class="canvas-layer canvas-layer-1 canvas"></canvas>
+          <canvas class="canvas-layer-upper canvas"></canvas>
         </div>
       </div>
       <!-- <div class="search-box">
@@ -88,11 +92,12 @@
           <ul class="layers-panel__layers-list">
             <li class="list-layer-1 list-layer">layer-1</li>
           </ul>
+          <!-- <button  class="button-animation" type="button">run animation</button>-->
         </div>
         <div class="canvas-size-wrapper">
           <button class='button-submit' type='button'>size</button>
-          <input class="canvas-width-input" type="text" value = '50'>
-          <input class="canvas-height-input" type="text" value = '50'>
+          <input class="canvas-width-input" type="text">
+          <input class="canvas-height-input" type="text">
         </div>
         <div class="zoom-wrapper">zoom: <span class='zoom'></span></div>
       </div>

@@ -21,7 +21,7 @@ function line() {
   data.canv.addEventListener('mousemove', function mouseMove(e) {
     if (mouseDown === true){
       data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
-
+  
       x1 =  Math.floor(e.offsetX / data.canvIndex);
       y1 =  Math.floor(e.offsetY / data.canvIndex);
 

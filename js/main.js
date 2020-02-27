@@ -4,10 +4,12 @@ import paintBucket from './modules/tools/paint-bucket.js';
 import eraser from './modules/tools/eraser.js';
 import rectangle from './modules/tools/rectangle.js';
 import line from './modules/tools/line.js';
+import circle from './modules/tools/circle.js';
 import styleColor from './modules/style-color.js';
 import chooseColor from './modules/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
 import layersManager from './modules/right-control-panel/layers-manager.js';
+import {frameManager} from './modules/frame-manager.js';
 import setCanvasWrapperSize from './modules/right-control-panel/canvas-size.js';
 import pointer from './modules/pointer.js';
 
@@ -28,7 +30,6 @@ export const data = {
   ctx: ctxUpper,
   currentLayer: canvasLayer_1,
   currentCtx: ctxLayer_1,
-  isDownload: false,
   canvIndex: canvasPixelWidth,
   marginX: 0,
   marginY: 0,
@@ -40,7 +41,8 @@ export const data = {
     isPaintAll: false,
     isEraser: false,
     isRectangle: false,
-    isLine: false
+    isLine: false,
+    isCircle: false
   },
   offTools() {
     this.tools.isPen = false;
@@ -59,26 +61,32 @@ styleColor();
 chooseColor();
 setPixelSize();
 layersManager();
+frameManager();
 setCanvasWrapperSize();
 pointer();
 toolsManager();
 pen();
 paintBucket();
 eraser();
-rectangle();
 line();
+rectangle();
+circle();
 
 function renderCanvas() {
   canvasLayer_1.width = 48;
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
+
   canvasLayer_1.height =  Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
   canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
+  
   canvasUpper.width = canvasLayer_1.width;
   canvasUpper.height = canvasLayer_1.height;
 }
 
 //To do:
+//favicon error
+//для резинки сделать алгоритм брезенхема
 //Сделать дополнительный слой
 //Оптимизировать количество обработчиков событий
 //доработать алгоритм заливки

@@ -1,6 +1,11 @@
 import {
   data
 } from '../../main.js';
+import {
+  frameSizeAll
+} from '../frame-manager.js';
+import {renderAllFrames} from '../frame-manager.js';
+import{saveFrameImageData} from '../frame-manager.js';
 
 function setCanvasWrapperSize() {
   const canvasBase = document.querySelector('.canvas-base');
@@ -60,9 +65,17 @@ function setCanvasWrapperSize() {
         layer[1].canv.height = height;
         layer[1].ctx.putImageData(imageData, 0, 0);
       }
+
       canvasRatio = data.canv.width / data.canv.height;
       wrapperRatio = data.canv.offsetWidth / canvasBase.offsetWidth;
     }
+
+    for (const frame of data.frameData.keys()) {
+      saveFrameImageData(frame, true);
+    }
+    
+    frameSizeAll();
+    renderAllFrames(document.querySelector('.list-layer.selected'));
   })
 
 }

@@ -1,6 +1,16 @@
 import {
   data
 } from '../../main.js';
+import {
+  renderFrame
+} from '../frame-manager.js';
+import {
+  renderAllFrames
+} from '../frame-manager.js';
+import {
+  saveFrameImageData
+} from '../frame-manager.js';
+import {renderMergeLayer} from '../frame-manager.js';
 
 function layersManager() {
   const basicLayer = document.querySelector('.list-layer-1');
@@ -16,10 +26,11 @@ function layersManager() {
   const canvasWrapper = document.querySelector('.canvas-wrapper');
   const layers = new Map();
   let layersAmount = 1;
-  let zIndex = 2;
+  let zIndex = 10;
 
   layers.set(basicLayer, new LayerData(data.currentLayer));
   data.layers = layers;
+
   basicLayer.classList.add('selected');
   basicLayer.style.boxShadow = '0 0 0 2px black';
 
@@ -29,7 +40,7 @@ function layersManager() {
 
     newLayer.width = data.canv.width;
     newLayer.height = data.canv.height;
-    newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer');
+    newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer', 'canvas');
     newLayer.style.zIndex = `${zIndex += 1}`;
     upperLayer.style.zIndex = zIndex + 1;
     canvasWrapper.append(newLayer);
@@ -47,6 +58,12 @@ function layersManager() {
     data.currentCtx = layers.get(layerListItem).ctx;
 
     setOpacity(layerListItem);
+
+    for (const frame of data.frameData.keys()) {
+      saveFrameImageData(frame, true);
+    }
+
+    renderAllFrames(layerListItem);
   })
 
   buttonChangeName.addEventListener('click', () => {
@@ -112,7 +129,7 @@ function layersManager() {
         break;
       }
     }
-  });
+  })
 
   buttonUpLayer.addEventListener('click', () => {
     for (let item of layersListChildren) {
@@ -144,6 +161,8 @@ function layersManager() {
 
     for (let item of layersListChildren) {
       if (item.classList.contains('selected') && item.nextElementSibling) {
+        const currentListItem = item;
+        const nextListItem = item.nextElementSibling;
         const ctxLayer_1 = layers.get(item).ctx;
         const ctxLayer_2 = layers.get(item.nextElementSibling).ctx;
 
@@ -162,11 +181,18 @@ function layersManager() {
           }
         }
 
-        layers.get(item).ctx.putImageData(layer_2, 0, 0);
+        renderMergeLayer(currentListItem, nextListItem);
 
+        layers.get(item).ctx.putImageData(layer_2, 0, 0);
         layers.get(item.nextElementSibling).canv.remove();
         layers.delete(item.nextElementSibling);
         item.nextElementSibling.remove();
+
+        for (const frame of data.frameData.keys()) {
+          saveFrameImageData(frame, true);
+        }
+        renderAllFrames(currentListItem)
+        break;
       }
     }
   })
@@ -182,8 +208,31 @@ function layersManager() {
 
       e.target.classList.add('selected');
       e.target.style.boxShadow = '0 0 0 2px black';
+
+      renderFrame();
+      renderAllFrames(e.target);
+      saveFrameImageData(data.currentFrame, true);
     }
   })
+
+  // document.querySelector('.button-animation').addEventListener('click', () => {
+  //   let count = 100;
+
+  //   for (const layer of layers) {
+  //     setTimeout(() => {
+  //       animation();
+  //     }, count += 300);
+
+  //     let dt = layer[1].ctx.getImageData(0, 0, layer[1].canv.width, layer[1].canv.height);
+  //     layer[1].ctx.clearRect(0, 0, data.canv.width, data.canv.height)
+
+  //     function animation() {    
+  //       data.ctx.putImageData(dt, 0, 0)
+  //     }
+  //   }
+
+  // })
+
 
   function setZIndex() {
     for (let i = 0; i <= layersListChildren.length - 1; i += 1) {
@@ -210,7 +259,6 @@ function layersManager() {
     }
   }
 }
-
 class LayerData {
   constructor(canv) {
     this.canv = canv;

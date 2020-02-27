@@ -157,14 +157,12 @@ main {
 }
 
 canvas {
-	width: 512px;
-	height: 512px;
 	z-index: 2;
 	align-self: center;
 	margin: 0 auto;
 	margin-top: 75px;
 	box-shadow: 0 0 7px rgba(13, 14, 13, 0.384);
-	image-rendering: pixelated;
+	//image-rendering: pixelated;
 }
 
 .search-box {
