@@ -12,8 +12,8 @@ function drawBresLine(x2, y2, x3, y3, rect) {
     xe,
     ye,
     i;
-  const rectDrawing = rect || drawRect;
-
+  const rectDrawing = (data.tools.isEraser === true) ? clearRect : rect || drawRect;
+  
   px = 2 * dy1 - dx1;
   py = 2 * dx1 - dy1;
 
@@ -80,6 +80,9 @@ function drawBresLine(x2, y2, x3, y3, rect) {
 function drawRect(x, y) {
   data.currentCtx.fillRect(x - data.deflection, y - data.deflection, data.pixelSize, data.pixelSize);
   data.currentCtx.fill();
+}
+function clearRect(x,y) {
+  data.currentCtx.clearRect(x - data.deflection, y - data.deflection, data.pixelSize, data.pixelSize);
 }
 
 export default drawBresLine;
