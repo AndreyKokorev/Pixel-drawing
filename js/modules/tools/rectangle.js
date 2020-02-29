@@ -26,19 +26,26 @@ function rectangle() {
         x1 = Math.floor(e.offsetX / data.canvIndex);
         y1 = Math.floor(e.offsetY / data.canvIndex);
 
-        data.ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+        if (data.pixelSize == 1 || data.pixelSize == 3 || data.pixelSize == 5) {
+          data.ctx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
+        } else {
+          data.ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+        }
       }
     })
 
     data.canv.addEventListener('mouseup', () => {
       mouseDown = false;
 
-      if (data.tools.isRectangle === true) {
-      
-        data.currentCtx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
+      if (data.tools.isRectangle === true) {       
+        if (data.pixelSize == 1 || data.pixelSize == 3 || data.pixelSize == 5) {
+          data.currentCtx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
+        } else {
+          data.currentCtx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+        }
         data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
       }
-    })
+    });
   })
 }
 

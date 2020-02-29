@@ -37,6 +37,7 @@ export const data = {
   deflection: localStorage.getItem('deflection') || 0,
   tools: {
     isPen: false,
+    isMirrorPen: false,
     isPaintBucket: false,
     isPaintAll: false,
     isEraser: false,
@@ -46,6 +47,7 @@ export const data = {
   },
   offTools() {
     this.tools.isPen = false;
+    this.tools.isMirrorPen = false;
     this.tools.isChooseColor = false;
     this.tools.isPaintBucket = false;
     this.tools.isEraser = false;

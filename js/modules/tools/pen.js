@@ -11,7 +11,7 @@ function pen() {
     y1;
 
   data.canv.addEventListener('mouseup', (e) => {
-    if (data.tools.isPen === true) {
+    if (data.tools.isPen === true || data.tools.isMirrorPen === true) {
       mouseDown = false;
       x1 = Math.floor(e.offsetX / data.canvIndex);
       y1 = Math.floor(e.offsetY / data.canvIndex);
@@ -20,22 +20,37 @@ function pen() {
 
   data.canv.addEventListener('mousedown', (e) => {
     pen.setColFunc();
-    if (data.tools.isPen === true) {
+    if (data.tools.isPen === true || data.tools.isMirrorPen === true) {
       mouseDown = true;
       x0 = Math.floor(e.offsetX / data.canvIndex);
       y0 = Math.floor(e.offsetY / data.canvIndex);
       drawRect(x0, y0);
+    }
+    if (data.tools.isMirrorPen === true) {
+      drawRect(data.canv.width - 1 - x0, y0);
     }
   });
 
   data.canv.addEventListener('mousemove', (e) => {
     const x = e.offsetX;
     const y = e.offsetY;
-    if (mouseDown && data.tools.isPen === true) {
+    if (mouseDown && (data.tools.isPen === true || data.tools.isMirrorPen === true)) {
       if (Math.abs(x / data.canvIndex - x0) > 0 || Math.abs(y / data.canvIndex - y0) > 0) {
         x1 = Math.floor(e.offsetX / data.canvIndex);
         y1 = Math.floor(e.offsetY / data.canvIndex);
         drawBresLine(x0, y0, x1, y1);
+
+        if (data.tools.isMirrorPen === true) {
+          if (e.shiftKey) {
+            drawBresLine(x0, data.canv.height - 1 - y0, x1, data.canv.height - 1 - y1);
+          } else if (e.ctrlKey) {
+            drawBresLine(x0, data.canv.height - 1 - y0, x1, data.canv.height - 1 - y1);
+            drawBresLine(data.canv.width - 1 - x0, y0, data.canv.width - 1 - x1, y1);
+            drawBresLine(data.canv.width - 1 - x0, data.canv.height - 1 - y0, data.canv.width - 1 - x1, data.canv.height - 1 - y1);
+          } else {
+            drawBresLine(data.canv.width - 1 - x0, y0, data.canv.width - 1 - x1, y1);
+          }
+        }
         x0 = x1;
         y0 = y1;
       }
