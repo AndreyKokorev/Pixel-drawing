@@ -48,7 +48,7 @@ function frameManager() {
       saveFrameImageData(e.target.parentNode.nextElementSibling, true);
 
       for (const layer of data.frameData.get(e.target.parentNode).imageData) {
-        const dt_1 = data.frameData.get(e.target.parentNode.nextElementSibling).imageData.get(layer[0]).data;   
+        const dt_1 = data.frameData.get(e.target.parentNode.nextElementSibling).imageData.get(layer[0]).data;
         const dt_2 = data.frameData.get(e.target.parentNode).imageData.get(layer[0]).data;
 
         for (let i = 0; i < dt_1.length; i += 4) {
@@ -162,6 +162,16 @@ function saveFrameImageData(frame, isLayerListItemClick) {
   frameData.imageData = imageData;
 }
 
+function deleteLayerImageData() {
+  const layerListItem = document.querySelector('.list-layer.selected');
+
+  for (const frameData of data.frameData.values()) {
+    if (frameData.imageData.get(layerListItem)) {
+      frameData.imageData.delete(layerListItem);
+    }
+  }
+}
+
 function frameSize(frame) {
   frame.width = data.canv.width;
   frame.height = data.canv.height;
@@ -247,6 +257,9 @@ class FrameData {
 
 export {
   saveFrameImageData
+};
+export {
+  deleteLayerImageData
 };
 export {
   renderAllFrames

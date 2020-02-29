@@ -10,7 +10,12 @@ import {
 import {
   saveFrameImageData
 } from '../frame-manager.js';
-import {renderMergeLayer} from '../frame-manager.js';
+import {
+  renderMergeLayer
+} from '../frame-manager.js';
+import {
+  deleteLayerImageData
+} from '../frame-manager.js';
 
 function layersManager() {
   const basicLayer = document.querySelector('.list-layer-1');
@@ -60,7 +65,7 @@ function layersManager() {
     data.currentCtx = layers.get(layerListItem).ctx;
 
     setOpacity(layerListItem);
-    renderAllFrames(layerListItem);  
+    renderAllFrames(layerListItem);
   })
 
   buttonChangeName.addEventListener('click', () => {
@@ -96,6 +101,8 @@ function layersManager() {
 
     for (let layer of layersListChildren) {
       if (layer.classList.contains('selected')) {
+        deleteLayerImageData();
+
         if (layer.nextElementSibling) {
           data.currentLayer = layers.get(layer.nextElementSibling).canv;
           data.currentCtx = layers.get(layer.nextElementSibling).ctx;
@@ -123,6 +130,9 @@ function layersManager() {
           layersAmount = 0;
           zIndex = 2;
         }
+
+        renderAllFrames(document.querySelector('.list-layer.selected'));
+
         break;
       }
     }
