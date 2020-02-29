@@ -6,7 +6,6 @@ function frameManager() {
   const frameColumn = document.querySelector('.frame-column');
   const frameWrappersCollection = frameColumn.children;
   const addFrame = document.querySelector('.button-add-frame');
-  const deleteFrame = document.querySelector('.frame-column__button-delete-frame');
 
   data.frameData = new Map();
 
@@ -21,7 +20,50 @@ function frameManager() {
   })
 
   frameColumn.addEventListener('click', (e) => {
-    if (!e.target.closest('.frame-column__frame-wrapper').classList.contains('frame-column__frame-wrapper--active')) {
+    if (e.target.classList.contains('frame-column__button-delete-frame')) {
+      if (e.target.parentNode.classList.contains('frame-column__frame-wrapper--active')) {
+        let element;
+
+        if (e.target.parentNode.nextElementSibling) {
+          element = e.target.parentNode.nextElementSibling;
+        } else {
+          element = e.target.parentNode.previousElementSibling;
+        }
+
+        data.currentFrame = element;
+        element.classList.add('frame-column__frame-wrapper--active');
+
+        data.frameData.delete(e.target.parentNode);
+        e.target.parentNode.remove();
+
+        setNumber();
+
+      } else {
+        data.frameData.delete(e.target.parentNode);
+        e.target.parentNode.remove();
+        setNumber();
+      }
+    } else if (e.target.classList.contains('frame-column__button-duplicate-frame')) {
+      newFrame(e.target.parentNode);
+      saveFrameImageData(e.target.parentNode.nextElementSibling, true);
+
+      for (const layer of data.frameData.get(e.target.parentNode).imageData) {
+        const dt_1 = data.frameData.get(e.target.parentNode.nextElementSibling).imageData.get(layer[0]).data;   
+        const dt_2 = data.frameData.get(e.target.parentNode).imageData.get(layer[0]).data;
+
+        for (let i = 0; i < dt_1.length; i += 4) {
+          dt_1[i] = dt_2[i];
+          dt_1[i + 1] = dt_2[i + 1];
+          dt_1[i + 2] = dt_2[i + 2];
+          dt_1[i + 3] = dt_2[i + 3];
+        }
+      }
+      const listItem = document.querySelector('.list-layer.selected');
+      const imageData = data.frameData.get(data.currentFrame).imageData.get(listItem);
+      data.frameData.get(data.currentFrame).frame.ctx.putImageData(imageData, 0, 0);
+      data.layers.get(listItem).ctx.putImageData(imageData, 0, 0);
+
+    } else if (!e.target.closest('.frame-column__frame-wrapper').classList.contains('frame-column__frame-wrapper--active')) {
       const layersList = data.frameData.get(e.target.closest('.frame-column__frame-wrapper')).imageData.keys();
       const frame = e.target.closest('.frame-column__frame-wrapper');
       const layersData = data.frameData.get(frame).imageData;
@@ -46,7 +88,7 @@ function frameManager() {
     }
   })
 
-  function newFrame() {
+  function newFrame(original) {
     const frameWrapper = document.createElement('div');
     const frame = document.createElement('canvas');
     const frameNumber = document.createElement('div');
@@ -74,7 +116,11 @@ function frameManager() {
     frameWrapper.append(frameNumber);
     frameWrapper.append(deleteFrame);
     frameWrapper.append(dublicateFrame);
-    frameColumn.append(frameWrapper);
+    if (original) {
+      original.after(frameWrapper);
+    } else {
+      frameColumn.append(frameWrapper);
+    }
 
     setNumber();
 
@@ -87,6 +133,7 @@ function frameManager() {
       saveFrameImageData(data.currentFrame);
     }
     data.currentFrame = frameWrapper;
+    saveFrameImageData(data.currentFrame, true);
   }
 
   function setNumber() {
@@ -151,32 +198,45 @@ function renderFrame() {
 
 function renderAllFrames(layerListItem) {
   data.frameData.forEach(item => {
-    console.log(item.imageData)
     if (item.imageData !== null) {
-      item.frame.ctx.putImageData(item.imageData.get(layerListItem), 0, 0);
+      if (item.imageData.get(layerListItem)) {
+        item.frame.ctx.putImageData(item.imageData.get(layerListItem), 0, 0);
+      } else {
+        item.frame.ctx.clearRect(0, 0, data.canv.width, data.canv.height)
+      }
     }
   })
 }
 
 function renderMergeLayer(currentListItem, nextListItem) {
+  saveFrameImageData(data.currentFrame, true);
+
   for (const frame of data.frameData.keys()) {
-    saveFrameImageData(frame, true);
+    const imageData = data.frameData.get(frame).imageData;
+    let dt_1, dt_2;
 
-    const dt_1 = data.frameData.get(frame).imageData.get(currentListItem).data;
-    const dt_2 = data.frameData.get(frame).imageData.get(nextListItem).data
-
-    for (let i = 0; i < dt_1.length; i += 4) {
-      if (dt_1[i] === 0 && dt_1[i + 1] === 0 && dt_1[i + 2] === 0 && dt_1[i + 3] === 0) {
-        dt_1[i] = dt_2[i];
-        dt_1[i + 1] = dt_2[i + 1];
-        dt_1[i + 2] = dt_2[i + 2];
-        dt_1[i + 3] = dt_2[i + 3];
-      }
+    if (imageData.get(currentListItem)) {
+      dt_1 = imageData.get(currentListItem).data;
     }
-    data.frameData.get(frame).imageData.delete(nextListItem);
+    if (imageData.get(nextListItem)) {
+      dt_2 = imageData.get(nextListItem).data
+    }
+    if (dt_1 && dt_2) {
+      for (let i = 0; i < dt_1.length; i += 4) {
+        if (dt_1[i] === 0 && dt_1[i + 1] === 0 && dt_1[i + 2] === 0 && dt_1[i + 3] === 0) {
+          dt_1[i] = dt_2[i];
+          dt_1[i + 1] = dt_2[i + 1];
+          dt_1[i + 2] = dt_2[i + 2];
+          dt_1[i + 3] = dt_2[i + 3];
+        }
+      }
+      imageData.delete(nextListItem);
+    } else if (dt_2) {
+      imageData.set(currentListItem, imageData.get(nextListItem));
+      imageData.delete(nextListItem);
+    }
   }
 }
-
 class FrameData {
   constructor(frame, canvas) {
     this.frame = frame;

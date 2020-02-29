@@ -38,6 +38,8 @@ function layersManager() {
     const newLayer = document.createElement('canvas');
     const layerListItem = document.createElement('li');
 
+    saveFrameImageData(data.currentFrame, true);
+
     newLayer.width = data.canv.width;
     newLayer.height = data.canv.height;
     newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer', 'canvas');
@@ -58,12 +60,7 @@ function layersManager() {
     data.currentCtx = layers.get(layerListItem).ctx;
 
     setOpacity(layerListItem);
-
-    for (const frame of data.frameData.keys()) {
-      saveFrameImageData(frame, true);
-    }
-
-    renderAllFrames(layerListItem);
+    renderAllFrames(layerListItem);  
   })
 
   buttonChangeName.addEventListener('click', () => {
@@ -188,9 +185,9 @@ function layersManager() {
         layers.delete(item.nextElementSibling);
         item.nextElementSibling.remove();
 
-        for (const frame of data.frameData.keys()) {
-          saveFrameImageData(frame, true);
-        }
+        // for (const frame of data.frameData.keys()) {
+        //   saveFrameImageData(frame, true);
+        // }
         renderAllFrames(currentListItem)
         break;
       }

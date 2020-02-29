@@ -69,15 +69,11 @@ function setCanvasWrapperSize() {
       canvasRatio = data.canv.width / data.canv.height;
       wrapperRatio = data.canv.offsetWidth / canvasBase.offsetWidth;
     }
-
-    for (const frame of data.frameData.keys()) {
-      saveFrameImageData(frame, true);
-    }
-    
+  
+    saveFrameImageData(data.currentFrame, true);  
     frameSizeAll();
     renderAllFrames(document.querySelector('.list-layer.selected'));
   })
-
 }
 
 export default setCanvasWrapperSize;
