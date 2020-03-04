@@ -12,6 +12,7 @@ import layersManager from './modules/right-control-panel/layers-manager.js';
 import {frameManager} from './modules/frame-manager.js';
 import setCanvasWrapperSize from './modules/right-control-panel/canvas-size.js';
 import pointer from './modules/pointer.js';
+import {startAnimation} from './modules/right-control-panel/animation-manager.js';
 
 const canvasBase = document.querySelector('.canvas-base');
 const canvasLayer_1 = document.querySelector('.canvas-layer-1');
@@ -73,9 +74,10 @@ eraser();
 line();
 rectangle();
 circle();
+startAnimation();
 
 function renderCanvas() {
-  canvasLayer_1.width = 48;
+  canvasLayer_1.width = 52;
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
 
@@ -89,7 +91,6 @@ function renderCanvas() {
 //To do:
 //Добавить инструменты
 //favicon error
-//для резинки сделать алгоритм брезенхема
 //Сделать дополнительный слой
 //доработать алгоритм заливки
 //Удалить иди доделать изменение цвета текста при выборе цвета

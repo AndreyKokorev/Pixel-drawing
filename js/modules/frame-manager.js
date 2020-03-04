@@ -1,6 +1,7 @@
 import {
   data
 } from '../main.js';
+import {frameToPNG} from './right-control-panel/animation-manager.js';
 
 function frameManager() {
   const frameColumn = document.querySelector('.frame-column');
@@ -10,13 +11,16 @@ function frameManager() {
   data.frameData = new Map();
 
   data.canv.addEventListener('mouseup', () => {
-    renderFrame()
+    saveFrameImageData(data.currentFrame, true)
+    renderFrame();
+    frameToPNG(data.currentFrame);
   });
 
   newFrame();
 
   addFrame.addEventListener('click', () => {
     newFrame();
+    frameToPNG(data.currentFrame);
   })
 
   frameColumn.addEventListener('click', (e) => {
@@ -63,6 +67,8 @@ function frameManager() {
       data.frameData.get(data.currentFrame).frame.ctx.putImageData(imageData, 0, 0);
       data.layers.get(listItem).ctx.putImageData(imageData, 0, 0);
 
+      frameToPNG();
+      
     } else if (!e.target.closest('.frame-column__frame-wrapper').classList.contains('frame-column__frame-wrapper--active')) {
       const layersList = data.frameData.get(e.target.closest('.frame-column__frame-wrapper')).imageData.keys();
       const frame = e.target.closest('.frame-column__frame-wrapper');
