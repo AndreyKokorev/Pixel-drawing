@@ -1,7 +1,9 @@
 import {
   data
 } from '../main.js';
-import {frameToPNG} from './right-control-panel/animation-manager.js';
+import {
+  frameToPNG
+} from './right-control-panel/animation-manager.js';
 
 function frameManager() {
   const frameColumn = document.querySelector('.frame-column');
@@ -14,6 +16,7 @@ function frameManager() {
     saveFrameImageData(data.currentFrame, true)
     renderFrame();
     frameToPNG(data.currentFrame);
+    console.log(data.frameData)
   });
 
   newFrame();
@@ -30,15 +33,33 @@ function frameManager() {
 
         if (e.target.parentNode.nextElementSibling) {
           element = e.target.parentNode.nextElementSibling;
-        } else {
+          renderElement();
+        } else if (e.target.parentNode.previousElementSibling) {
           element = e.target.parentNode.previousElementSibling;
+          renderElement();
+        } else {
+          element = e.target.parentNode;
+          data.currentFrame = null;
         }
-
-        data.currentFrame = element;
-        element.classList.add('frame-column__frame-wrapper--active');
 
         data.frameData.delete(e.target.parentNode);
         e.target.parentNode.remove();
+
+
+        function renderElement() {
+          let frameData = data.frameData.get(element);
+
+          for (const layer of document.querySelectorAll('.list-layer')) {
+            console.log(data.frameData.get(element).imageData.get(layer))
+            if (data.frameData.get(element).imageData.get(layer)) {
+              frameData.canvas.get(layer).ctx.putImageData(data.frameData.get(element).imageData.get(layer), 0, 0);
+            } else {
+              frameData.canvas.get(layer).ctx.clearRect(0, 0, data.canv.width, data.canv.height);
+            }
+          }
+          data.currentFrame = element;
+          element.classList.add('frame-column__frame-wrapper--active');
+        }
 
         setNumber();
 
@@ -90,7 +111,7 @@ function frameManager() {
 
       frame.classList.add('frame-column__frame-wrapper--active');
       data.currentFrame = frame;
-      renderFrame();
+
     }
   })
 

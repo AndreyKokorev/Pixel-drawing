@@ -2,7 +2,7 @@ import {
   data
 } from '../../main.js';
 import {
-  renderFrame
+  renderFrame, frameManager
 } from '../frame-manager.js';
 import {
   renderAllFrames
@@ -16,6 +16,7 @@ import {
 import {
   deleteLayerImageData
 } from '../frame-manager.js';
+import {frameToPNG} from './animation-manager.js';
 
 function layersManager() {
   const basicLayer = document.querySelector('.list-layer-1');
@@ -66,6 +67,8 @@ function layersManager() {
 
     setOpacity(layerListItem);
     renderAllFrames(layerListItem);
+    
+    //frameToPNG(true);
   })
 
   buttonChangeName.addEventListener('click', () => {
@@ -131,7 +134,8 @@ function layersManager() {
           zIndex = 2;
         }
 
-        renderAllFrames(document.querySelector('.list-layer.selected'));   
+        renderAllFrames(document.querySelector('.list-layer.selected'));
+        frameToPNG(true);
            
         break;
       }
@@ -221,25 +225,6 @@ function layersManager() {
       saveFrameImageData(data.currentFrame, true);
     }
   })
-
-  // document.querySelector('.button-animation').addEventListener('click', () => {
-  //   let count = 100;
-
-  //   for (const layer of layers) {
-  //     setTimeout(() => {
-  //       animation();
-  //     }, count += 300);
-
-  //     let dt = layer[1].ctx.getImageData(0, 0, layer[1].canv.width, layer[1].canv.height);
-  //     layer[1].ctx.clearRect(0, 0, data.canv.width, data.canv.height)
-
-  //     function animation() {    
-  //       data.ctx.putImageData(dt, 0, 0)
-  //     }
-  //   }
-
-  // })
-
 
   function setZIndex() {
     for (let i = 0; i <= layersListChildren.length - 1; i += 1) {
