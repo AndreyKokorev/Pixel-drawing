@@ -17,7 +17,7 @@ function startAnimation() {
     if (counter === data.frameData.size) counter = 0;
 
     if (animationFrames[counter]) {
-      setImageSize()
+      //setImageSize()
       monitor.src = data.frameData.get(animationFrames[counter]).img;
       counter++;
     }
@@ -31,6 +31,8 @@ function frameToPNG(allFrames) {
   canvas.width = data.canv.width;
   canvas.height = data.canv.height;
 
+  setImageSize();
+
   if (allFrames) {
     for (const frame of data.frameData.keys()) {
       getPNG(frame);
@@ -39,29 +41,29 @@ function frameToPNG(allFrames) {
     getPNG(data.currentFrame);
   }
 
-
   function getPNG(frame) {
     const layersList = document.querySelectorAll('.list-layer');
     const imageData = data.frameData.get(frame).imageData;
     const frameData = data.frameData.get(frame);
+    let dt_1, dt_2;
+
     frameData.animationImageData = [];
 
     for (const layer of layersList) {
       let Uint8ClampedArr;
 
-      if (!imageData.get(layer)) {
-        const clearImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
-        Uint8ClampedArr = new Uint8ClampedArray(clearImageData);
-      } else {
+      if (imageData.get(layer)) {
         Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
+        frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
+      } else {
+        // const clearImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
+        // Uint8ClampedArr = new Uint8ClampedArray(clearImageData);
       }
-      frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
     }
 
     for (let i = 0; i < frameData.animationImageData.length; i += 1) {
-      let dt_1, dt_2;
 
-      if (frameData.animationImageData[i]) {
+      if (frameData.animationImageData[i] && i === 0) {
         dt_1 = frameData.animationImageData[i].data;
       }
       if (frameData.animationImageData[i + 1]) {
@@ -77,7 +79,8 @@ function frameToPNG(allFrames) {
             dt_1[i + 3] = dt_2[i + 3];
           }
         }
-        frameData.animationImageData.splice(i + 1, 1);
+        // frameData.animationImageData.splice(i + 1, 1);
+        // i = 0;
       }
     }
 
@@ -121,4 +124,7 @@ export {
 };
 export {
   frameToPNG
+};
+export {
+  setImageSize
 };

@@ -6,6 +6,7 @@ import {
 } from '../frame-manager.js';
 import {renderAllFrames} from '../frame-manager.js';
 import{saveFrameImageData} from '../frame-manager.js';
+import{frameToPNG} from './animation-manager.js';
 
 function setCanvasWrapperSize() {
   const canvasBase = document.querySelector('.canvas-base');
@@ -73,6 +74,7 @@ function setCanvasWrapperSize() {
     saveFrameImageData(data.currentFrame, true);  
     frameSizeAll();
     renderAllFrames(document.querySelector('.list-layer.selected'));
+    frameToPNG();
   })
 }
 

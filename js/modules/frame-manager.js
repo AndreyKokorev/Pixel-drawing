@@ -16,7 +16,6 @@ function frameManager() {
     saveFrameImageData(data.currentFrame, true)
     renderFrame();
     frameToPNG(data.currentFrame);
-    console.log(data.frameData)
   });
 
   newFrame();

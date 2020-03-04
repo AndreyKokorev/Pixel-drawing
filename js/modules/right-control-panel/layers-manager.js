@@ -67,7 +67,7 @@ function layersManager() {
 
     setOpacity(layerListItem);
     renderAllFrames(layerListItem);
-    
+
     //frameToPNG(true);
   })
 
