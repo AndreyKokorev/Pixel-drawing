@@ -131,8 +131,8 @@ function layersManager() {
           zIndex = 2;
         }
 
-        renderAllFrames(document.querySelector('.list-layer.selected'));
-
+        renderAllFrames(document.querySelector('.list-layer.selected'));   
+           
         break;
       }
     }

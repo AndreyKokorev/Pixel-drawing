@@ -61,14 +61,14 @@ function frameManager() {
           dt_1[i + 2] = dt_2[i + 2];
           dt_1[i + 3] = dt_2[i + 3];
         }
+
+        const imageData = data.frameData.get(data.currentFrame).imageData.get(layer[0]);
+        data.frameData.get(data.currentFrame).frame.ctx.putImageData(imageData, 0, 0);
+        data.layers.get(layer[0]).ctx.putImageData(imageData, 0, 0);
       }
-      const listItem = document.querySelector('.list-layer.selected');
-      const imageData = data.frameData.get(data.currentFrame).imageData.get(listItem);
-      data.frameData.get(data.currentFrame).frame.ctx.putImageData(imageData, 0, 0);
-      data.layers.get(listItem).ctx.putImageData(imageData, 0, 0);
 
       frameToPNG();
-      
+
     } else if (!e.target.closest('.frame-column__frame-wrapper').classList.contains('frame-column__frame-wrapper--active')) {
       const layersList = data.frameData.get(e.target.closest('.frame-column__frame-wrapper')).imageData.keys();
       const frame = e.target.closest('.frame-column__frame-wrapper');
