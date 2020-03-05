@@ -39,8 +39,17 @@ function setCanvasWrapperSize() {
 
   sizeSubmitButton.addEventListener('click', () => {
     const canvasBase = document.querySelector('.canvas-base');
-    const width = +document.querySelector('.canvas-width-input').value;
-    const height = +document.querySelector('.canvas-height-input').value;
+    const widthField = document.querySelector('.canvas-width-input');
+    const heightField = document.querySelector('.canvas-height-input');
+    let width = +widthField.value;
+    let height = +heightField.value;
+
+    if(!width) {
+      width = data.canv.width;
+    }
+    if (!height) {
+      height = data.canv.height;
+    }
 
     if (Number.isInteger(width) && Number.isInteger(height)) {
       data.canv.width = width;
@@ -69,12 +78,17 @@ function setCanvasWrapperSize() {
 
       canvasRatio = data.canv.width / data.canv.height;
       wrapperRatio = data.canv.offsetWidth / canvasBase.offsetWidth;
+
+      widthField.placeholder = width
+      heightField.placeholder = height;
+      widthField.value = '';
+      heightField.value = '';
     }
   
     saveFrameImageData(data.currentFrame, true);  
     frameSizeAll();
     renderAllFrames(document.querySelector('.list-layer.selected'));
-    frameToPNG();
+    frameToPNG(true);
   })
 }
 

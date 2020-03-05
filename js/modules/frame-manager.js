@@ -13,9 +13,11 @@ function frameManager() {
   data.frameData = new Map();
 
   data.canv.addEventListener('mouseup', () => {
-    saveFrameImageData(data.currentFrame, true)
-    renderFrame();
-    frameToPNG(data.currentFrame);
+    if (!data.tools.isRectangle && !data.tools.isLine) {
+      saveFrameImageData(data.currentFrame, true);
+      renderFrame();
+      frameToPNG(data.currentFrame);
+    }
   });
 
   newFrame();
@@ -49,7 +51,6 @@ function frameManager() {
           let frameData = data.frameData.get(element);
 
           for (const layer of document.querySelectorAll('.list-layer')) {
-            console.log(data.frameData.get(element).imageData.get(layer))
             if (data.frameData.get(element).imageData.get(layer)) {
               frameData.canvas.get(layer).ctx.putImageData(data.frameData.get(element).imageData.get(layer), 0, 0);
             } else {

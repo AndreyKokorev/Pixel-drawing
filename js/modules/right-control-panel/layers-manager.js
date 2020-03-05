@@ -68,7 +68,7 @@ function layersManager() {
     setOpacity(layerListItem);
     renderAllFrames(layerListItem);
 
-    //frameToPNG(true);
+    frameToPNG(true);
   })
 
   buttonChangeName.addEventListener('click', () => {

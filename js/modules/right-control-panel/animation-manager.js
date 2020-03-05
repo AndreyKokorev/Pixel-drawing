@@ -9,19 +9,44 @@ const monitor = document.querySelector('.animation-wrapper__monitor');
 let animationFrames = [];
 
 function startAnimation() {
+  const animationControlPanel = document.querySelector('.animation-wrapper__control-panel');
+  const fpsSlider = document.querySelector('.animation-wrapper__fps-slider');
+  let fpsMonitor = document.querySelector('.animation-wrapper__fps-monitor');
+  let fpsInterval = null;
   let counter = 0;
+  let fpsTimer = 0;
+
+  fpsMonitor.textContent = fpsSlider.value + 'FPS';
 
   frameToPNG();
 
-  setInterval(() => {
+  fpsSlider.addEventListener('input', (e) => {
+    if (e.target.value === '0') {
+      fpsTimer = 0;
+      clearInterval(fpsInterval);
+    } else {
+      fpsTimer = 1000 / Number(e.target.value);
+      clearInterval(fpsInterval);
+      fpsInterval = setInterval(() => {
+        drawFrame();
+      }, fpsTimer);
+    }
+
+    fpsMonitor.textContent = +e.target.value + 'FPS'
+  })
+
+  fpsInterval = setInterval(() => {
+    drawFrame();
+  }, fpsTimer);
+
+  function drawFrame() {
     if (counter === data.frameData.size) counter = 0;
 
     if (animationFrames[counter]) {
-      //setImageSize()
       monitor.src = data.frameData.get(animationFrames[counter]).img;
       counter++;
     }
-  }, 1000);
+  }
 }
 
 function frameToPNG(allFrames) {
@@ -79,14 +104,13 @@ function frameToPNG(allFrames) {
             dt_1[i + 3] = dt_2[i + 3];
           }
         }
-        // frameData.animationImageData.splice(i + 1, 1);
-        // i = 0;
       }
     }
 
     const canvas_1 = document.createElement('canvas');
     const ctx_1 = canvas_1.getContext('2d');
     ctx.putImageData(frameData.animationImageData[0], 0, 0);
+    //frameData.animationImageData = null;
 
     animationFrames = document.getElementsByClassName('frame-column__frame-wrapper');
 
@@ -99,8 +123,8 @@ function frameToPNG(allFrames) {
       canvas.height = image.height;
       ctx.drawImage(image, 0, 0);
 
-      canvas_1.width = canvas.width * 20;
-      canvas_1.height = canvas.height * 20;
+      canvas_1.width = canvas.width * (200 / data.canv.width);
+      canvas_1.height = canvas.height * (200 / data.canv.width);
       ctx_1.imageSmoothingEnabled = false;
       ctx_1.drawImage(canvas, 0, 0, canvas_1.width, canvas_1.height);
 

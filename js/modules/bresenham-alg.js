@@ -1,6 +1,7 @@
 import {data} from '../main.js';
 
 function drawBresLine(x2, y2, x3, y3, rect) {
+  const rectDrawing = (data.tools.isEraser === true) ? clearRect : rect || drawRect;
   const dx = x3 - x2;
   const dy = y3 - y2;
   const dx1 = Math.abs(dx);
@@ -12,7 +13,6 @@ function drawBresLine(x2, y2, x3, y3, rect) {
     xe,
     ye,
     i;
-  const rectDrawing = (data.tools.isEraser === true) ? clearRect : rect || drawRect;
   
   px = 2 * dy1 - dx1;
   py = 2 * dx1 - dy1;

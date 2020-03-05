@@ -81,8 +81,13 @@
      <input class="canvas-size" type="range" min="1" max="3" step="1"> -->
       <div class="control-panel-right">
         <div class="animation-wrapper">
-          <img class="animation-wrapper__monitor">
-          <div class="animation-wrapper__control-panel"></div>
+          <div class="animation-wrapper__monitor-wrapper">
+            <img class="animation-wrapper__monitor">
+          </div>
+          <div class="animation-wrapper__control-panel">
+            <span class="animation-wrapper__fps-monitor"></span>
+            <input class="animation-wrapper__fps-slider" type="range" min="0" max="24" step="1">
+          </div>
         </div>
         <div class="layers-panel">
           <div class="layers-panel__control">
