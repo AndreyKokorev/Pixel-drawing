@@ -88,6 +88,7 @@ function frameManager() {
         data.layers.get(layer[0]).ctx.putImageData(imageData, 0, 0);
       }
 
+      renderFrame();
       frameToPNG();
 
     } else if (!e.target.closest('.frame-column__frame-wrapper').classList.contains('frame-column__frame-wrapper--active')) {
