@@ -1,6 +1,7 @@
 import toolsManager from './modules/tools/toolsManager.js';
 import pen from './modules/tools/pen.js';
 import paintBucket from './modules/tools/paint-bucket.js';
+import paintAll from './modules/tools/paintAll.js';
 import eraser from './modules/tools/eraser.js';
 import rectangle from './modules/tools/rectangle.js';
 import line from './modules/tools/line.js';
@@ -49,8 +50,9 @@ export const data = {
   offTools() {
     this.tools.isPen = false;
     this.tools.isMirrorPen = false;
-    this.tools.isChooseColor = false;
     this.tools.isPaintBucket = false;
+    this.tools.isPaintAll = false;
+    this.tools.isChooseColor = false;  
     this.tools.isEraser = false;
     this.tools.isLine = false;
     this.tools.isRectangle = false;
@@ -70,6 +72,7 @@ pointer();
 toolsManager();
 pen();
 paintBucket();
+paintAll();
 eraser();
 line();
 rectangle();

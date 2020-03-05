@@ -3,7 +3,7 @@ import {
 } from '../../main.js';
 
 function paintBucket() {
-  data.canv.addEventListener('mousedown', (e) => { 
+  data.canv.addEventListener('mousedown', (e) => {
     if (data.tools.isPaintBucket === true) {
       const x = Math.floor(e.offsetX / data.canvIndex);
       const y = Math.floor(e.offsetY / data.canvIndex);
@@ -97,4 +97,3 @@ function floodFill(x, y, workColors, pixelColor) {
 }
 
 export default paintBucket;
-console.log('FFF')
