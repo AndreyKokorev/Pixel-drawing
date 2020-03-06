@@ -179,7 +179,7 @@ main {
   }
 
   .lower-panel {
-    width:228px;
+    width: 228px;
     margin-top: 200px;
     padding-bottom: 15px;
     box-shadow: 0 3px 3px 0px rgba(45, 51, 49, 0.281);
@@ -258,6 +258,7 @@ main {
 
 .control-panel-right {
   width: 200px;
+
   .animation-wrapper {
     display: grid;
     justify-content: center;
@@ -309,32 +310,38 @@ main {
     width: 9px;
     height: 3px;
   }
+
   &::-webkit-scrollbar-button {
     display: none;
     background-color: #666;
   }
+
   &::-webkit-scrollbar-track {
-    
+
     background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 21%, rgba(250, 192, 0, 0.836) 28%, rgba(245, 170, 7, 0.836) 47%, transparent, transparent, rgba(255, 0, 0, 0.719) 73%);
   }
-  &::-webkit-scrollbar-track-piece { 
+
+  &::-webkit-scrollbar-track-piece {
     //background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 13%, rgba(250, 192, 0, 0.836) 20%, rgba(245, 170, 7, 0.836) 40%, transparent, transparent, rgba(255, 0, 0, 0.719) 70%);
   }
-  &::-webkit-scrollbar-thumb { 
+
+  &::-webkit-scrollbar-thumb {
     //height: 50px; 
-    background-color:rgb(66, 230, 120); 
-    box-shadow:inset 0 0 3px black;
+    background-color: rgb(66, 230, 120);
+    box-shadow: inset 0 0 3px black;
     border-radius: 2px;
     //mix-blend-mode: color-burn ;
   }
+
   &::-webkit-scrollbar-corner {
-    
+
     //background-color: #999;
   }
+
   &::-webkit-resizer {
     //background-color: #666;
   }
-  
+
   &__frame-wrapper {
     position: relative;
     display: flex;
@@ -387,6 +394,100 @@ main {
   width: 100%;
   height: 30px;
   margin-top: 20px;
+}
+
+.aside-panel {
+  position: relative;
+  display: flex;
+  width: 50px;
+  z-index: 1000;
+
+  &__main-wrapper {
+    position: absolute;
+    right: 0;
+    display: flex;
+  }
+
+  &__icon-wrapper {
+    align-self: center;
+
+    .icon-background {
+      background: rgba(33, 189, 85, 0.692);
+    }
+
+    .icon-background:first-child {
+      border-radius: 5px 0 0 0;
+    }
+
+    .icon-background:hover {
+      transform: scale(0.95);
+      transform-origin: right;
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 5px;
+    }
+
+    .icon-save {
+      background: url(../img/icons/save.svg) no-repeat;
+      background-position: center;
+    }
+
+    .icon-import {
+      background: url(../img/icons/import.svg) no-repeat;
+      background-position: center;
+    }
+  }
+
+  &__operating-wrapper {
+    height: 300px;
+  }
+
+  &__operating {
+    height: 100%;
+    font-size: 14px;
+    background: rgba(245, 221, 7, 0.993);
+    overflow: hidden;
+    transition: width 0.8s;
+  }
+
+  &__save-operating {
+    width: 250px;
+    display: grid;
+    justify-items: center;
+    align-content: space-around;
+
+    .range-input-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .resolution {
+      display: flex;
+      input {
+        width: 45px;
+        margin: 0 10px 0;
+        text-align: center;
+      }
+    }
+    .file-format-wrapper {
+      display:flex;
+      align-items: center;
+      .files-name {
+        width: 100px;
+      }
+      .buttons-wrapper {
+        display:grid;
+        align-content: space-around;
+        height: 150px;
+        button {
+          height: 20px;
+        }
+      }
+    }
+  }
 }
 
 .canvas-base {

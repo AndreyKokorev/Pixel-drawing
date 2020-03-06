@@ -14,6 +14,7 @@ import {frameManager} from './modules/frame-manager.js';
 import setCanvasWrapperSize from './modules/right-control-panel/canvas-size.js';
 import pointer from './modules/pointer.js';
 import {startAnimation} from './modules/right-control-panel/animation-manager.js';
+import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
 
 const canvasBase = document.querySelector('.canvas-base');
 const canvasLayer_1 = document.querySelector('.canvas-layer-1');
@@ -78,6 +79,7 @@ line();
 rectangle();
 circle();
 startAnimation();
+asidePanelManager();
 
 function renderCanvas() {
   canvasLayer_1.width = 52;
@@ -92,7 +94,8 @@ function renderCanvas() {
 }
 
 //To do:
-//При быстром добавлении нескольких подряд слоёв ошибка
+//При удалении фрейма прекращается анимация ???
+//При быстром добавлении(дублировании) нескольких подряд слоёв ошибка,gри высоком фпс не успевает загрузиться PNG
 //Добавить инструменты
 //favicon error
 //Сделать дополнительный слой
