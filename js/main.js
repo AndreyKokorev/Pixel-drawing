@@ -10,10 +10,14 @@ import styleColor from './modules/style-color.js';
 import chooseColor from './modules/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
 import layersManager from './modules/right-control-panel/layers-manager.js';
-import {frameManager} from './modules/frame-manager.js';
+import {
+  frameManager
+} from './modules/frame-manager.js';
 import setCanvasWrapperSize from './modules/right-control-panel/canvas-size.js';
 import pointer from './modules/pointer.js';
-import {startAnimation} from './modules/right-control-panel/animation-manager.js';
+import {
+  startAnimation
+} from './modules/right-control-panel/animation-manager.js';
 import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
 
 const canvasBase = document.querySelector('.canvas-base');
@@ -53,7 +57,7 @@ export const data = {
     this.tools.isMirrorPen = false;
     this.tools.isPaintBucket = false;
     this.tools.isPaintAll = false;
-    this.tools.isChooseColor = false;  
+    this.tools.isChooseColor = false;
     this.tools.isEraser = false;
     this.tools.isLine = false;
     this.tools.isRectangle = false;
@@ -86,18 +90,20 @@ function renderCanvas() {
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
 
-  canvasLayer_1.height =  Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
+  canvasLayer_1.height = Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
   canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
-  
+
   canvasUpper.width = canvasLayer_1.width;
   canvasUpper.height = canvasLayer_1.height;
 }
 
 //To do:
-//При удалении фрейма прекращается анимация ???
+//? при скачивании изображения вылазило предупреждение в адресной строке
+//Сделать отмену изменений
+//Удаление изображений фреймов
+//? При удалении фрейма прекращается анимация 
 //При быстром добавлении(дублировании) нескольких подряд слоёв ошибка,gри высоком фпс не успевает загрузиться PNG
 //Добавить инструменты
 //favicon error
-//Сделать дополнительный слой
 //доработать алгоритм заливки
 //Удалить иди доделать изменение цвета текста при выборе цвета

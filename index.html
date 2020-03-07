@@ -61,7 +61,7 @@
           <input class="lower-panel__color-picker" type="color" style="display: none">
         </ul>
       </div>
-      <div class="frame-control-panel">
+      <div class="control-panel-frame">
         <div class="frame-column"></div>
         <button class="button-add-frame" type='button'>Add new frame</button>
       </div>
@@ -104,7 +104,7 @@
           <!-- <button  class="button-animation" type="button">run animation</button>-->
         </div>
         <div class="canvas-size-wrapper">
-          <button class='button-submit' type='button'>size</button>
+          <button class='button-submit' type='button'>size:</button>
           <input class="canvas-width-input" type="text">
           <input class="canvas-height-input" type="text">
         </div>
@@ -125,8 +125,9 @@
           <div class="aside-panel__operating-wrapper">
             <div class="aside-panel__save-operating aside-panel__operating">
               <div class="range-input-wrapper">
-                <span class="multiplier"></span>
+                <span>scale</span>
                 <input class='range' type="range" min="1" max="30" step="1">
+                <span class="multiplier"></span>
               </div>
               <div class="resolution">
                 <div class="text">Resolution</div>
@@ -138,13 +139,30 @@
                 <span class="text">Save as: </span>
                 <input class='files-name' type="text">
                 <div class="buttons-wrapper">
-                  <button class="image" type="button">.png</button>
-                  <button class="gif" type="button">.gif</button>
+                  <div class="inner">
+                    <div class="image"></div>
+                    <button class="button-save-image" type="button">.png</button>
+                  </div>
+                 <div class="inner">
+                   <div class="gif"></div>
+                  <button class="button-save-gif" type="button">.gif</button>
+                 </div>               
                 </div>
               </div>
             </div>
+            <div class="aside-panel__import-operating aside-panel__operating">
+              <input class="url" type="text" value="https://avatars.mds.yandex.net/get-pdb/1939052/bd5d6894-9bcb-413b-bce3-63ba28f4e159/s1200">
+              <button class="button-import-url" type="button">import</button>
+              <input class ='button-import-file' type="file">
+              <div class="radio-button-wrapper">
+                <label for="native-size"><input id="native-size" type="radio" name="import-image" checked>native
+                  size</label>
+                <label for="stretch-image"><input id="stretch-image" type="radio"
+                    name="import-image">stretch-image</label>
+                <label for="adapt-canvas"><input id="adapt-canvas" type="radio" name="import-image">adapt canvas</label>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
     </main>

@@ -75,15 +75,15 @@ function frameToPNG(allFrames) {
     frameData.animationImageData = [];
 
     for (const layer of layersList) {
-      let Uint8ClampedArr;
-
-      if (imageData.get(layer)) {
-        Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
-        frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
-      } else {
+      //let Uint8ClampedArr;
+      // if (imageData.get(layer)) {
+      //   Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
+      //   frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
+      // } else {
         // const clearImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
         // Uint8ClampedArr = new Uint8ClampedArray(clearImageData);
-      }
+     // }
+     frameData.animationImageData.push(imageData.get(layer));
     }
 
     for (let i = 0; i < frameData.animationImageData.length; i += 1) {

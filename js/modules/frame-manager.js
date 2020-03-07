@@ -16,7 +16,7 @@ function frameManager() {
     if (!data.tools.isRectangle && !data.tools.isLine) {
       saveFrameImageData(data.currentFrame, true);
       renderFrame();
-      frameToPNG(data.currentFrame);
+      frameToPNG();
     }
   });
 
@@ -51,7 +51,7 @@ function frameManager() {
           let frameData = data.frameData.get(element);
 
           for (const layer of document.querySelectorAll('.list-layer')) {
-            if (data.frameData.get(element).imageData.get(layer)) {
+            if (frameData.imageData.get(layer)) {
               frameData.canvas.get(layer).ctx.putImageData(data.frameData.get(element).imageData.get(layer), 0, 0);
             } else {
               frameData.canvas.get(layer).ctx.clearRect(0, 0, data.canv.width, data.canv.height);
@@ -135,8 +135,6 @@ function frameManager() {
 
     deleteFrame.setAttribute('type', 'button');
     dublicateFrame.setAttribute('type', 'button');
-    deleteFrame.textContent = 'Del';
-    dublicateFrame.textContent = 'Dup';
 
     frameSize(frame);
 
@@ -215,6 +213,7 @@ function frameSize(frame) {
 function frameSizeAll() {
   for (const values of data.frameData.values()) {
     const canvas = values.frame.canv;
+
     canvas.width = data.canv.width;
     canvas.height = data.canv.height;
     if (canvas.width > canvas.height) {

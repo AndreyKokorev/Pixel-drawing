@@ -4,19 +4,30 @@ import {
 import {
   frameSizeAll
 } from '../frame-manager.js';
-import {renderAllFrames} from '../frame-manager.js';
-import{saveFrameImageData} from '../frame-manager.js';
-import{frameToPNG} from './animation-manager.js';
+import {
+  renderAllFrames
+} from '../frame-manager.js';
+import {
+  saveFrameImageData
+} from '../frame-manager.js';
+import {
+  frameToPNG
+} from './animation-manager.js';
 
 function setCanvasWrapperSize() {
   const canvasBase = document.querySelector('.canvas-base');
   const canvasWrapper = document.querySelector('.canvas-wrapper');
   const sizeSubmitButton = document.querySelector('.canvas-size-wrapper .button-submit');
   const zoom = document.querySelector('.zoom');
+  const widthField = document.querySelector('.canvas-width-input');
+  const heightField = document.querySelector('.canvas-height-input');
   let canvasRatio = data.canv.width / data.canv.height;
   let wrapperRatio = canvasWrapper.offsetWidth / canvasBase.offsetWidth;
   let baseWidth = canvasBase.offsetWidth;
   let scale = 1;
+
+  widthField.placeholder = data.canv.width;
+  heightField.placeholder = data.canv.height;
 
   zoom.textContent = 100 + ' %';
 
@@ -39,12 +50,13 @@ function setCanvasWrapperSize() {
 
   sizeSubmitButton.addEventListener('click', () => {
     const canvasBase = document.querySelector('.canvas-base');
-    const widthField = document.querySelector('.canvas-width-input');
-    const heightField = document.querySelector('.canvas-height-input');
     let width = +widthField.value;
     let height = +heightField.value;
+    console.log('size')
+    widthField.placeholder = width;
+    heightField.placeholder = height;
 
-    if(!width) {
+    if (!width) {
       width = data.canv.width;
     }
     if (!height) {
@@ -84,11 +96,14 @@ function setCanvasWrapperSize() {
       widthField.value = '';
       heightField.value = '';
     }
-  
-    saveFrameImageData(data.currentFrame, true);  
+
+    saveFrameImageData(data.currentFrame, true);
     frameSizeAll();
-    renderAllFrames(document.querySelector('.list-layer.selected'));
-    frameToPNG(true);
+
+    if (!data.adaptImage) {
+      renderAllFrames(document.querySelector('.list-layer.selected'));
+      frameToPNG(true);
+    }
   })
 }
 
