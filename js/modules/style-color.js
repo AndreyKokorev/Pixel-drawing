@@ -14,12 +14,12 @@ function styleColor() {
   try {
     data.colors.set(colors[0], saveData[0][1]);
   } catch (error) {
-    data.colors.set(colors[0], 'rgb(72, 255, 0)');
+    data.colors.set(colors[0], 'rgba(72, 255, 0,255)');
   }
   try {
     data.colors.set(colors[1], saveData[1][1]);
   } catch (error) {
-    data.colors.set(colors[1], 'rgb(98, 0, 255)');
+    data.colors.set(colors[1], 'rgba(98, 0, 255,255)');
   }
 
   colors[0].style.background = `linear-gradient(to right, ${data.colors.get(colors[0])} 14%, white 27%)`;

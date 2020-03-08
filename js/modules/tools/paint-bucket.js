@@ -15,6 +15,7 @@ function paintBucket() {
   });
 
   function hexDec(h) {
+    console.log(h)
     const m = h.slice(1).match(/.{2}/g);
 
     m[0] = parseInt(m[0], 16);

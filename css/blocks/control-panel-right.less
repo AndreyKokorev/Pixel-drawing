@@ -1,0 +1,53 @@
+.control-panel-right {
+  width: 200px;
+
+  .animation-wrapper {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    &__monitor-wrapper {
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+    }
+
+    &__control-panel {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+    }
+
+    &__fps-monitor {
+      //width: 40px;
+      height: 15px;
+      margin-right: 5px;
+      text-align: right;
+    }
+   
+  }
+
+  .layers-panel {
+    height: 200px;
+
+    &__control {
+      .button-add-layer {
+        width: 100px;
+        height: 20px;
+      }
+    }
+  }
+
+  .canvas-size-wrapper {
+    display: flex;
+    justify-content: space-between;
+    input {
+      width: 60px;
+      text-align: center;
+    }
+  }
+
+}

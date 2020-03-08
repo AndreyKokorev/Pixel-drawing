@@ -24,7 +24,8 @@ function frameManager() {
 
   addFrame.addEventListener('click', () => {
     newFrame();
-    frameToPNG(data.currentFrame);
+    //frameToPNG(data.currentFrame);
+    frameToPNG();
   })
 
   frameColumn.addEventListener('click', (e) => {

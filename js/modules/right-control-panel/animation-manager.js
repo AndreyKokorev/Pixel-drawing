@@ -49,7 +49,7 @@ function startAnimation() {
   }
 }
 
-function frameToPNG(allFrames) {
+function frameToPNG(isAllFrames) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
@@ -58,7 +58,7 @@ function frameToPNG(allFrames) {
 
   setImageSize();
 
-  if (allFrames) {
+  if (isAllFrames) {
     for (const frame of data.frameData.keys()) {
       getPNG(frame);
     }
@@ -68,6 +68,8 @@ function frameToPNG(allFrames) {
 
   function getPNG(frame) {
     const layersList = document.querySelectorAll('.list-layer');
+    const canvas_1 = document.createElement('canvas');
+    const ctx_1 = canvas_1.getContext('2d');
     const imageData = data.frameData.get(frame).imageData;
     const frameData = data.frameData.get(frame);
     let dt_1, dt_2;
@@ -75,15 +77,17 @@ function frameToPNG(allFrames) {
     frameData.animationImageData = [];
 
     for (const layer of layersList) {
-      //let Uint8ClampedArr;
-      // if (imageData.get(layer)) {
-      //   Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
-      //   frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
-      // } else {
-        // const clearImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
-        // Uint8ClampedArr = new Uint8ClampedArray(clearImageData);
-     // }
-     frameData.animationImageData.push(imageData.get(layer));
+      //   let Uint8ClampedArr;
+      //   if (imageData.get(layer)) {
+      //     Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
+      //     frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
+      //   } else {
+      //     const clearImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
+      //     Uint8ClampedArr = new Uint8ClampedArray(clearImageData);
+      //  }
+      if (imageData.get(layer)) {
+        frameData.animationImageData.push(imageData.get(layer));
+      }
     }
 
     for (let i = 0; i < frameData.animationImageData.length; i += 1) {
@@ -107,8 +111,6 @@ function frameToPNG(allFrames) {
       }
     }
 
-    const canvas_1 = document.createElement('canvas');
-    const ctx_1 = canvas_1.getContext('2d');
     ctx.putImageData(frameData.animationImageData[0], 0, 0);
     //frameData.animationImageData = null;
 

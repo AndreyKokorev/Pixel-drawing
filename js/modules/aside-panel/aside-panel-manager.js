@@ -93,7 +93,7 @@ function asidePanelManager() {
       heightInput.placeholder = `${data.canv.height * value }`;
     }
 
-    function save(p) {
+    function save() {
       const keys = document.querySelectorAll('.frame-column__frame-wrapper');
       const frame = data.frameData.get(keys[0]).animationImageData[0];
       const canvas_1 = document.createElement('canvas');
@@ -135,13 +135,14 @@ function asidePanelManager() {
     function stretch(path) {
       const image = new Image();
       image.crossOrigin = "Anonymous";
-      image.src = path;
+      image.src = path.value;
       path.value = '';
 
       image.onload = () => {
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
+        
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
-
+        
         saveFrameImageData(data.currentFrame, true);
         renderFrame();
         frameToPNG();
@@ -155,16 +156,16 @@ function asidePanelManager() {
       const image = new Image();
 
       image.crossOrigin = "Anonymous";
-      image.src = path;
+      image.src = path.value;
       path.value = '';
-
+      console.log( image.src)
       image.onload = () => {
         data.adaptImage = true;
         widthField.value = image.width;
         heightField.value = image.height;
         changeSize.click();
         data.adaptImage = false;
-
+        
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
 
@@ -199,6 +200,7 @@ function asidePanelManager() {
     image.crossOrigin = "Anonymous";
     image.src = path.value;
     path.value = '';
+    console.log( image.src)
     image.onload = () => {
       if (image.width > image.height) {
         ratio = image.width / image.height;

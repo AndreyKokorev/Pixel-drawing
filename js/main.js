@@ -7,7 +7,7 @@ import rectangle from './modules/tools/rectangle.js';
 import line from './modules/tools/line.js';
 import circle from './modules/tools/circle.js';
 import styleColor from './modules/style-color.js';
-import chooseColor from './modules/choose-color.js';
+import chooseColor from './modules/color-panel/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
 import layersManager from './modules/right-control-panel/layers-manager.js';
 import {

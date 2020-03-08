@@ -1,0 +1,168 @@
+.control-panel-left {
+  position: relative;
+  width: 228px;
+  height: 713px;
+  margin: 79px 10px 0 29px;
+  background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 13%, rgba(250, 192, 0, 0.836) 20%, rgba(245, 170, 7, 0.836) 40%, transparent, transparent, rgba(255, 0, 0, 0.719) 70%);
+}
+.control-panel-left .pixel-size-panel {
+  position: absolute;
+  top: -43px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 214px;
+  padding: 7px;
+}
+.control-panel-left .pixel-size-panel .activePixelSize {
+  box-shadow: 0 0 0 2px black;
+}
+.control-panel-left .pixel-size-panel__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  background: rgba(255, 230, 0, 0.822);
+  border-radius: 2px;
+}
+.control-panel-left .pixel-size-panel__pixel-1 {
+  background: #000;
+  width: 10px;
+  height: 10px;
+}
+.control-panel-left .pixel-size-panel__pixel-2 {
+  background: #000;
+  width: 12px;
+  height: 12px;
+}
+.control-panel-left .pixel-size-panel__pixel-3 {
+  background: #000;
+  width: 14px;
+  height: 14px;
+}
+.control-panel-left .pixel-size-panel__pixel-4 {
+  background: #000;
+  width: 16px;
+  height: 16px;
+}
+.control-panel-left .pixel-size-panel__pixel-5 {
+  background: #000;
+  width: 18px;
+  height: 18px;
+}
+.control-panel-left .pixel-size-panel__pixel-6 {
+  background: #000;
+  width: 20px;
+  height: 20px;
+}
+.control-panel-left .upper-panel {
+  height: 250px;
+  box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.281);
+}
+.control-panel-left .upper-panel__item {
+  margin-left: 19px;
+  height: 48px;
+  width: 196px;
+  font-family: Comics;
+  font-weight: bold;
+  line-height: 48px;
+}
+.control-panel-left .upper-panel__item span {
+  display: block;
+  margin-left: 50px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+.control-panel-left .upper-panel__item-1 {
+  background: url(../img/icons/fill-drip.svg) no-repeat 0 50%;
+}
+.control-panel-left .upper-panel__item-2 {
+  background: url(../img/icons/eye-dropper.svg) no-repeat 0 50%;
+  border-bottom: 1px solid #75713b;
+}
+.control-panel-left .upper-panel__item-3 {
+  background: url(../img/icons/pencil.svg) no-repeat 0 50%;
+}
+.control-panel-left .upper-panel__item-4 {
+  background: url(../img/icons/exchange-alt.svg) no-repeat 0 50%;
+}
+.control-panel-left .lower-panel {
+  width: 228px;
+  margin-top: 200px;
+  padding-bottom: 15px;
+  box-shadow: 0 3px 3px 0px rgba(45, 51, 49, 0.281);
+}
+.control-panel-left .lower-panel .pcr-app.visible {
+  position: absolute;
+}
+.control-panel-left .lower-panel .pcr-button {
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+.control-panel-left .lower-panel .pcr-button::after {
+  display: none;
+}
+.control-panel-left .lower-panel .pcr-button::before {
+  display: none;
+}
+.control-panel-left .lower-panel__item {
+  display: flex;
+  align-items: center;
+  margin-left: 19px;
+  height: 48px;
+  width: 196px;
+  margin-bottom: 5px;
+  line-height: 48px;
+  border: 2px solid white;
+  border-radius: 5px 20px 20px 5px;
+}
+.control-panel-left .lower-panel__item .wrapper {
+  width: 100%;
+  border-radius: 10px;
+}
+.control-panel-left .lower-panel__item .name {
+  text-shadow: 0 0 2px white;
+}
+.control-panel-left .lower-panel__item-1 {
+  margin-top: 50px;
+  background: linear-gradient(to right, #48ff00 14%, white 27%);
+}
+.control-panel-left .lower-panel__item-2 {
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #6200ff 14%, white 27%);
+}
+.control-panel-left .lower-panel__item-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20px);
+  grid-template-rows: repeat(auto-fill, 20px);
+  grid-gap: 7px;
+  width: 182px;
+  height: 100px;
+  padding: 7px;
+  background: white;
+}
+.control-panel-left .lower-panel__item-3 .color {
+  justify-self: center;
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000;
+}
+.control-panel-left .lower-panel__item-3 .color:hover {
+  transition: transform 0.2s;
+  transform: scale(1.1);
+  transform-origin: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 1px 2px black;
+}
+.control-panel-left .lower-panel__item-3 .color:active {
+  transform: scale(0.9);
+  transform-origin: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px black;
+}
+.control-panel-left .lower-panel__item span {
+  margin-left: 40px;
+}

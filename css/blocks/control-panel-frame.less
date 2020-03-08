@@ -1,0 +1,126 @@
+.frame-column {
+  position: relative;
+  z-index: 3;
+  width: 125px;
+  height: 791px;
+  margin: 0 5px 0 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 9px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+    background-color: #666;
+  }
+
+  &::-webkit-scrollbar-track {
+
+    background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 21%, rgba(250, 192, 0, 0.836) 28%, rgba(245, 170, 7, 0.836) 47%, transparent, transparent, rgba(255, 0, 0, 0.719) 73%);
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    //background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 13%, rgba(250, 192, 0, 0.836) 20%, rgba(245, 170, 7, 0.836) 40%, transparent, transparent, rgba(255, 0, 0, 0.719) 70%);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    //height: 50px; 
+    background-color: rgb(66, 230, 120);
+    box-shadow: inset 0 0 3px black;
+    border-radius: 2px;
+    //mix-blend-mode: color-burn ;
+  }
+
+  &::-webkit-scrollbar-corner {
+
+    //background-color: #999;
+  }
+
+  &::-webkit-resizer {
+    //background-color: #666;
+  }
+
+  &__frame-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 106px;
+    height: 106px;
+    margin-bottom: 5px;
+    border: 3px solid grey;
+    border-radius: 5px;
+
+    &--active {
+      border: 3px solid black;
+    }
+  }
+
+  &__frame-wrapper:hover>button {
+    display: block;
+  }
+
+  &__frame {
+    image-rendering: pixelated;
+  }
+
+  &__frame-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-right: 3px solid grey;
+    border-bottom: 3px solid grey;
+    border-radius: 0 0 5px 0;
+    background: rgba(255, 230, 0, 0.822);
+  }
+
+  &__button-delete-frame {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    display: none;
+    width: 22px;
+    height: 22px;
+    background: url(../img/icons/garbage.svg);
+    transition: filter 0.25s;
+  }
+
+  &__button-delete-frame:hover {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 5px red);
+  }
+
+  &__button-delete-frame:active {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 5px red);
+  }
+
+  &__button-duplicate-frame {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    display: none;
+    width: 22px;
+    height: 22px;
+    background: url(../img/icons/duplicate-1.svg);
+  }
+
+  &__button-duplicate-frame:hover {
+
+    transition: filter 0.25s;
+  }
+
+
+}
+
+.button-add-frame {
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+}
