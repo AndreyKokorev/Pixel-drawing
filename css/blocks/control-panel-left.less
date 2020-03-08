@@ -104,24 +104,21 @@
     }
   }
 
-  .lower-panel {
-    
+  .lower-panel {  
     width: 228px;
     margin-top: 200px;
     padding-bottom: 15px;
     box-shadow: 0 3px 3px 0px rgba(45, 51, 49, 0.281);
 
     .pickr {
-      //display: none;
-      
-     
+      //display: none;  
     }
    .pcr-app.visible{
     position: absolute;
      //top: 50%;
    }
    .pcr-button {
-     position: absolute;
+    position: absolute;
     height:0;
     width:0;
     &::after {
@@ -148,8 +145,14 @@
         border-radius: 10px;
       }
 
-      .name {
-        text-shadow: 0 0 2px white;
+      .name-1 {
+        background: red;
+        background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);
+        background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+        background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+        background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       &-1 {
@@ -177,6 +180,7 @@
           align-self: center;
           width: 20px;
           height: 20px;
+          border: 2px solid;
           border-radius: 50%;
           background: #000;
         }
@@ -192,7 +196,7 @@
         .color:active {
           transform: scale(0.9);
           transform-origin: 50%;
-          border: 2px solid white;
+          //border: 2px solid white;
           box-shadow: 0 0 0 2px black;
         }
       }

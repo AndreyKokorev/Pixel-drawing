@@ -6,8 +6,9 @@ import eraser from './modules/tools/eraser.js';
 import rectangle from './modules/tools/rectangle.js';
 import line from './modules/tools/line.js';
 import circle from './modules/tools/circle.js';
+import colorPickerTool from './modules/tools/color-picker-tool.js';
 import styleColor from './modules/style-color.js';
-import chooseColor from './modules/color-panel/choose-color.js';
+import {chooseColor} from './modules/color-panel/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
 import layersManager from './modules/right-control-panel/layers-manager.js';
 import {
@@ -50,7 +51,8 @@ export const data = {
     isEraser: false,
     isRectangle: false,
     isLine: false,
-    isCircle: false
+    isCircle: false,
+    isColorPicker: false
   },
   offTools() {
     this.tools.isPen = false;
@@ -62,6 +64,7 @@ export const data = {
     this.tools.isLine = false;
     this.tools.isRectangle = false;
     this.tools.isCircle = false;
+    this.tools.isColorPicker = false;
   }
 }
 
@@ -82,6 +85,7 @@ eraser();
 line();
 rectangle();
 circle();
+colorPickerTool();
 startAnimation();
 asidePanelManager();
 
