@@ -27,39 +27,39 @@ function rectangle() {
       x0 = Math.floor(e.offsetX / data.canvIndex);
       y0 = Math.floor(e.offsetY / data.canvIndex);
     }
-
-    data.canv.addEventListener('mousemove', function mouseMove(e) {
-      if (mouseDown === true) {
-        data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
-
-        x1 = Math.floor(e.offsetX / data.canvIndex);
-        y1 = Math.floor(e.offsetY / data.canvIndex);
-
-        if (data.pixelSize == 1 || data.pixelSize == 3 || data.pixelSize == 5) {
-          data.ctx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
-        } else {
-          data.ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
-        }
-      }
-    })
-
-    data.canv.addEventListener('mouseup', () => {
-      mouseDown = false;
-
-      if (data.tools.isRectangle === true) {
-        if (data.pixelSize == 1 || data.pixelSize == 3 || data.pixelSize == 5) {
-          data.currentCtx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
-        } else {
-          data.currentCtx.strokeRect(x0, y0, x1 - x0, y1 - y0);
-        }
-        data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
-
-        saveFrameImageData(data.currentFrame, true);
-        renderFrame();
-        frameToPNG();
-      }
-    });
   })
+
+  data.canv.addEventListener('mousemove', function mouseMove(e) {
+    if (mouseDown === true) {
+
+      data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
+
+      x1 = Math.floor(e.offsetX / data.canvIndex);
+      y1 = Math.floor(e.offsetY / data.canvIndex);
+
+      if (data.pixelSize == 1 || data.pixelSize == 3 || data.pixelSize == 5) {
+        data.ctx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
+      } else {
+        data.ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      }
+    }
+  })
+
+  data.canv.addEventListener('mouseup', () => {
+    if (mouseDown === true) {
+      mouseDown = false;
+      if (data.pixelSize == 1 || data.pixelSize == 3 || data.pixelSize == 5) {
+        data.currentCtx.strokeRect(x0 + 0.5, y0 + 0.5, x1 - x0, y1 - y0);
+      } else {
+        data.currentCtx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      }
+      data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
+
+      saveFrameImageData(data.currentFrame, true);
+      renderFrame();
+      frameToPNG();
+    }
+  });
 }
 
 export default rectangle;

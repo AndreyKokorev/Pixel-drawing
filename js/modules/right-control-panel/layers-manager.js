@@ -35,17 +35,22 @@ function layersManager() {
   let zIndex = 10;
 
   layers.set(basicLayer, new LayerData(data.currentLayer));
+  data.layersList = layersListChildren;
   data.layers = layers;
 
   basicLayer.classList.add('selected');
   basicLayer.style.boxShadow = '0 0 0 2px black';
 
+ 
+
   buttonAddLayer.addEventListener('click', () => {
     const newLayer = document.createElement('canvas');
     const layerListItem = document.createElement('li');
 
-    saveFrameImageData(data.currentFrame, true);
-
+    for (const frame of data.frameData.keys()) {
+      saveFrameImageData(frame, true);
+    }
+    
     newLayer.width = data.canv.width;
     newLayer.height = data.canv.height;
     newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer', 'canvas');

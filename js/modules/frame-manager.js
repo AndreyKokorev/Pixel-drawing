@@ -13,7 +13,7 @@ function frameManager() {
   data.frameData = new Map();
 
   data.canv.addEventListener('mouseup', () => {
-    if (!data.tools.isRectangle && !data.tools.isLine) {
+    if (!data.tools.isRectangle && !data.tools.isLine && !data.tools.isMove && !data.tools.isColorPicker && !data.tools.isCircle) {
       saveFrameImageData(data.currentFrame, true);
       renderFrame();
       frameToPNG();
@@ -176,7 +176,7 @@ function saveFrameImageData(frame, isLayerListItemClick) {
   const layersList = document.querySelectorAll('.list-layer');
   const imageData = new Map();
   const frameData = data.frameData.get(frame);
-
+console.log('1')
   for (const listItem of layersList) {
     const layerImageData = frameData.canvas.get(listItem).ctx.getImageData(0, 0, data.canv.width, data.canv.height);
 

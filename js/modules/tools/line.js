@@ -38,25 +38,34 @@ function line() {
 
       drawBresLine(x0, y0, x1, y1, drawRect);
     }
+    // if (e.offsetX == -1 || e.offsetY == -1) {
+    //   mouseDown = false;
+    //   mouseUP();
+    // }
+
   })
 
   data.canv.addEventListener('mouseup', () => {
-    if (data.tools.isLine === true) {
-      mouseDown = false;
-
-      drawBresLine(x0, y0, x1, y1);
-
-      data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
-
-      saveFrameImageData(data.currentFrame, true);
-      renderFrame();
-      frameToPNG();
+    if (mouseDown === true) {
+      mouseUp();
     }
   })
 
   function drawRect(x, y) {
     data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
     data.ctx.fill();
+  }
+
+  function mouseUp() {
+    mouseDown = false;
+
+    drawBresLine(x0, y0, x1, y1);
+
+    data.ctx.clearRect(0, 0, data.canv.width, data.canv.height);
+
+    saveFrameImageData(data.currentFrame, true);
+    renderFrame();
+    frameToPNG();
   }
 }
 

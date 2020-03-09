@@ -20,6 +20,7 @@ function pen() {
 
   data.canv.addEventListener('mousedown', (e) => {
     pen.setColFunc();
+    
     if (data.tools.isPen === true || data.tools.isMirrorPen === true) {
       mouseDown = true;
       x0 = Math.floor(e.offsetX / data.canvIndex);
@@ -34,6 +35,7 @@ function pen() {
   data.canv.addEventListener('mousemove', (e) => {
     const x = e.offsetX;
     const y = e.offsetY;
+
     if (mouseDown && (data.tools.isPen === true || data.tools.isMirrorPen === true)) {
       if (Math.abs(x / data.canvIndex - x0) > 0 || Math.abs(y / data.canvIndex - y0) > 0) {
         x1 = Math.floor(e.offsetX / data.canvIndex);

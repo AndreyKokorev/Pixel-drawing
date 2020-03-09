@@ -7,8 +7,11 @@ import rectangle from './modules/tools/rectangle.js';
 import line from './modules/tools/line.js';
 import circle from './modules/tools/circle.js';
 import colorPickerTool from './modules/tools/color-picker-tool.js';
+import move from './modules/tools/move.js';
 import styleColor from './modules/style-color.js';
-import {chooseColor} from './modules/color-panel/choose-color.js';
+import {
+  chooseColor
+} from './modules/color-panel/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
 import layersManager from './modules/right-control-panel/layers-manager.js';
 import {
@@ -52,7 +55,8 @@ export const data = {
     isRectangle: false,
     isLine: false,
     isCircle: false,
-    isColorPicker: false
+    isColorPicker: false,
+    isMove: false
   },
   offTools() {
     this.tools.isPen = false;
@@ -65,10 +69,11 @@ export const data = {
     this.tools.isRectangle = false;
     this.tools.isCircle = false;
     this.tools.isColorPicker = false;
+    this.tools.isMove = false;
   }
 }
 
-data.tools.isPen = true;
+data.tools.isCircle = true;
 
 styleColor();
 chooseColor();
@@ -86,6 +91,7 @@ line();
 rectangle();
 circle();
 colorPickerTool();
+move();
 startAnimation();
 asidePanelManager();
 
@@ -102,12 +108,12 @@ function renderCanvas() {
 }
 
 //To do:
+//При выставлении высого разрешения канваса, он исчезает, возможно из-за превышения размеров контейнера
+// Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
 //? при скачивании изображения вылазило предупреждение в адресной строке
 //Сделать отмену изменений
 //Удаление изображений фреймов
 //? При удалении фрейма прекращается анимация 
 //При быстром добавлении(дублировании) нескольких подряд слоёв ошибка,gри высоком фпс не успевает загрузиться PNG
 //Добавить инструменты
-//favicon error
-//доработать алгоритм заливки
 //Удалить иди доделать изменение цвета текста при выборе цвета

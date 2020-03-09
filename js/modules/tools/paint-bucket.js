@@ -40,7 +40,7 @@ function floodFill(x, y, workColors, pixelColor) {
   let point = 0;
   let k = 1200000;
 
-  while (k > 0) {
+  while (stack.length > 0) {
     k -= 1;
 
     pixel = stack.pop();

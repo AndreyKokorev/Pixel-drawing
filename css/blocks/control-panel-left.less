@@ -104,7 +104,7 @@
     }
   }
 
-  .lower-panel {  
+  .lower-panel {
     width: 228px;
     margin-top: 200px;
     padding-bottom: 15px;
@@ -113,21 +113,25 @@
     .pickr {
       //display: none;  
     }
-   .pcr-app.visible{
-    position: absolute;
-     //top: 50%;
-   }
-   .pcr-button {
-    position: absolute;
-    height:0;
-    width:0;
-    &::after {
-      display: none;
+
+    .pcr-app.visible {
+      position: absolute;
+      //top: 50%;
     }
-    &::before {
-      display: none;
+
+    .pcr-button {
+      position: absolute;
+      height: 0;
+      width: 0;
+
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        display: none;
+      }
     }
-   }
 
     &__item {
       display: flex;
@@ -147,10 +151,10 @@
 
       .name-1 {
         background: red;
-        background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);
+        background: -webkit-linear-gradient(left, orange, yellow, green, cyan, blue, violet);
         background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
         background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
-        background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+        background: linear-gradient(to right, orange, yellow, green, cyan, blue, violet);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
