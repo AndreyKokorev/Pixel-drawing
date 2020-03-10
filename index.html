@@ -14,168 +14,173 @@
 </head>
 
 <body>
-    <div class="box"></div>
-    <div class="page-wrapper">
-        <header>
-            <ul class="menu"></ul>
-            <h1>CodeJam - Palette</h1>
-        </header>
-        <main>
-            <!-- Tools and colors -->
-            <div class="control-panel-left">
-                <!-- Choose pixel size -->
-                <div class="pixel-size-panel">
-                    <div class="pixel-size-panel__wrapper" data="1">
-                        <div class="pixel-size-panel__pixel-1" data="1"></div>
-                    </div>
-                    <div class="pixel-size-panel__wrapper" data="2">
-                        <div class="pixel-size-panel__pixel-2" data="2"></div>
-                    </div>
-                    <div class="pixel-size-panel__wrapper" data="3">
-                        <div class="pixel-size-panel__pixel-3" data="3"></div>
-                    </div>
-                    <div class="pixel-size-panel__wrapper" data="4">
-                        <div class="pixel-size-panel__pixel-4" data="4"></div>
-                    </div>
-                    <div class="pixel-size-panel__wrapper" data="5">
-                        <div class="pixel-size-panel__pixel-5" data="5"></div>
-                    </div>
-                    <div class="pixel-size-panel__wrapper" data="6">
-                        <div class="pixel-size-panel__pixel-6" data="6"></div>
-                    </div>
+    <header>
+        <ul class="menu"></ul>
+        <h1>CodeJam - Palette</h1>
+    </header>
+    <main>
+        <!-- Tools and colors -->
+        <div class="control-panel-left">
+            <!-- Choose pixel size -->
+            <div class="pixel-size-panel">
+                <div class="pixel-size-panel__wrapper" data="1">
+                    <div class="pixel-size-panel__pixel-1" data="1"></div>
                 </div>
-                <!-- Tools -->
-                <ul class="upper-panel">
-                    <li class="upper-panel__item-1 upper-panel__item" id="isPen"><span>Pen</span></li>
-                    <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen"><span>Mirror Pen</span></li>
-                    <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket"><span>Paint Bucket</span></li>
-                    <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll"><span>Paint all</span></li>
-                    <li class="upper-panel__item-5 upper-panel__item" id="isEraser"><span>Eraser</span></li>
-                    <li class="upper-panel__item-6 upper-panel__item" id="isLine"><span>Line</span></li>
-                    <li class="upper-panel__item-7 upper-panel__item" id="isRectangle"><span>Rectangle</span></li>
-                    <li class="upper-panel__item-8 upper-panel__item" id="isCircle"><span>Circle</span></li>
-                    <li class="upper-panel__item-9 upper-panel__item" id="isColorPicker"><span>Color picker</span></li>
-                    <li class="upper-panel__item-10 upper-panel__item" id="isMove"><span>Move</span></li>
+                <div class="pixel-size-panel__wrapper" data="2">
+                    <div class="pixel-size-panel__pixel-2" data="2"></div>
+                </div>
+                <div class="pixel-size-panel__wrapper" data="3">
+                    <div class="pixel-size-panel__pixel-3" data="3"></div>
+                </div>
+                <div class="pixel-size-panel__wrapper" data="4">
+                    <div class="pixel-size-panel__pixel-4" data="4"></div>
+                </div>
+                <div class="pixel-size-panel__wrapper" data="5">
+                    <div class="pixel-size-panel__pixel-5" data="5"></div>
+                </div>
+                <div class="pixel-size-panel__wrapper" data="6">
+                    <div class="pixel-size-panel__pixel-6" data="6"></div>
+                </div>
+            </div>
+            <!-- Tools -->
+            <ul class="upper-panel">
+                <li class="upper-panel__item-1 upper-panel__item" id="isPen"><span>Pen</span></li>
+                <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen"><span>Mirror Pen</span></li>
+                <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket"><span>Paint Bucket</span></li>
+                <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll"><span>Paint all</span></li>
+                <li class="upper-panel__item-5 upper-panel__item" id="isEraser"><span>Eraser</span></li>
+                <li class="upper-panel__item-6 upper-panel__item" id="isLine"><span>Line</span></li>
+                <li class="upper-panel__item-7 upper-panel__item" id="isRectangle"><span>Rectangle</span></li>
+                <li class="upper-panel__item-8 upper-panel__item" id="isCircle"><span>Circle</span></li>
+                <li class="upper-panel__item-9 upper-panel__item" id="isColorPicker"><span>Color picker</span></li>
+                <li class="upper-panel__item-10 upper-panel__item" id="isMove"><span>Move</span></li>
+            </ul>
+            <!-- Color -->
+            <ul class="lower-panel">
+                <div class="color-picker"></div>
+                <li class="lower-panel__item-1 lower-panel__item">
+                    <div class="wrapper"><span class='name name-1'>choose color</span></div>
+                </li>
+                <li class="lower-panel__item-2 lower-panel__item">
+                    <div class="wrapper"><span class='name name-2'>previous color</span></div>
+                </li>
+                <li class="lower-panel__item-3 lower-panel__item">
+                </li>
+                <input class="lower-panel__color-picker" type="color" style="display: none">
+            </ul>
+        </div>
+        <!-- Manipulations with frames -->
+        <div class="control-panel-frame">
+            <div class="frame-column"></div>
+            <button class="button-add-frame" type='button'>Add new frame</button>
+        </div>
+        <!-- Canvas -->
+        <div class="canvas-base">
+            <div class="canvas-wrapper">
+                <canvas class="canvas-layer canvas-layer-1 canvas"></canvas>
+                <canvas class="canvas-layer-upper canvas"></canvas>
+            </div>
+        </div>
+        <div class="control-panel-right">
+            <div class="animation-wrapper">
+                <div class="animation-wrapper__monitor-wrapper">
+                    <img class="animation-wrapper__monitor">
+                </div>
+                <div class="animation-wrapper__control-panel">
+                    <span class="animation-wrapper__fps-monitor"></span>
+                    <input class="animation-wrapper__fps-slider" type="range" min="0" max="24" step="1">
+                </div>
+            </div>
+            <!-- Manipulation with layers -->
+            <div class="layers-panel">
+                <div class="layers-panel__control">
+                    <button class="button-add-layer" type="button"> Добивать слой</button>
+                    <button class="button-change-name" type="button">CN</button>
+                    <button class="button-up-layer" type="button">up</button>
+                    <button class="button-down-layer" type="button">down</button>
+                    <button class="button-merge-layer" type="button">MG</button>
+                    <button class="button-delete-layer" type="button">del</button>
+                </div>
+                <ul class="layers-panel__layers-list">
+                    <li class="list-layer-1 list-layer">layer 1</li>
                 </ul>
-                <!-- Color -->
-                <ul class="lower-panel">
-                    <div class="color-picker"></div>
-                    <li class="lower-panel__item-1 lower-panel__item">
-                        <div class="wrapper"><span class='name name-1'>choose color</span></div>
-                    </li>
-                    <li class="lower-panel__item-2 lower-panel__item">
-                        <div class="wrapper"><span class='name name-2'>previous color</span></div>
-                    </li>
-                    <li class="lower-panel__item-3 lower-panel__item">
-                    </li>
-                    <input class="lower-panel__color-picker" type="color" style="display: none">
-                </ul>
+                <!-- <button  class="button-animation" type="button">run animation</button>-->
             </div>
-            <!-- Manipulations with frames -->
-            <div class="control-panel-frame">
-                <div class="frame-column"></div>
-                <button class="button-add-frame" type='button'>Add new frame</button>
+            <div class="canvas-size-wrapper">
+                <button class='button-submit' type='button'>size:</button>
+                <input class="canvas-width-input" type="text">
+                <input class="canvas-height-input" type="text">
             </div>
-            <!-- Canvas -->
-            <div class="canvas-base">
-                <div class="canvas-wrapper">
-                    <canvas class="canvas-layer canvas-layer-1 canvas"></canvas>
-                    <canvas class="canvas-layer-upper canvas"></canvas>
-                </div>
-            </div>
-            <div class="control-panel-right">
-                <div class="animation-wrapper">
-                    <div class="animation-wrapper__monitor-wrapper">
-                        <img class="animation-wrapper__monitor">
+            <div class="zoom-wrapper">zoom: <span class='zoom'></span></div>
+        </div>
+        <!-- Instruments: save, import -->
+        <div class="aside-panel">
+            <div class="aside-panel__main-wrapper">
+                <div class="aside-panel__icon-wrapper">
+                    <div class="icon-background">
+                        <div class="icon icon-save"></div>
                     </div>
-                    <div class="animation-wrapper__control-panel">
-                        <span class="animation-wrapper__fps-monitor"></span>
-                        <input class="animation-wrapper__fps-slider" type="range" min="0" max="24" step="1">
+                    <div class="icon-background">
+                        <div class="icon icon-import"></div>
+                    </div>
+                    <div class="icon-background">
                     </div>
                 </div>
-                <!-- Manipulation with layers -->
-                <div class="layers-panel">
-                    <div class="layers-panel__control">
-                        <button class="button-add-layer" type="button"> Добивать слой</button>
-                        <button class="button-change-name" type="button">CN</button>
-                        <button class="button-up-layer" type="button">up</button>
-                        <button class="button-down-layer" type="button">down</button>
-                        <button class="button-merge-layer" type="button">MG</button>
-                        <button class="button-delete-layer" type="button">del</button>
-                    </div>
-                    <ul class="layers-panel__layers-list">
-                        <li class="list-layer-1 list-layer">layer-1</li>
-                    </ul>
-                    <!-- <button  class="button-animation" type="button">run animation</button>-->
-                </div>
-                <div class="canvas-size-wrapper">
-                    <button class='button-submit' type='button'>size:</button>
-                    <input class="canvas-width-input" type="text">
-                    <input class="canvas-height-input" type="text">
-                </div>
-                <div class="zoom-wrapper">zoom: <span class='zoom'></span></div>
-            </div>
-            <!-- Instruments: save, import -->
-            <div class="aside-panel">
-                <div class="aside-panel__main-wrapper">
-                    <div class="aside-panel__icon-wrapper">
-                        <div class="icon-background">
-                            <div class="icon icon-save"></div>
+                <div class="aside-panel__operating-wrapper">
+                    <div class="aside-panel__save-operating aside-panel__operating">
+                        <div class="range-input-wrapper">
+                            <span>scale</span>
+                            <input class='range' type="range" min="1" max="30" step="1">
+                            <span class="multiplier"></span>
                         </div>
-                        <div class="icon-background">
-                            <div class="icon icon-import"></div>
+                        <div class="resolution">
+                            <div class="text">Resolution</div>
+                            <input class="width" type="text">
+                            <div class="label">x</div>
+                            <input class="height" type="text">
                         </div>
-                        <div class="icon-background">
-                        </div>
-                    </div>
-                    <div class="aside-panel__operating-wrapper">
-                        <div class="aside-panel__save-operating aside-panel__operating">
-                            <div class="range-input-wrapper">
-                                <span>scale</span>
-                                <input class='range' type="range" min="1" max="30" step="1">
-                                <span class="multiplier"></span>
-                            </div>
-                            <div class="resolution">
-                                <div class="text">Resolution</div>
-                                <input class="width" type="text">
-                                <div class="label">x</div>
-                                <input class="height" type="text">
-                            </div>
-                            <div class="file-format-wrapper">
-                                <span class="text">Save as: </span>
-                                <input class='files-name' type="text" placeholder="Input file name...">
-                                <div class="buttons-wrapper">
-                                    <div class="inner">
-                                        <div class="image"></div>
-                                        <button class="button-save-image" type="button">.png</button>
-                                    </div>
-                                    <div class="inner">
-                                        <div class="gif"></div>
-                                        <button class="button-save-gif" type="button">.gif</button>
-                                    </div>
+                        <div class="file-format-wrapper">
+                            <span class="text">Save as: </span>
+                            <input class='files-name' type="text" placeholder="Input file name...">
+                            <div class="buttons-wrapper">
+                                <div class="inner">
+                                    <div class="image"></div>
+                                    <button class="button-save-image" type="button">.png</button>
+                                </div>
+                                <div class="inner">
+                                    <div class="gif"></div>
+                                    <button class="button-save-gif" type="button">.gif</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="aside-panel__import-operating aside-panel__operating">
-                            <input class="url" type="text"
-                                value="https://avatars.mds.yandex.net/get-pdb/1939052/bd5d6894-9bcb-413b-bce3-63ba28f4e159/s1200">
-                            <button class="button-import-url" type="button">import</button>
-                            <input class='button-import-file' type="file">
-                            <div class="radio-button-wrapper">
-                                <label for="native-size"><input id="native-size" type="radio" name="import-image"
-                                        checked>native
-                                    size</label>
-                                <label for="stretch-image"><input id="stretch-image" type="radio"
-                                        name="import-image">stretch-image</label>
-                                <label for="adapt-canvas"><input id="adapt-canvas" type="radio"
-                                        name="import-image">adapt canvas</label>
-                            </div>
+                    </div>
+                    <div class="aside-panel__import-operating aside-panel__operating">
+                        <div class="input-wrapper">
+                            <input class="url" type="text" placeholder="paste image URL"
+                            value="https://avatars.mds.yandex.net/get-pdb/1939052/bd5d6894-9bcb-413b-bce3-63ba28f4e159/s1200">
+                        <div class="clean clean-url"></div>
                         </div>
+                        <div class="or">or</div>
+                        <div class="input-wrapper">
+                            <input class='button-import-file' type="file" accept="image/*" >
+                            <div class="clean clean-file"></div>
+                        </div>
+                        <div class="radio-button-wrapper">
+                            <label for="native-size"><input id="native-size" type="radio" name="import-image"
+                                    checked> draw without changes</label>
+                            <label for="stretch-image"><input id="stretch-image" type="radio"
+                                    name="import-image"> stretch image</label>
+                            <label for="adapt-canvas"><input id="adapt-canvas" type="radio" name="import-image"> adapt
+                                canvas size to image</label>
+                            <label for="adapt-size-and-res"><input id="adapt-size-and-res" type="radio"
+                                    name="import-image"> adapt canvas size and resolution</label>
+                        </div>
+                        <button class="button-import-url" type="button">import</button>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
     <script src="./js/main.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 </body>

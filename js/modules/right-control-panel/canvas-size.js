@@ -52,7 +52,7 @@ function setCanvasWrapperSize() {
     const canvasBase = document.querySelector('.canvas-base');
     let width = +widthField.value;
     let height = +heightField.value;
-    console.log('size')
+
     widthField.placeholder = width;
     heightField.placeholder = height;
 

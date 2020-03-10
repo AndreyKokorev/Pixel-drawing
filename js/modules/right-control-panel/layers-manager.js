@@ -61,7 +61,7 @@ function layersManager() {
     deleteClass();
 
     layerListItem.classList.add(`list-layer`);
-    layerListItem.textContent = `layer-${layersAmount}`;
+    layerListItem.textContent = `layer ${layersAmount}`;
     layerListItem.classList.add('selected');
     layerListItem.style.boxShadow = '0 0 0 2px black';
     layersList.prepend(layerListItem);

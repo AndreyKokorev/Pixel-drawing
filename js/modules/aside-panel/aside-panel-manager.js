@@ -33,10 +33,13 @@ function asidePanelManager() {
     const heightInput = saveOperating.querySelector('.height');
     const filesName = saveOperating.querySelector('.files-name');
     const importURL = importOperating.querySelector('.button-import-url');
-    const importFile = importOperating.querySelector('.button-import-file')
+    const importFile = importOperating.querySelector('.button-import-file');
     const nativeSize = document.getElementById('native-size');
     const stretchImage = document.getElementById('stretch-image');
-    const adaptCanvas = document.getElementById('adapt-canvas');
+    const adaptCanvasSize = document.getElementById('adapt-canvas');
+    const adaptCanvasSizeAndRes = document.getElementById('adapt-size-and-res');
+    const cleanURL = document.querySelector('.clean-url');
+    const cleanFile = document.querySelector('.clean-file');
 
     if (e.target.firstChild === saveInstrument || e.target === saveInstrument) {
       if (state === 'close' || state === 'import') {
@@ -77,10 +80,18 @@ function asidePanelManager() {
       drawImage = native;
     } else if (e.target === stretchImage) {
       drawImage = stretch;
-    } else if (e.target === adaptCanvas) {
-      drawImage = adapt;
+    } else if (e.target === adaptCanvasSize) {
+      drawImage = adaptSize;
+    } else if (e.target === adaptCanvasSizeAndRes) {
+      drawImage = adaptSizeAndRes;
     } else if (e.target === importURL) {
-      drawImage((importFile.value) ? importFile : url);
+      drawImage((importFile.value) ? URL.createObjectURL(importFile.files[0]) : url);
+    }
+
+    if(e.target === cleanURL) {
+      url.value = '';
+    } else if(e.target === cleanFile) {
+      importFile.value = null;
     }
 
     range.oninput = setResolution;
@@ -134,40 +145,88 @@ function asidePanelManager() {
 
     function stretch(path) {
       const image = new Image();
-      image.crossOrigin = "Anonymous";
-      image.src = path.value;
-      path.value = '';
 
-      image.onload = () => {
+      image.crossOrigin = "Anonymous";
+      image.src = (path.value) ? path.value : path;
+
+      if (path.value) {
+        path.value = ''
+      }
+
+      image.onload = function () {
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
-        
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
-        
+
+        URL.revokeObjectURL(this.src);
+
         saveFrameImageData(data.currentFrame, true);
         renderFrame();
         frameToPNG();
       }
     }
 
-    function adapt(path) {
+    function adaptSize(path) {
       const changeSize = document.querySelector('.canvas-size-wrapper .button-submit');
       const widthField = document.querySelector('.canvas-width-input');
       const heightField = document.querySelector('.canvas-height-input');
       const image = new Image();
 
       image.crossOrigin = "Anonymous";
-      image.src = path.value;
-      path.value = '';
-      console.log( image.src)
-      image.onload = () => {
+      image.src = (path.value) ? path.value : path;
+
+      if (path.value) {
+        path.value = ''
+      }
+
+      image.onload = function () {
+        const aspectRatio = image.width / image.height;
+        if (aspectRatio > 1) {
+          widthField.value = data.canv.width;
+          heightField.value = Math.round(data.canv.width / aspectRatio);
+        } else {
+          widthField.value = Math.round(data.canv.height * aspectRatio);
+          heightField.value = data.canv.height;
+        };
+
         data.adaptImage = true;
-        widthField.value = image.width;
-        heightField.value = image.height;
         changeSize.click();
         data.adaptImage = false;
-        
+
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
+
+        URL.revokeObjectURL(this.src);
+
+        saveFrameImageData(data.currentFrame, true);
+        renderAllFrames(document.querySelector('.list-layer.selected'));
+        frameToPNG(true);
+      }
+    }
+
+    function adaptSizeAndRes(path) {
+      const changeSize = document.querySelector('.canvas-size-wrapper .button-submit');
+      const widthField = document.querySelector('.canvas-width-input');
+      const heightField = document.querySelector('.canvas-height-input');
+      const image = new Image();
+
+      image.crossOrigin = "Anonymous";
+      image.src = (path.value) ? path.value : path;
+
+      if (path.value) {
+        path.value = ''
+      }
+
+      image.onload = function () {
+        widthField.value = image.width;
+        heightField.value = image.height;
+        data.adaptImage = true;
+        changeSize.click();
+        data.adaptImage = false;
+
+        data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
+        data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
+
+        //URL.revokeObjectURL(this.src);
 
         saveFrameImageData(data.currentFrame, true);
         renderAllFrames(document.querySelector('.list-layer.selected'));
@@ -197,11 +256,15 @@ function asidePanelManager() {
     let w;
     let h;
     const image = new Image();
+
     image.crossOrigin = "Anonymous";
-    image.src = path.value;
-    path.value = '';
-    console.log( image.src)
-    image.onload = () => {
+    image.src = (path.value) ? path.value : path;
+
+      if (path.value) {
+        path.value = ''
+      }
+
+    image.onload = function () {
       if (image.width > image.height) {
         ratio = image.width / image.height;
         w = data.canv.width;
@@ -209,13 +272,19 @@ function asidePanelManager() {
         marginY = (data.canv.height - h) / 2;
       } else {
         ratio = image.height / image.width;
-        w = data.canv.width / ratio;
+        w = data.canv.height / ratio;
         h = data.canv.height;
         marginX = (data.canv.width - w) / 2;
       }
+      
 
       data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
       data.currentCtx.drawImage(image, marginX, marginY, w, h);
+
+      if (!path.value) {
+        URL.revokeObjectURL(this.src);
+      }
+      
 
       saveFrameImageData(data.currentFrame, true);
       renderFrame();

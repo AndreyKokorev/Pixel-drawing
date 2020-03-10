@@ -73,7 +73,7 @@ export const data = {
   }
 }
 
-data.tools.isCircle = true;
+data.tools.isPen = true;
 
 styleColor();
 chooseColor();
@@ -96,7 +96,7 @@ startAnimation();
 asidePanelManager();
 
 function renderCanvas() {
-  canvasLayer_1.width = 52;
+  canvasLayer_1.width = 55;
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
 
@@ -108,6 +108,9 @@ function renderCanvas() {
 }
 
 //To do:
+//Выставить максимальный размер файла при сохранении
+//При загрузе изображений вылетает Uint8 из animation-manager
+//При загрузке изображения с пк при 4 пункте слетает канвас
 //При выставлении высого разрешения канваса, он исчезает, возможно из-за превышения размеров контейнера
 // Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
 //? при скачивании изображения вылазило предупреждение в адресной строке
