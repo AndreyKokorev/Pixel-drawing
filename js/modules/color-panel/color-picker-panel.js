@@ -45,8 +45,4 @@ const pickr = Pickr.create({
   }  
 });
 
-pickr.on('init', instance => {
-  console.log('init', instance);
-})
-
 export default pickr;

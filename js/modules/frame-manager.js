@@ -176,16 +176,15 @@ function saveFrameImageData(frame, isLayerListItemClick) {
   const layersList = document.querySelectorAll('.list-layer');
   const imageData = new Map();
   const frameData = data.frameData.get(frame);
-console.log('1')
+
   for (const listItem of layersList) {
     const layerImageData = frameData.canvas.get(listItem).ctx.getImageData(0, 0, data.canv.width, data.canv.height);
 
     if (isLayerListItemClick !== true) {
       frameData.canvas.get(listItem).ctx.clearRect(0, 0, data.canv.width, data.canv.height);
     }
-    imageData.set(listItem, layerImageData);
+    imageData.set(listItem, layerImageData);  
   }
-
   frameData.imageData = imageData;
 }
 

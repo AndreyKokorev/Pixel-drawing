@@ -157,7 +157,9 @@ function asidePanelManager() {
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
 
-        URL.revokeObjectURL(this.src);
+        if (!path.value) {
+          URL.revokeObjectURL(this.src);
+        }
 
         saveFrameImageData(data.currentFrame, true);
         renderFrame();
@@ -195,8 +197,10 @@ function asidePanelManager() {
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
 
-        URL.revokeObjectURL(this.src);
-
+        if (!path.value) {
+          URL.revokeObjectURL(this.src);
+        }
+  
         saveFrameImageData(data.currentFrame, true);
         renderAllFrames(document.querySelector('.list-layer.selected'));
         frameToPNG(true);
@@ -226,7 +230,9 @@ function asidePanelManager() {
         data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
         data.currentCtx.drawImage(image, 0, 0, data.canv.width, data.canv.height);
 
-        //URL.revokeObjectURL(this.src);
+        if (!path.value) {
+          URL.revokeObjectURL(this.src);
+        }
 
         saveFrameImageData(data.currentFrame, true);
         renderAllFrames(document.querySelector('.list-layer.selected'));
@@ -285,7 +291,6 @@ function asidePanelManager() {
         URL.revokeObjectURL(this.src);
       }
       
-
       saveFrameImageData(data.currentFrame, true);
       renderFrame();
       frameToPNG();

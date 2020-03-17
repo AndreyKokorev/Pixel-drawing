@@ -23,6 +23,8 @@ import {
   startAnimation
 } from './modules/right-control-panel/animation-manager.js';
 import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
+import setHotKeys from './modules/hot-keys.js'
+import transform from './modules/right-control-panel/transform-manager.js'
 
 const canvasBase = document.querySelector('.canvas-base');
 const canvasLayer_1 = document.querySelector('.canvas-layer-1');
@@ -94,6 +96,8 @@ colorPickerTool();
 move();
 startAnimation();
 asidePanelManager();
+transform();
+setHotKeys();
 
 function renderCanvas() {
   canvasLayer_1.width = 55;
@@ -108,10 +112,11 @@ function renderCanvas() {
 }
 
 //To do:
+//Ограничить размер канваса у фрейм менеджера
 //Выставить максимальный размер файла при сохранении
 //При загрузе изображений вылетает Uint8 из animation-manager
 //При загрузке изображения с пк при 4 пункте слетает канвас
-//При выставлении высого разрешения канваса, он исчезает, возможно из-за превышения размеров контейнера
+//При выставлении высокого разрешения канваса, он исчезает, возможно из-за превышения размеров контейнера
 // Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
 //? при скачивании изображения вылазило предупреждение в адресной строке
 //Сделать отмену изменений

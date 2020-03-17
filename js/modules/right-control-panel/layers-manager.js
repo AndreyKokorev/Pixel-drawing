@@ -39,18 +39,13 @@ function layersManager() {
   data.layers = layers;
 
   basicLayer.classList.add('selected');
-  basicLayer.style.boxShadow = '0 0 0 2px black';
-
- 
 
   buttonAddLayer.addEventListener('click', () => {
     const newLayer = document.createElement('canvas');
     const layerListItem = document.createElement('li');
 
-    for (const frame of data.frameData.keys()) {
-      saveFrameImageData(frame, true);
-    }
-    
+    //saveFrameImageData(data.currentFrame, true);
+  
     newLayer.width = data.canv.width;
     newLayer.height = data.canv.height;
     newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer', 'canvas');
@@ -61,15 +56,14 @@ function layersManager() {
     deleteClass();
 
     layerListItem.classList.add(`list-layer`);
-    layerListItem.textContent = `layer ${layersAmount}`;
+    layerListItem.textContent = `Layer ${layersAmount}`;
     layerListItem.classList.add('selected');
-    layerListItem.style.boxShadow = '0 0 0 2px black';
     layersList.prepend(layerListItem);
 
     layers.set(layerListItem, new LayerData(newLayer));
     data.currentLayer = layers.get(layerListItem).canv;
     data.currentCtx = layers.get(layerListItem).ctx;
-
+    
     setOpacity(layerListItem);
     renderAllFrames(layerListItem);
 
@@ -116,7 +110,6 @@ function layersManager() {
           data.currentCtx = layers.get(layer.nextElementSibling).ctx;
 
           layer.nextElementSibling.classList.add('selected');
-          layer.nextElementSibling.style.boxShadow = '0 0 0 2px black';
 
           setOpacity(layer.nextElementSibling);
 
@@ -125,7 +118,6 @@ function layersManager() {
           data.currentCtx = layers.get(layer.previousElementSibling).ctx;
 
           layer.previousElementSibling.classList.add('selected')
-          layer.previousElementSibling.style.boxShadow = '0 0 0 2px black';
 
           setOpacity(layer.previousElementSibling);
         }
@@ -204,9 +196,6 @@ function layersManager() {
         layers.delete(item.nextElementSibling);
         item.nextElementSibling.remove();
 
-        // for (const frame of data.frameData.keys()) {
-        //   saveFrameImageData(frame, true);
-        // }
         renderAllFrames(currentListItem)
         break;
       }
@@ -223,7 +212,6 @@ function layersManager() {
       setOpacity(e.target);
 
       e.target.classList.add('selected');
-      e.target.style.boxShadow = '0 0 0 2px black';
 
       renderFrame();
       renderAllFrames(e.target);

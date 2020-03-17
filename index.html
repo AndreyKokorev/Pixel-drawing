@@ -44,7 +44,7 @@
             </div>
             <!-- Tools -->
             <ul class="upper-panel">
-                <li class="upper-panel__item-1 upper-panel__item" id="isPen"><span>Pen</span></li>
+                <!-- <li class="upper-panel__item-1 upper-panel__item" id="isPen"><span>Pen</span></li>
                 <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen"><span>Mirror Pen</span></li>
                 <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket"><span>Paint Bucket</span></li>
                 <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll"><span>Paint all</span></li>
@@ -53,7 +53,32 @@
                 <li class="upper-panel__item-7 upper-panel__item" id="isRectangle"><span>Rectangle</span></li>
                 <li class="upper-panel__item-8 upper-panel__item" id="isCircle"><span>Circle</span></li>
                 <li class="upper-panel__item-9 upper-panel__item" id="isColorPicker"><span>Color picker</span></li>
-                <li class="upper-panel__item-10 upper-panel__item" id="isMove"><span>Move</span></li>
+                <li class="upper-panel__item-10 upper-panel__item" id="isMove"><span>Move</span></li> -->
+                <li class="upper-panel__item-1 upper-panel__item" id="isPen" data-placement="right" data-original-title="
+                <div class='tooltip-wrapper'>
+                  <div>Vertical Mirror pen 
+                      <span class='shortcut'>(V)</span>
+                    </div>
+                  
+                <div class='tooltip-descriptor'>
+                  <span class='descriptor-button'>CTRL</span>
+                  Use horizontal axis
+                </div>
+              
+                <div class='tooltip-descriptor'>
+                  <span class='descriptor-button'>SHIFT</span>
+                  Use horizontal and vertical axis
+                </div>  
+                </div> "></li>
+                <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen"></li>
+                <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket"></li>
+                <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll"></li>
+                <li class="upper-panel__item-5 upper-panel__item" id="isEraser"></li>
+                <li class="upper-panel__item-6 upper-panel__item" id="isLine"></li>
+                <li class="upper-panel__item-7 upper-panel__item" id="isRectangle"></li>
+                <li class="upper-panel__item-8 upper-panel__item" id="isCircle"></li>
+                <li class="upper-panel__item-9 upper-panel__item" id="isColorP"></li>
+                <li class="upper-panel__item-10 upper-panel__item" id="isMove"></li>
             </ul>
             <!-- Color -->
             <ul class="lower-panel">
@@ -81,10 +106,13 @@
                 <canvas class="canvas-layer-upper canvas"></canvas>
             </div>
         </div>
+        <!-- Right-panel -->
         <div class="control-panel-right">
             <div class="animation-wrapper">
                 <div class="animation-wrapper__monitor-wrapper">
-                    <img class="animation-wrapper__monitor">
+                    <div class="animation-wrapper__background">
+                        <img class="animation-wrapper__monitor">
+                    </div>
                 </div>
                 <div class="animation-wrapper__control-panel">
                     <span class="animation-wrapper__fps-monitor"></span>
@@ -94,12 +122,12 @@
             <!-- Manipulation with layers -->
             <div class="layers-panel">
                 <div class="layers-panel__control">
-                    <button class="button-add-layer" type="button"> Добивать слой</button>
-                    <button class="button-change-name" type="button">CN</button>
-                    <button class="button-up-layer" type="button">up</button>
-                    <button class="button-down-layer" type="button">down</button>
-                    <button class="button-merge-layer" type="button">MG</button>
-                    <button class="button-delete-layer" type="button">del</button>
+                    <button class="button-add-layer button" type="button"></button>
+                    <button class="button-change-name button" type="button"></button>
+                    <button class="button-up-layer button" type="button"></button>
+                    <button class="button-down-layer button" type="button"></button>
+                    <button class="button-merge-layer button" type="button"></button>
+                    <button class="button-delete-layer button" type="button"></button>
                 </div>
                 <ul class="layers-panel__layers-list">
                     <li class="list-layer-1 list-layer">layer 1</li>
@@ -108,10 +136,20 @@
             </div>
             <div class="canvas-size-wrapper">
                 <button class='button-submit' type='button'>size:</button>
-                <input class="canvas-width-input" type="text">
-                <input class="canvas-height-input" type="text">
+                <input class="canvas-width-input" type="text" value='40'>
+                <input class="canvas-height-input" type="text" value='60'>
             </div>
-            <div class="zoom-wrapper">zoom: <span class='zoom'></span></div>
+            <div class="transform-panel">
+                <button class='button-flip-image' type='button'>flip</button>
+                <button class='button-rotate-image' type='button'>rot</button>
+                <button class='button-clone-image' type='button'>clone</button>
+            </div>
+            <div class="parameters">
+                <div class="zoom-wrapper">zoom: <span class='zoom'></span></div>
+                <div class="canvas-resolution">
+                    <div class="text"></div>
+                </div>
+            </div>
         </div>
         <!-- Instruments: save, import -->
         <div class="aside-panel">
@@ -157,19 +195,19 @@
                     <div class="aside-panel__import-operating aside-panel__operating">
                         <div class="input-wrapper">
                             <input class="url" type="text" placeholder="paste image URL"
-                            value="https://avatars.mds.yandex.net/get-pdb/1939052/bd5d6894-9bcb-413b-bce3-63ba28f4e159/s1200">
-                        <div class="clean clean-url"></div>
+                                value="https://avatars.mds.yandex.net/get-pdb/1939052/bd5d6894-9bcb-413b-bce3-63ba28f4e159/s1200">
+                            <div class="clean clean-url"></div>
                         </div>
                         <div class="or">or</div>
                         <div class="input-wrapper">
-                            <input class='button-import-file' type="file" accept="image/*" >
+                            <input class='button-import-file' type="file" accept="image/*">
                             <div class="clean clean-file"></div>
                         </div>
                         <div class="radio-button-wrapper">
-                            <label for="native-size"><input id="native-size" type="radio" name="import-image"
-                                    checked> draw without changes</label>
-                            <label for="stretch-image"><input id="stretch-image" type="radio"
-                                    name="import-image"> stretch image</label>
+                            <label for="native-size"><input id="native-size" type="radio" name="import-image" checked>
+                                draw without changes</label>
+                            <label for="stretch-image"><input id="stretch-image" type="radio" name="import-image">
+                                stretch image</label>
                             <label for="adapt-canvas"><input id="adapt-canvas" type="radio" name="import-image"> adapt
                                 canvas size to image</label>
                             <label for="adapt-size-and-res"><input id="adapt-size-and-res" type="radio"

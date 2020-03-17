@@ -1,9 +1,6 @@
 import {
   data
 } from '../../main.js';
-import {
-  saveFrameImageData
-} from '../frame-manager.js';
 
 const monitor = document.querySelector('.animation-wrapper__monitor');
 let animationFrames = [];
@@ -81,10 +78,11 @@ function frameToPNG(isAllFrames) {
         if (imageData.get(layer)) {
           Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
           frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
-        } else {
-          const clearImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
-          Uint8ClampedArr = new Uint8ClampedArray(clearImageData);
-       }
+         } //else {
+      //     const cleanImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
+      //     Uint8ClampedArr = new Uint8ClampedArray(cleanImageData);
+      //     frameData.animationImageData.push()
+      //  }
       // if (imageData.get(layer)) {
       //   frameData.animationImageData.push(imageData.get(layer));
       // }
@@ -112,7 +110,6 @@ function frameToPNG(isAllFrames) {
     }
 
     ctx.putImageData(frameData.animationImageData[0], 0, 0);
-    //frameData.animationImageData = null;
 
     animationFrames = document.getElementsByClassName('frame-column__frame-wrapper');
 

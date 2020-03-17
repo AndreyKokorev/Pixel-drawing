@@ -35,7 +35,10 @@ function line() {
 
       x1 = Math.floor(e.offsetX / data.canvIndex);
       y1 = Math.floor(e.offsetY / data.canvIndex);
-
+      if (x1 < 0) {
+        console.log(e.pageX)
+        x1 = e.page + 1;
+      }
       drawBresLine(x0, y0, x1, y1, drawRect);
     }
     // if (e.offsetX == -1 || e.offsetY == -1) {

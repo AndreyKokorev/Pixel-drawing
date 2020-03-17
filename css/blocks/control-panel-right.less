@@ -1,49 +1,131 @@
+.selected {
+  margin: 1px 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  //box-shadow: 0 0px 2px black;
+  background: linear-gradient(to bottom, red, white, red);
+}
+
 .control-panel-right {
-  width: 200px;
+  width: 220px;
+  padding: 7px;
+  box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.178), 0 3px 3px 0px rgba(45, 51, 49, 0.178);
+  background: linear-gradient(to bottom, rgba(245, 221, 7, 0.836) 14%, rgba(250, 192, 0, 0.836) 28%, rgba(245, 170, 7, 0.836) 34%, transparent, transparent, rgba(255, 0, 0, 0.719) 68%);
 
   .animation-wrapper {
     display: grid;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
 
     &__monitor-wrapper {
-      display: grid;
-      justify-items: center;
+      display: flex;
+      justify-content: center;
       align-items: center;
       width: 200px;
       height: 200px;
+      margin: -5px 0 13px 0;
+      //border: 2px inset black;
+      border-radius: 2px;
+      background: rgb(255, 255, 255);
+    }
+    
+    &__background {
+      //width: 100px;
+      background: url(../img/canvas-bg/bg-1.png);
     }
 
     &__control-panel {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      width: 100%;
+      width: 200px;
     }
 
     &__fps-monitor {
       //width: 40px;
       height: 15px;
-      margin-right: 5px;
+      margin-right: 13px;
       text-align: right;
     }
-   
+
   }
 
   .layers-panel {
-    height: 200px;
+    min-height: 200px;
+    margin-top: 20px;
+    font-size: 15px;
+    //border: 6px inset rgb(87, 86, 86);
+    border: 6px inset rgb(255, 255, 255);
+    border-radius: 5px;
 
     &__control {
+      display: grid;
+      grid-template-columns: repeat(6, auto);
+      height: 20px;
+      border-top: 1px solid grey;
+      border-bottom: 1px solid rgb(48, 47, 47);
+      background: linear-gradient(to bottom, rgba(194, 193, 193, 0.993), white, white, white, white);
+      ;
+
       .button-add-layer {
-        width: 100px;
-        height: 20px;
+        background: url(../img/icons/plus.svg) 50% 50% no-repeat;
       }
+
+      .button-change-name {
+        background: url(../img/icons/edit.svg) 50% 50% no-repeat;
+      }
+
+      .button-up-layer {
+        background: url(../img/icons/up-arrow.svg) 50% 50% no-repeat;
+      }
+
+      .button-down-layer {
+        background: url(../img/icons/down-arrow.svg) 50% 50% no-repeat;
+      }
+
+      .button-merge-layer {
+        transform: rotate(180deg);
+        background: url(../img/icons/merge.svg) 50% 50% no-repeat;
+      }
+
+      .button-delete-layer {
+
+        background: url(../img/icons/clear.svg) 50% 50% no-repeat;
+        //background-size: 16px 16px;
+      }
+
+      .button:not(:nth-child(6)) {
+        border-right: 1px solid black;
+        //border-left: 1px solid black;
+        background-size: 16px 16px;
+
+        &:active {
+          transform: scale(0.75)
+        }
+      }
+
+      .button-merge-layer {
+        border-collapse: none;
+      }
+    }
+
+    .list-layer {
+      line-height: 20px;
+      text-indent: 5px;
+      text-transform: capitalize;
+    }
+
+    .list-layer:not(.selected) {
+      color: rgb(7, 7, 7);
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
     }
   }
 
   .canvas-size-wrapper {
     display: flex;
     justify-content: space-between;
+
     input {
       width: 60px;
       text-align: center;

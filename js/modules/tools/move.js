@@ -30,24 +30,7 @@ function move() {
 
       x0 = Math.floor(e.offsetX / data.canvIndex);
       y0 = Math.floor(e.offsetY / data.canvIndex);
-      //   const currentLayer = document.querySelector('.list-layer.selected');
-      //   const currentLayerData = data.frameData.get(data.currentFrame).imageData.get(currentLayer).data;
-      //   let Uint8ClampedArr = new Uint8ClampedArray(data.frameData.get(data.currentFrame).imageData.get(currentLayer).data);
-      //   copyLayerData = new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height);
-
-      //   let dt_1 = copyLayerData.data;
-      //   let dt_2 = currentLayerData
-
-      //   if (dt_1 && dt_2) {
-      //     for (let i = 0; i < dt_1.length; i += 4) {
-      //       if (dt_1[i] === 0 && dt_1[i + 1] === 0 && dt_1[i + 2] === 0) {
-      //         dt_1[i] = dt_2[i];
-      //         dt_1[i + 1] = dt_2[i + 1];
-      //         dt_1[i + 2] = dt_2[i + 2];
-      //         dt_1[i + 3] = dt_2[i + 3];
-      //       }
-      //     }
-      //   }
+     
     }
 
 
@@ -109,12 +92,7 @@ function move() {
   function moveShiftKey() {
     for (const layer of data.layers.keys()) {
       const imageData = data.frameData.get(data.currentFrame).imageData.get(layer);
-      // const image = new Image();
-      // image.src = imageData;
-      // image.onload = function () {
-      //   data.layers.get(layer).ctx.imageSmoothingEnabled = false;
-      //   data.layers.get(layer).ctx.drawImage(canvas, 0, 0, canvas_1.width, canvas_1.height);
-      // }
+    
       data.layers.get(layer).ctx.clearRect(0, 0, data.canv.width, data.canv.height);
       data.layers.get(layer).ctx.putImageData(imageData, x - x0, y - y0);
     }
@@ -128,14 +106,12 @@ function move() {
         for (const layer of frameData.imageData.keys()) {
           if (layer !== currentLayer) {
             const image = frameData.imageData.get(layer);
-            console.log(transitoryCanvasCtx)
+
             transitoryCanvasCtx.putImageData(image, x - x0, y - y0);
             const newImage = transitoryCanvasCtx.getImageData(0, 0, data.canv.width, data.canv.height);
             frameData.imageData.set(layer, newImage);
           }
         }
-        //       const newImageData = frameData.frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height);
-        // frameData.imageData.set(currentLayer, newImageData);
       }
     }
   }
