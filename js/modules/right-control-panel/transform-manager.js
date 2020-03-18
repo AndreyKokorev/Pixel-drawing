@@ -37,7 +37,6 @@ function transform() {
 
         frameData.imageData.set(currentLayer, imageData);
       }
-
       renderAllFrames(currentLayer);
       frameToPNG(true);
     }
