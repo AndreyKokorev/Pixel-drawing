@@ -69,6 +69,8 @@ function frameManager() {
         e.target.parentNode.remove();
         setNumber();
       }
+      setCanvNextPrevPar();
+
     } else if (e.target.classList.contains('frame-column__button-duplicate-frame')) {
       newFrame(e.target.parentNode);
       saveFrameImageData(e.target.parentNode.nextElementSibling, true);
@@ -91,6 +93,7 @@ function frameManager() {
 
       renderFrame();
       frameToPNG();
+      setCanvNextPrevPar();
 
     } else if (!e.target.closest('.frame-column__frame-wrapper').classList.contains('frame-column__frame-wrapper--active')) {
       const layersList = data.frameData.get(e.target.closest('.frame-column__frame-wrapper')).imageData.keys();
@@ -113,7 +116,7 @@ function frameManager() {
 
       frame.classList.add('frame-column__frame-wrapper--active');
       data.currentFrame = frame;
-
+      setCanvNextPrevPar();
     }
   })
 
@@ -161,6 +164,7 @@ function frameManager() {
     }
     data.currentFrame = frameWrapper;
     saveFrameImageData(data.currentFrame, true);
+    setCanvNextPrevPar();
   }
 
   function setNumber() {
@@ -168,6 +172,27 @@ function frameManager() {
 
     for (const wrapper of frameWrappersCollection) {
       wrapper.querySelector('.frame-column__frame-number').textContent = number++;
+    }
+  }
+}
+
+function setCanvNextPrevPar() {
+  const currentLayer = document.querySelector('.list-layer.selected');
+
+  if (data.currentFrame.previousElementSibling) {
+    const frame = data.currentFrame.previousElementSibling;
+    if (data.frameData.get(frame).imageData.get(currentLayer)) {
+      data.canvPrevFrameCtx.putImageData(data.frameData.get(frame).imageData.get(currentLayer), 0, 0);
+    } else {
+      data.canvPrevFrameCtx.clearRect(0, 0, data.canv.width, data.canv.height);
+    }
+  }
+  if (data.currentFrame.nextElementSibling) {
+    const frame = data.currentFrame.nextElementSibling;
+    if (data.frameData.get(frame).imageData.get(currentLayer)) {
+      data.canvNextFrameCtx.putImageData(data.frameData.get(frame).imageData.get(currentLayer), 0, 0);
+    } else {
+      data.canvNextFrameCtx.clearRect(0, 0, data.canv.width, data.canv.height);
     }
   }
 }
@@ -183,7 +208,7 @@ function saveFrameImageData(frame, isLayerListItemClick) {
     if (isLayerListItemClick !== true) {
       frameData.canvas.get(listItem).ctx.clearRect(0, 0, data.canv.width, data.canv.height);
     }
-    imageData.set(listItem, layerImageData);  
+    imageData.set(listItem, layerImageData);
   }
   frameData.imageData = imageData;
 }
@@ -282,6 +307,9 @@ class FrameData {
   }
 }
 
+export {
+  setCanvNextPrevPar
+};
 export {
   saveFrameImageData
 };

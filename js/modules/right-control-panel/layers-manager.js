@@ -16,10 +16,13 @@ import {
 import {
   deleteLayerImageData
 } from '../frame-manager.js';
+import {setCanvNextPrevPar} from '../frame-manager.js';
 import {frameToPNG} from './animation-manager.js';
 
 function layersManager() {
   const basicLayer = document.querySelector('.list-layer-1');
+  const canvPrevFrame = document.querySelector('.canvas-prev-frame');
+  const canvNextFrame = document.querySelector('.canvas-next-frame');
   const upperLayer = document.querySelector('.canvas-layer-upper');
   const layersList = document.querySelector('.layers-panel__layers-list');
   const layersListChildren = layersList.children;
@@ -66,7 +69,7 @@ function layersManager() {
     
     setOpacity(layerListItem);
     renderAllFrames(layerListItem);
-
+    setCanvNextPrevPar();
     frameToPNG(true);
   })
 
@@ -132,6 +135,7 @@ function layersManager() {
         }
 
         renderAllFrames(document.querySelector('.list-layer.selected'));
+        setCanvNextPrevPar();
         frameToPNG(true);
            
         break;
@@ -196,7 +200,8 @@ function layersManager() {
         layers.delete(item.nextElementSibling);
         item.nextElementSibling.remove();
 
-        renderAllFrames(currentListItem)
+        renderAllFrames(currentListItem);
+        setCanvNextPrevPar();
         break;
       }
     }
@@ -214,7 +219,8 @@ function layersManager() {
       e.target.classList.add('selected');
 
       renderFrame();
-      renderAllFrames(e.target);
+      setCanvNextPrevPar();
+      renderAllFrames(e.target);     
       saveFrameImageData(data.currentFrame, true);
     }
   })
@@ -224,14 +230,16 @@ function layersManager() {
       layers.get(layersListChildren[i]).canv.style.zIndex = layersListChildren.length - i;
     }
 
-    upperLayer.style.zIndex = layersListChildren.length + 3;
+    canvPrevFrame.style.zIndex = layersListChildren.length + 4;
+    canvNextFrame.style.zIndex = layersListChildren.length + 4;
+    upperLayer.style.zIndex = layersListChildren.length + 5;
   }
 
   function setOpacity(element) {
     const canvasArray = canvasWrapper.querySelectorAll('.canvas-layer');
 
     for (let layer of canvasArray) {
-      layer.style.opacity = '0.2';
+      layer.style.opacity = '0.7';
     }
 
     layers.get(element).canv.style.opacity = '1';

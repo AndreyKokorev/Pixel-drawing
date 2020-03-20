@@ -3,10 +3,10 @@ import {
 } from '../../main.js';
 
 const monitor = document.querySelector('.animation-wrapper__monitor');
+const imgBg = document.querySelector('.animation-wrapper__background');
 let animationFrames = [];
 
 function startAnimation() {
-  const animationControlPanel = document.querySelector('.animation-wrapper__control-panel');
   const fpsSlider = document.querySelector('.animation-wrapper__fps-slider');
   let fpsMonitor = document.querySelector('.animation-wrapper__fps-monitor');
   let fpsInterval = null;
@@ -74,11 +74,11 @@ function frameToPNG(isAllFrames) {
     frameData.animationImageData = [];
 
     for (const layer of layersList) {
-        let Uint8ClampedArr;
-        if (imageData.get(layer)) {
-          Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
-          frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
-         } //else {
+      let Uint8ClampedArr;
+      if (imageData.get(layer)) {
+        Uint8ClampedArr = new Uint8ClampedArray(imageData.get(layer).data);
+        frameData.animationImageData.push(new ImageData(Uint8ClampedArr, data.canv.width, data.canv.height));
+      } //else {
       //     const cleanImageData = data.frameData.get(data.currentFrame).frame.ctx.getImageData(0, 0, data.canv.width, data.canv.height).data;
       //     Uint8ClampedArr = new Uint8ClampedArray(cleanImageData);
       //     frameData.animationImageData.push()
@@ -134,11 +134,11 @@ function frameToPNG(isAllFrames) {
 
 function setImageSize() {
   if (data.canv.width > data.canv.height) {
-    monitor.style.width = '100%';
-    monitor.style.height = 100 / (data.canv.width / data.canv.height) + '%';
+    imgBg.style.width = '100%';
+    imgBg.style.height = 100 / (data.canv.width / data.canv.height) + '%';
   } else {
-    monitor.style.height = '100%';
-    monitor.style.width = 100 / (data.canv.height / data.canv.width) + '%';
+    imgBg.style.height = '100%';
+    imgBg.style.width = 100 / (data.canv.height / data.canv.width) + '%';
   }
 }
 

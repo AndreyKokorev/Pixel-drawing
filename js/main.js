@@ -23,20 +23,28 @@ import {
   startAnimation
 } from './modules/right-control-panel/animation-manager.js';
 import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
-import setHotKeys from './modules/hot-keys.js'
-import transform from './modules/right-control-panel/transform-manager.js'
+import setHotKeys from './modules/hot-keys.js';
+import transform from './modules/right-control-panel/transform-manager.js';
 
 const canvasBase = document.querySelector('.canvas-base');
 const canvasLayer_1 = document.querySelector('.canvas-layer-1');
 const canvasUpper = document.querySelector('.canvas-layer-upper');
 const ctxLayer_1 = canvasLayer_1.getContext('2d');
 const ctxUpper = canvasUpper.getContext('2d');
+const canvPrevFrame = document.querySelector('.canvas-prev-frame');
+const canvNextFrame = document.querySelector('.canvas-next-frame');
+const canvPrevFrameCtx = canvPrevFrame.getContext('2d');
+const canvNextFrameCtx = canvNextFrame.getContext('2d');
 const canvasWrapper = document.querySelector('.canvas-wrapper');
 let canvasPixelWidth;
 
 renderCanvas();
 
 export const data = {
+  canvPrevFrame,
+  canvNextFrame,
+  canvPrevFrameCtx,
+  canvNextFrameCtx,
   basicLayer: canvasLayer_1,
   basicCtx: ctxLayer_1,
   canv: canvasUpper,
@@ -44,8 +52,6 @@ export const data = {
   currentLayer: canvasLayer_1,
   currentCtx: ctxLayer_1,
   canvIndex: canvasPixelWidth,
-  marginX: 0,
-  marginY: 0,
   pixelSize: 1,
   deflection: localStorage.getItem('deflection') || 0,
   tools: {
@@ -107,13 +113,18 @@ function renderCanvas() {
   canvasLayer_1.height = Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
   canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
 
+  canvPrevFrame.width = canvasLayer_1.width;
+  canvPrevFrame.height = canvasLayer_1.height;
+  canvNextFrame.width = canvasLayer_1.width;
+  canvNextFrame.height = canvasLayer_1.height;
   canvasUpper.width = canvasLayer_1.width;
   canvasUpper.height = canvasLayer_1.height;
 }
 
 //To do:
+//Неккоректно сливаются слои в animation manager при рисовании черным цветом
+//Настроить изменение размера изображений анимации при большом разрешении
 //При  первоначальной канвас исчезает
-//Ограничить размер канваса у фрейм менеджера
 //Выставить максимальный размер файла при сохранении
 //При загрузе изображений вылетает Uint8 из animation-manager
 //При загрузке изображения с пк при 4 пункте слетает канвас

@@ -103,6 +103,8 @@
         <div class="canvas-base">
             <div class="canvas-wrapper">
                 <canvas class="canvas-layer canvas-layer-1 canvas"></canvas>
+                <canvas class="canvas-prev-frame canvas"></canvas>
+                <canvas class="canvas-next-frame canvas"></canvas>
                 <canvas class="canvas-layer-upper canvas"></canvas>
             </div>
         </div>
@@ -136,8 +138,8 @@
             </div>
             <div class="canvas-size-wrapper">
                 <button class='button-submit' type='button'>size:</button>
-                <input class="canvas-width-input" type="text" value='40'>
-                <input class="canvas-height-input" type="text" value='60'>
+                <input class="canvas-width-input" type="text" value='2000'>
+                <input class="canvas-height-input" type="text" value='2000'>
             </div>
             <div class="transform-panel">
                 <button class='button-flip-image' type='button'>flip</button>
@@ -221,6 +223,9 @@
     </main>
     <script src="./js/main.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script type="text/javascript" src="./js/modules/jsgif/LZWEncoder.js"></script>
+    <script type="text/javascript" src="./js/modules/jsgif/NeuQuant.js"></script>
+    <script type="text/javascript" src="./js/modules/jsgif/GIFEncoder.js"></script>
 </body>
 
 </html>

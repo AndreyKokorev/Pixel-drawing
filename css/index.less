@@ -17,13 +17,19 @@
   outline: 0;
   list-style: none;
 }
+#i4c-dialogs-container {
+  display:none;
+}
 
 .transition {
   transition: 0.2s;
 }
 
 body {
-  //min-height: 890px;
+  display:grid;
+  grid-template-rows: 48px auto;
+  min-height: 890px;
+  height:100vh;
   font-family: Roboto;
   background: url(../img/pictures/pixel_art_8_bit_retro_games-1364327.png);
   background-size: auto 100%;
@@ -32,7 +38,6 @@ body {
 header {
   display: grid;
   grid-template-columns: 40px 1fr;
-  height: 48px;
   box-shadow: 0 6px 3px -4px rgba(0, 0, 0, 0.425);
   background: linear-gradient(to bottom, rgba(33, 189, 85, 0.692) 35%, rgba(245, 221, 7, 0.836) 50%);
 
@@ -54,6 +59,7 @@ header {
 main {
   display: flex;
   //justify-content: space-between;
+  height: 100%;
   padding-top: 10px;
   font-family: Comics;
   box-sizing: border-box;
@@ -67,11 +73,10 @@ main {
   justify-content: center;
   align-items: center;
   width: 900px;
-  height: 900px;
-  //max-height: 888px;
+  height: calc(100% - 10px);
+  //max-height: 100%;
   margin-right: 5px;
   overflow: hidden;
-  //border: 3px solid rgb(128, 128, 128);
   border-radius: 5px;
   box-shadow: 0 0 7px rgba(13, 14, 13, 0.384);
 }
@@ -92,12 +97,22 @@ main {
 }
 
 .canvas-layer-1 {
-  z-index: 4;
+  z-index: 4; 
+}
+
+.canvas-prev-frame {
+  z-index: 5;
+  opacity: 0.2;
+}
+
+.canvas-next-frame {
+  z-index: 6;
+  opacity: 0.2;
 }
 
 .canvas-layer-upper {
   position: absolute;
-  z-index: 5;
+  z-index: 7;
 }
 
 .filters {

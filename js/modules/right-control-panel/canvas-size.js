@@ -72,10 +72,15 @@ function setCanvasWrapperSize() {
     }
 
     if (Number.isInteger(width) && Number.isInteger(height)) {
+      data.canvPrevFrame.width = width;
+      data.canvPrevFrame.height = height;
+      data.canvNextFrame.width = width;
+      data.canvNextFrame.height = height;
       data.canv.width = width;
       data.canv.height = height;
 
-      if (width > canvasBase.offsetWidth * 0.99 && height > canvasBase.offsetHeight) {
+
+      if (width > canvasBase.offsetWidth * 0.99 || height > canvasBase.offsetHeight * 0.99) {
         data.canvIndex = 1;
         canvasWrapper.style.width = `${width}px`;
         canvasWrapper.style.height = `${height}px`;

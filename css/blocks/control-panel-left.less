@@ -1,10 +1,8 @@
 .active {
   filter: drop-shadow(0px 6px 0px red);
+  transform: translateY(-6px);
   background-size: 32% !important;
-  transforn-origin: 50%;
   transition: 0.15s;
-  //transform: translate(0px, 4px);
-  //text-shadow: 0px -4px 2px rgba(35, 37, 35, 0.829);
 }
 
 .tooltip-wrapper {
@@ -26,7 +24,7 @@
 .control-panel-left {
   position: relative;
   width: 228px;
-  height: 713px;
+  height: 727px;
   margin: 79px 10px 0 29px;
   box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.281);
   background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 13%, rgba(250, 192, 0, 0.836) 20%, rgba(245, 170, 7, 0.836) 40%, transparent, transparent, rgba(255, 0, 0, 0.719) 70%);
@@ -97,25 +95,12 @@
     grid-template-columns: 1fr 1fr;
     height: 250px;
     margin: 15px 0 0 0;
-    //box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.281);
 
     &__item {
       position: relative;
-      //margin-left: 19px;
-      //height: 48px;
-      //width: 196px;
       font-family: Comics;
       font-weight: bold;
       line-height: 48px;
-
-      > span {
-         display: block;
-         width:100%;
-         height: 100%;
-        // margin-left: 50px;
-        // font-size: 16px;
-        // transition: 0.2s;
-      }
 
       &-1 {
         background: url(../img/icons/pencil1.svg) no-repeat 50% 50%;
@@ -123,7 +108,6 @@
 
       &-2 {
         background: url(../img/icons/eye-dropper.svg) no-repeat 50% 50%;
-        //border-bottom: 1px solid rgb(117, 113, 59);
       }
 
       &-3 {

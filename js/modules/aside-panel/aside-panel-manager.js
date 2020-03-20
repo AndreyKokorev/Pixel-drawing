@@ -13,6 +13,8 @@ import {
 import {
   frameToPNG
 } from '../right-control-panel/animation-manager.js'
+//import GIFEncoder from '../jsgif/GIFEncoder.js';
+
 
 function asidePanelManager() {
   const asidePanel = document.querySelector('.aside-panel');
@@ -28,6 +30,7 @@ function asidePanelManager() {
     const importInstrument = document.querySelector('.icon-import');
     const range = saveOperating.querySelector('.range');
     const savePNG = saveOperating.querySelector('.button-save-image');
+    const saveGIF = saveOperating.querySelector('.button-save-gif');
     const multiplier = saveOperating.querySelector('.multiplier');
     const widthInput = saveOperating.querySelector('.width');
     const heightInput = saveOperating.querySelector('.height');
@@ -86,6 +89,19 @@ function asidePanelManager() {
       drawImage = adaptSizeAndRes;
     } else if (e.target === importURL) {
       drawImage((importFile.value) ? URL.createObjectURL(importFile.files[0]) : url);
+    }
+
+    if( e.target === saveGIF) {
+      let encoder = new GIFEncoder(50,50);
+      encoder.setRepeat(0);
+      encoder.setDelay(300);
+      encoder.start();
+      for (const frameData of data.frameData.values()) {
+        encoder.addFrame(frameData.animationImageData[0], true);
+      }
+      encoder.finish();
+      encoder.download('download.gif');
+      //console.log(encoder)
     }
 
     if(e.target === cleanURL) {
