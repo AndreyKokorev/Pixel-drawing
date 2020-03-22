@@ -8,6 +8,7 @@ import line from './modules/tools/line.js';
 import circle from './modules/tools/circle.js';
 import colorPickerTool from './modules/tools/color-picker-tool.js';
 import move from './modules/tools/move.js';
+import lighten from './modules/tools/lighten.js';
 import styleColor from './modules/style-color.js';
 import {
   chooseColor
@@ -64,7 +65,8 @@ export const data = {
     isLine: false,
     isCircle: false,
     isColorPicker: false,
-    isMove: false
+    isMove: false,
+    isLighten: false
   },
   offTools() {
     this.tools.isPen = false;
@@ -78,6 +80,7 @@ export const data = {
     this.tools.isCircle = false;
     this.tools.isColorPicker = false;
     this.tools.isMove = false;
+    this.tools.isLighten = false;
   }
 }
 
@@ -100,6 +103,7 @@ rectangle();
 circle();
 colorPickerTool();
 move();
+lighten();
 startAnimation();
 asidePanelManager();
 transform();
@@ -122,15 +126,10 @@ function renderCanvas() {
 }
 
 //To do:
-//Неккоректно сливаются слои в animation manager при рисовании черным цветом
-//Настроить изменение размера изображений анимации при большом разрешении
-//При  первоначальной канвас исчезает
-//Выставить максимальный размер файла при сохранении
+//При удалении фрейма остаются слои след. и пред. фрейма
+//При удалении единственного фрейма остаётся изображение на канвасе
 //При загрузе изображений вылетает Uint8 из animation-manager
-//При загрузке изображения с пк при 4 пункте слетает канвас
-//При выставлении высокого разрешения канваса, он исчезает, возможно из-за превышения размеров контейнера
 // Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
-//? при скачивании изображения вылазило предупреждение в адресной строке
 //Сделать отмену изменений
 //Удаление изображений фреймов
 //? При удалении фрейма прекращается анимация 

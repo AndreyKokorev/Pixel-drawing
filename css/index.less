@@ -1,3 +1,5 @@
+@blue: rgba(0, 60, 255, 0.623);
+
 @font-face {
   font-family: 'Comics';
   src: url('../fonts/Comics.ttf') format('truetype');
@@ -8,7 +10,6 @@
   src: url('../fonts/CS\ Nancy.ttf') format('truetype');
 }
 
-@blue: rgba(0, 60, 255, 0.623);
 
 * {
   margin: 0;
@@ -17,6 +18,7 @@
   outline: 0;
   list-style: none;
 }
+
 #i4c-dialogs-container {
   display:none;
 }
@@ -58,7 +60,7 @@ header {
 
 main {
   display: flex;
-  //justify-content: space-between;
+  width: 100vw;
   height: 100%;
   padding-top: 10px;
   font-family: Comics;
@@ -66,15 +68,13 @@ main {
   background-color: rgba(255, 255, 255, 0.897);
 }
 
-
-
 .canvas-base {
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-items: center;
-  width: 900px;
-  height: calc(100% - 10px);
-  //max-height: 100%;
+  align-content: center;
+  width: 66%;
+  height: calc(94vh - 10px);
+  min-height: 800px;
   margin-right: 5px;
   overflow: hidden;
   border-radius: 5px;
@@ -83,13 +83,10 @@ main {
 
 .canvas-wrapper {
   position: relative;
-  //width: 99%;
-  //height: 99%;
   background: url(../img/canvas-bg/bg-1.png);
 }
 
 .canvas {
-  //display:none;
   position: absolute;
   width: 100%;
   height: 100%;

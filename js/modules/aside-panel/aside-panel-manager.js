@@ -91,8 +91,8 @@ function asidePanelManager() {
       drawImage((importFile.value) ? URL.createObjectURL(importFile.files[0]) : url);
     }
 
-    if( e.target === saveGIF) {
-      let encoder = new GIFEncoder(50,50);
+    if (e.target === saveGIF) {
+      let encoder = new GIFEncoder(50, 50);
       encoder.setRepeat(0);
       encoder.setDelay(300);
       encoder.start();
@@ -104,20 +104,48 @@ function asidePanelManager() {
       //console.log(encoder)
     }
 
-    if(e.target === cleanURL) {
+    if (e.target === cleanURL) {
       url.value = '';
-    } else if(e.target === cleanFile) {
+    } else if (e.target === cleanFile) {
       importFile.value = null;
     }
 
     range.oninput = setResolution;
+    widthInput.oninput = function () {
+      if (Number.isInteger(+widthInput.value)) {
+        if (data.canv.width > data.canv.height) {
+          heightInput.value = Math.round(widthInput.value / (data.canv.width / data.canv.height));
+        } else {
+          heightInput.value = Math.round(widthInput.value / (data.canv.width / data.canv.height));
+        }
+      } else {
+        widthInput.value = '';
+      }
+      if (widthInput.value === '') {
+        heightInput.value = '';
+      }
+    };
+    heightInput.oninput = function () {
+      if (Number.isInteger(+widthInput.value)) {
+        if (data.canv.width > data.canv.height) {
+          widthInput.value = Math.round(heightInput.value * (data.canv.width / data.canv.height));
+        } else {
+          widthInput.value = Math.round(heightInput.value * (data.canv.width / data.canv.height));
+        }
+      } else {
+        heightInput.value = '';
+      }
+      if (heightInput.value === '') {
+        widthInput.value = '';
+      }
+    }
 
     function setResolution() {
       const value = Number(range.value);
 
       multiplier.textContent = value.toFixed(1) + 'x';
-      widthInput.placeholder = `${data.canv.width * value }`;
-      heightInput.placeholder = `${data.canv.height * value }`;
+      widthInput.placeholder = `${Math.round(data.canv.width * value)}`;
+      heightInput.placeholder = `${Math.round(data.canv.height * value)}`;
     }
 
     function save() {
@@ -143,8 +171,8 @@ function asidePanelManager() {
         canvas_1.height = image.height;
         ctx_1.drawImage(image, 0, 0);
 
-        canvas_2.width = widthInput.placeholder;
-        canvas_2.height = heightInput.placeholder;
+        canvas_2.width = widthInput.value || widthInput.placeholder;
+        canvas_2.height = heightInput.value || heightInput.placeholder;
         ctx_2.imageSmoothingEnabled = false;
         ctx_2.drawImage(canvas_1, 0, 0, canvas_2.width, canvas_2.height);
 
@@ -216,7 +244,7 @@ function asidePanelManager() {
         if (!path.value) {
           URL.revokeObjectURL(this.src);
         }
-  
+
         saveFrameImageData(data.currentFrame, true);
         renderAllFrames(document.querySelector('.list-layer.selected'));
         frameToPNG(true);
@@ -282,9 +310,9 @@ function asidePanelManager() {
     image.crossOrigin = "Anonymous";
     image.src = (path.value) ? path.value : path;
 
-      if (path.value) {
-        path.value = ''
-      }
+    if (path.value) {
+      path.value = ''
+    }
 
     image.onload = function () {
       if (image.width > image.height) {
@@ -298,7 +326,7 @@ function asidePanelManager() {
         h = data.canv.height;
         marginX = (data.canv.width - w) / 2;
       }
-      
+
 
       data.currentCtx.clearRect(0, 0, data.canv.width, data.canv.height);
       data.currentCtx.drawImage(image, marginX, marginY, w, h);
@@ -306,7 +334,7 @@ function asidePanelManager() {
       if (!path.value) {
         URL.revokeObjectURL(this.src);
       }
-      
+
       saveFrameImageData(data.currentFrame, true);
       renderFrame();
       frameToPNG();

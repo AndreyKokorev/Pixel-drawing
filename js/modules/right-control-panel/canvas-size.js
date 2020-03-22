@@ -124,7 +124,7 @@ function setCanvasWrapperSize() {
       renderAllFrames(document.querySelector('.list-layer.selected'));
       frameToPNG(true);
     }
-  })
+  });
 }
 
 export default setCanvasWrapperSize;

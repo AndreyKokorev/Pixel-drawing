@@ -13,7 +13,7 @@ function eraser() {
       const x0 = Math.floor(e.offsetX / data.canvIndex);
       const y0 = Math.floor(e.offsetY / data.canvIndex);
 
-      data.currentCtx.clearRect(x - data.deflection, y - data.deflection, data.pixelSize, data.pixelSize);
+      data.currentCtx.clearRect(x0 - data.deflection, y0 - data.deflection, data.pixelSize, data.pixelSize);
     }
   })
 

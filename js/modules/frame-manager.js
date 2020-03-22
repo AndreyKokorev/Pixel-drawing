@@ -63,7 +63,6 @@ function frameManager() {
         }
 
         setNumber();
-
       } else {
         data.frameData.delete(e.target.parentNode);
         e.target.parentNode.remove();
@@ -179,22 +178,25 @@ function frameManager() {
 function setCanvNextPrevPar() {
   const currentLayer = document.querySelector('.list-layer.selected');
 
-  if (data.currentFrame.previousElementSibling) {
-    const frame = data.currentFrame.previousElementSibling;
-    if (data.frameData.get(frame).imageData.get(currentLayer)) {
-      data.canvPrevFrameCtx.putImageData(data.frameData.get(frame).imageData.get(currentLayer), 0, 0);
-    } else {
-      data.canvPrevFrameCtx.clearRect(0, 0, data.canv.width, data.canv.height);
+  if (data.currentFrame) {
+    if (data.currentFrame.previousElementSibling) {
+      const frame = data.currentFrame.previousElementSibling;
+      if (data.frameData.get(frame).imageData.get(currentLayer)) {
+        data.canvPrevFrameCtx.putImageData(data.frameData.get(frame).imageData.get(currentLayer), 0, 0);
+      } else {
+        data.canvPrevFrameCtx.clearRect(0, 0, data.canv.width, data.canv.height);
+      }
+    }
+    if (data.currentFrame.nextElementSibling) {
+      const frame = data.currentFrame.nextElementSibling;
+      if (data.frameData.get(frame).imageData.get(currentLayer)) {
+        data.canvNextFrameCtx.putImageData(data.frameData.get(frame).imageData.get(currentLayer), 0, 0);
+      } else {
+        data.canvNextFrameCtx.clearRect(0, 0, data.canv.width, data.canv.height);
+      }
     }
   }
-  if (data.currentFrame.nextElementSibling) {
-    const frame = data.currentFrame.nextElementSibling;
-    if (data.frameData.get(frame).imageData.get(currentLayer)) {
-      data.canvNextFrameCtx.putImageData(data.frameData.get(frame).imageData.get(currentLayer), 0, 0);
-    } else {
-      data.canvNextFrameCtx.clearRect(0, 0, data.canv.width, data.canv.height);
-    }
-  }
+
 }
 
 function saveFrameImageData(frame, isLayerListItemClick) {

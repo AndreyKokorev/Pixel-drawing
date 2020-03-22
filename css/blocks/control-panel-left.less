@@ -10,7 +10,7 @@
   left: 80px;
   display: grid;
   align-content: flex-start;
-  width:170px;
+  width: 170px;
   font-size: 10px;
   border: 2px solid black;
   filter: drop-shadow(0 0 0px red);
@@ -26,7 +26,6 @@
   width: 228px;
   height: 727px;
   margin: 79px 10px 0 29px;
-  box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.281);
   background: linear-gradient(to bottom, rgba(255, 230, 0, 0.822) 13%, rgba(250, 192, 0, 0.836) 20%, rgba(245, 170, 7, 0.836) 40%, transparent, transparent, rgba(255, 0, 0, 0.719) 70%);
 
   .pixel-size-panel {
@@ -94,13 +93,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 250px;
-    margin: 15px 0 0 0;
+    padding-top: 15px;
+    box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.281);
 
     &__item {
       position: relative;
-      font-family: Comics;
-      font-weight: bold;
-      line-height: 48px;
+      height: 50px;
 
       &-1 {
         background: url(../img/icons/pencil1.svg) no-repeat 50% 50%;
@@ -120,7 +118,6 @@
 
       &-5 {
         background: url(../img/icons/rubber.svg) no-repeat 50% 50%;
-        background-size: 12%;
       }
 
       &-6 {
@@ -144,10 +141,11 @@
       }
 
       &-11 {
-        background: url(../img/icons/exchange-alt.svg) no-repeat 50% 50%;
+        background: url(../img/icons/half-circle.svg) no-repeat 50% 50%;
       }
 
     }
+
     &__item {
       background-size: 27%;
     }

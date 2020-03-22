@@ -55,7 +55,7 @@ function line() {
   })
 
   function drawRect(x, y) {
-    data.ctx.fillRect(x, y, data.pixelSize, data.pixelSize);
+    data.ctx.fillRect(x - data.deflection, y - data.deflection, data.pixelSize, data.pixelSize);
     data.ctx.fill();
   }
 

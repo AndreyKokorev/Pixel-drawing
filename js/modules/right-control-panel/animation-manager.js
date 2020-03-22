@@ -4,7 +4,7 @@ import {
 
 const monitor = document.querySelector('.animation-wrapper__monitor');
 const imgBg = document.querySelector('.animation-wrapper__background');
-let animationFrames = [];
+let animationFrames = document.querySelector('.frame-column').children;
 
 function startAnimation() {
   const fpsSlider = document.querySelector('.animation-wrapper__fps-slider');
@@ -40,8 +40,10 @@ function startAnimation() {
     if (counter === data.frameData.size) counter = 0;
 
     if (animationFrames[counter]) {
-      monitor.src = data.frameData.get(animationFrames[counter]).img;
-      counter++;
+      if (data.frameData.get(animationFrames[counter]).img) {
+        monitor.src = data.frameData.get(animationFrames[counter]).img;
+        counter++;
+      }   
     }
   }
 }
@@ -99,7 +101,7 @@ function frameToPNG(isAllFrames) {
 
       if (dt_1 && dt_2) {
         for (let i = 0; i < dt_1.length; i += 4) {
-          if (dt_1[i] === 0 && dt_1[i + 1] === 0 && dt_1[i + 2] === 0) {
+          if (dt_1[i] === 0 && dt_1[i + 1] === 0 && dt_1[i + 2] === 0 && dt_1[i + 3] === 0) {
             dt_1[i] = dt_2[i];
             dt_1[i + 1] = dt_2[i + 1];
             dt_1[i + 2] = dt_2[i + 2];
@@ -110,8 +112,6 @@ function frameToPNG(isAllFrames) {
     }
 
     ctx.putImageData(frameData.animationImageData[0], 0, 0);
-
-    animationFrames = document.getElementsByClassName('frame-column__frame-wrapper');
 
     let image = new Image();
     let dataImg = canvas.toDataURL('image/png', 1.0);
