@@ -34,7 +34,7 @@ function startAnimation() {
 
   fpsInterval = setInterval(() => {
     drawFrame();
-  }, 1000 / 12);
+  }, 1000 / fpsSlider.value);
 
   function drawFrame() {
     if (counter >= data.frameData.size) counter = 0;
