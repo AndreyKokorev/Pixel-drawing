@@ -27,14 +27,14 @@ function setCanvasWrapperSize() {
   let baseWidth = canvasBase.offsetWidth;
   let scale = 1;
 
-  canvasResolution.textContent = `${data.canv.width} x ${data.canv.height}]`
+  canvasResolution.textContent = 'resol: ' + `${data.canv.width} x ${data.canv.height}`
   widthField.placeholder = `< ${Math.floor(canvasBase.offsetWidth * 0.99)}`;
   heightField.placeholder = `< ${Math.floor(canvasBase.offsetHeight * 0.99)}`;
 
   zoom.textContent = 100 + ' %';
 
   canvasBase.addEventListener('wheel', (e) => {
-    scale += e.deltaY * (-0.0001);
+    scale += e.deltaY * (-0.0004);
     scale = Math.min(Math.max(0.125, scale), 4);
 
     zoom.textContent = `${Math.round(scale * 100)}%`;
@@ -84,20 +84,23 @@ function setCanvasWrapperSize() {
         data.canvIndex = 1;
         canvasWrapper.style.width = `${width}px`;
         canvasWrapper.style.height = `${height}px`;
-
       } else {
-        if (width > height) {
-          data.canvIndex = Math.floor((canvasBase.offsetWidth * 0.99) / data.canv.width);
-        } else if (height > width) {
-          data.canvIndex = Math.floor((canvasBase.offsetHeight * 0.99) / data.canv.height);
-        } else if (width === height) {
-          data.canvIndex = Math.floor((canvasBase.offsetWidth * 0.99) / height);
-        }
-
+          if(width/height > canvasBase.offsetWidth/canvasBase.offsetHeight) {
+            data.canvIndex = (canvasBase.offsetWidth * 0.99) / data.canv.width;
+          } else if(width/height < canvasBase.offsetWidth/canvasBase.offsetHeight){
+            data.canvIndex = (canvasBase.offsetHeight * 0.99) / data.canv.height;       
+          } else {
+            if(canvasBase.offsetWidth > canvasBase.offsetHeight) {
+              data.canvIndex = (canvasBase.offsetHeight * 0.99) / data.canv.height; 
+            } else {
+              data.canvIndex = (canvasBase.offsetWidth * 0.99) / data.canv.width;
+            }
+          }
+              
         canvasWrapper.style.width = `${data.canv.width * data.canvIndex}px`;
         canvasWrapper.style.height = `${data.canv.height * data.canvIndex}px`;
       }
-
+       console.log(((canvasBase.offsetHeight * 0.99) / data.canv.height)*92)
       for (let layer of data.layers) {
         const prevWidth = layer[1].canv.width;
         const prevHeight = layer[1].canv.height;
@@ -124,7 +127,10 @@ function setCanvasWrapperSize() {
       renderAllFrames(document.querySelector('.list-layer.selected'));
       frameToPNG(true);
     }
+    canvasResolution.textContent = 'resol: ' + `${data.canv.width} x ${data.canv.height}`
   });
+
+  sizeSubmitButton.click()
 }
 
 export default setCanvasWrapperSize;

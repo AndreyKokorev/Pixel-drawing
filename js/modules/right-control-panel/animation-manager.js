@@ -30,14 +30,14 @@ function startAnimation() {
     }
 
     fpsMonitor.textContent = +e.target.value + 'FPS'
-  })
+  });
 
   fpsInterval = setInterval(() => {
     drawFrame();
-  }, fpsTimer);
+  }, 1000 / 12);
 
   function drawFrame() {
-    if (counter === data.frameData.size) counter = 0;
+    if (counter >= data.frameData.size) counter = 0;
 
     if (animationFrames[counter]) {
       if (data.frameData.get(animationFrames[counter]).img) {
@@ -45,7 +45,7 @@ function startAnimation() {
         counter++;
       }   
     }
-  }
+  };
 }
 
 function frameToPNG(isAllFrames) {
@@ -111,8 +111,10 @@ function frameToPNG(isAllFrames) {
       }
     }
 
-    ctx.putImageData(frameData.animationImageData[0], 0, 0);
-
+    if(frameData.animationImageData[0]) {
+      ctx.putImageData(frameData.animationImageData[0], 0, 0);
+    }
+   
     let image = new Image();
     let dataImg = canvas.toDataURL('image/png', 1.0);
     image.src = dataImg;

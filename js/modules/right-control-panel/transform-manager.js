@@ -119,16 +119,16 @@ function transform() {
             transitoryCanvasCtx.translate(0, data.canv.height);
             transitoryCanvasCtx.scale(1, -1);
           } else if (e.target === rotateImage) {
-            ctx.translate(0, data.canv.height);
-            ctx.rotate(-90 * Math.PI / 180);
+            transitoryCanvasCtx.translate(0, data.canv.height);
+            transitoryCanvasCtx.rotate(-90 * Math.PI / 180);
           }
         } else {
           if (e.target === flipImage) {
             transitoryCanvasCtx.translate(data.canv.width, 0);
             transitoryCanvasCtx.scale(-1, 1);
           } else if (e.target === rotateImage) {
-            ctx.translate(data.canv.width, 0);
-            ctx.rotate(90 * Math.PI / 180);
+            transitoryCanvasCtx.translate(data.canv.width, 0);
+            transitoryCanvasCtx.rotate(90 * Math.PI / 180);
           }
         }
 
@@ -207,14 +207,14 @@ function transform() {
         } else {
           translateY = Math.round((data.canv.height - data.canv.width) / 2);
         }
-        console.log((data.canv.height - data.canv.width) / 2)
+
         if (e.shiftKey) {
           ctx.translate(0, data.canv.width);
           ctx.rotate(-90 * Math.PI / 180);
 
         } else {
-          console.log(translateY)
-          ctx.translate(data.canv.width, translateY);
+
+          ctx.translate(data.canv.width, 0);
           ctx.rotate(90 * Math.PI / 180);
           //ctx.translate(-data.canv.width, -translateY);
         }

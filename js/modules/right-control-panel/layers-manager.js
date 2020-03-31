@@ -2,7 +2,8 @@ import {
   data
 } from '../../main.js';
 import {
-  renderFrame, frameManager
+  renderFrame,
+  frameManager
 } from '../frame-manager.js';
 import {
   renderAllFrames
@@ -16,8 +17,12 @@ import {
 import {
   deleteLayerImageData
 } from '../frame-manager.js';
-import {setCanvNextPrevPar} from '../frame-manager.js';
-import {frameToPNG} from './animation-manager.js';
+import {
+  setCanvNextPrevPar
+} from '../frame-manager.js';
+import {
+  frameToPNG
+} from './animation-manager.js';
 
 function layersManager() {
   const basicLayer = document.querySelector('.list-layer-1');
@@ -48,7 +53,7 @@ function layersManager() {
     const layerListItem = document.createElement('li');
 
     //saveFrameImageData(data.currentFrame, true);
-  
+
     newLayer.width = data.canv.width;
     newLayer.height = data.canv.height;
     newLayer.classList.add(`canvas-layer-${layersAmount += 1}`, 'canvas-layer', 'canvas');
@@ -59,14 +64,14 @@ function layersManager() {
     deleteClass();
 
     layerListItem.classList.add(`list-layer`);
-    layerListItem.textContent = `Layer ${layersAmount}`;
+    layerListItem.textContent = `layer ${layersAmount}`;
     layerListItem.classList.add('selected');
     layersList.prepend(layerListItem);
 
     layers.set(layerListItem, new LayerData(newLayer));
     data.currentLayer = layers.get(layerListItem).canv;
     data.currentCtx = layers.get(layerListItem).ctx;
-    
+
     setOpacity(layerListItem);
     renderAllFrames(layerListItem);
     setCanvNextPrevPar();
@@ -101,46 +106,50 @@ function layersManager() {
   })
 
   buttonDelLayer.addEventListener('click', () => {
-    data.currentLayer = data.basicLayer;
-    data.currentCtx = data.basicCtx;
 
-    for (let layer of layersListChildren) {
-      if (layer.classList.contains('selected')) {
-        deleteLayerImageData();
+    if (layersListChildren.length > 1) {
+      data.currentLayer = data.basicLayer;
+      data.currentCtx = data.basicCtx;
 
-        if (layer.nextElementSibling) {
-          data.currentLayer = layers.get(layer.nextElementSibling).canv;
-          data.currentCtx = layers.get(layer.nextElementSibling).ctx;
+      for (let layer of layersListChildren) {
+        if (layer.classList.contains('selected')) {
+          deleteLayerImageData();
 
-          layer.nextElementSibling.classList.add('selected');
+          if (layer.nextElementSibling) {
+            data.currentLayer = layers.get(layer.nextElementSibling).canv;
+            data.currentCtx = layers.get(layer.nextElementSibling).ctx;
 
-          setOpacity(layer.nextElementSibling);
+            layer.nextElementSibling.classList.add('selected');
 
-        } else if (layer.previousElementSibling) {
-          data.currentLayer = layers.get(layer.previousElementSibling).canv;
-          data.currentCtx = layers.get(layer.previousElementSibling).ctx;
+            setOpacity(layer.nextElementSibling);
 
-          layer.previousElementSibling.classList.add('selected')
+          } else if (layer.previousElementSibling) {
+            data.currentLayer = layers.get(layer.previousElementSibling).canv;
+            data.currentCtx = layers.get(layer.previousElementSibling).ctx;
 
-          setOpacity(layer.previousElementSibling);
+            layer.previousElementSibling.classList.add('selected')
+
+            setOpacity(layer.previousElementSibling);
+          }
+
+          layers.get(layer).canv.remove();
+          layers.delete(layer)
+          layer.remove();
+
+          if (layersListChildren.length === 0) {
+            layersAmount = 0;
+            zIndex = 2;
+          }
+
+          renderAllFrames(document.querySelector('.list-layer.selected'));
+          setCanvNextPrevPar();
+          frameToPNG(true);
+
+          break;
         }
-
-        layers.get(layer).canv.remove();
-        layers.delete(layer)
-        layer.remove();
-
-        if (layersListChildren.length === 0) {
-          layersAmount = 0;
-          zIndex = 2;
-        }
-
-        renderAllFrames(document.querySelector('.list-layer.selected'));
-        setCanvNextPrevPar();
-        frameToPNG(true);
-           
-        break;
       }
     }
+
   })
 
   buttonUpLayer.addEventListener('click', () => {
@@ -220,7 +229,7 @@ function layersManager() {
 
       renderFrame();
       setCanvNextPrevPar();
-      renderAllFrames(e.target);     
+      renderAllFrames(e.target);
       saveFrameImageData(data.currentFrame, true);
     }
   })
@@ -230,7 +239,7 @@ function layersManager() {
       layers.get(layersListChildren[i]).canv.style.zIndex = layersListChildren.length - i;
     }
 
-    canvPrevFrame.style.zIndex = layersListChildren.length + 4;
+    canvPrevFrame.style.zIndex = layersListChildren.length + 3;
     canvNextFrame.style.zIndex = layersListChildren.length + 4;
     upperLayer.style.zIndex = layersListChildren.length + 5;
   }

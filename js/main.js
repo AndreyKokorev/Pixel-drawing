@@ -26,6 +26,8 @@ import {
 import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
 import setHotKeys from './modules/hot-keys.js';
 import transform from './modules/right-control-panel/transform-manager.js';
+import miniMapInit from './modules/right-control-panel/mini-map.js';
+
 
 const canvasBase = document.querySelector('.canvas-base');
 const canvasLayer_1 = document.querySelector('.canvas-layer-1');
@@ -42,6 +44,8 @@ let canvasPixelWidth;
 renderCanvas();
 
 export const data = {
+  canvasBase,
+  canvasWrapper,
   canvPrevFrame,
   canvNextFrame,
   canvPrevFrameCtx,
@@ -86,29 +90,33 @@ export const data = {
 
 data.tools.isPen = true;
 
-styleColor();
-chooseColor();
-setPixelSize();
-layersManager();
-frameManager();
-setCanvasWrapperSize();
-pointer();
-toolsManager();
-pen();
-paintBucket();
-paintAll();
-eraser();
-line();
-rectangle();
-circle();
-colorPickerTool();
-move();
-lighten();
-startAnimation();
-asidePanelManager();
-transform();
-setHotKeys();
+initModules();
 
+function initModules() {
+  styleColor();
+  chooseColor();
+  setPixelSize();
+  layersManager();
+  frameManager();
+  setCanvasWrapperSize();
+  pointer();
+  toolsManager();
+  pen();
+  paintBucket();
+  paintAll();
+  eraser();
+  line();
+  rectangle();
+  circle();
+  colorPickerTool();
+  move();
+  lighten();
+  startAnimation();
+  asidePanelManager();
+  transform();
+  miniMapInit();
+  setHotKeys();
+}
 function renderCanvas() {
   canvasLayer_1.width = 55;
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
@@ -126,13 +134,11 @@ function renderCanvas() {
 }
 
 //To do:
+//Cars при загрузке картинки
+//Оптимизировать lighten tool
 //При удалении фрейма остаются слои след. и пред. фрейма
-//При удалении единственного фрейма остаётся изображение на канвасе
-//При загрузе изображений вылетает Uint8 из animation-manager
 // Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
 //Сделать отмену изменений
 //Удаление изображений фреймов
-//? При удалении фрейма прекращается анимация 
-//При быстром добавлении(дублировании) нескольких подряд слоёв ошибка,gри высоком фпс не успевает загрузиться PNG
 //Добавить инструменты
 //Удалить иди доделать изменение цвета текста при выборе цвета
