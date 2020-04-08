@@ -100,7 +100,7 @@ function setCanvasWrapperSize() {
         canvasWrapper.style.width = `${data.canv.width * data.canvIndex}px`;
         canvasWrapper.style.height = `${data.canv.height * data.canvIndex}px`;
       }
-       console.log(((canvasBase.offsetHeight * 0.99) / data.canv.height)*92)
+
       for (let layer of data.layers) {
         const prevWidth = layer[1].canv.width;
         const prevHeight = layer[1].canv.height;

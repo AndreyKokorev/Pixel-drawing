@@ -13,8 +13,7 @@ import {
 import {
   frameToPNG
 } from '../right-control-panel/animation-manager.js'
-//import GIFEncoder from '../jsgif/GIFEncoder.js';
-
+import GIFEncoder from '../../../lib/jsgif/GIFEncoder.js';
 
 function asidePanelManager() {
   const asidePanel = document.querySelector('.aside-panel');
@@ -48,6 +47,8 @@ function asidePanelManager() {
       if (state === 'close' || state === 'import') {
         widthInput.placeholder = data.canv.width;
         heightInput.placeholder = data.canv.height;
+        widthInput.value = data.canv.width;
+        heightInput.value = data.canv.height;
         range.value = 1;
 
         manipulateCSS(saveInstrument, saveOperating);
@@ -92,16 +93,51 @@ function asidePanelManager() {
     }
 
     if (e.target === saveGIF) {
-      let encoder = new GIFEncoder(50, 50);
+      const fpsSlider = document.querySelector('.animation-wrapper__fps-slider');
+      const array = [];
+      let length = data.frameData.size; 
+      let counter = 0;
+      let encoder = new GIFEncoder();
       encoder.setRepeat(0);
-      encoder.setDelay(300);
+      encoder.setDelay(1000 / fpsSlider.value);
       encoder.start();
+
       for (const frameData of data.frameData.values()) {
-        encoder.addFrame(frameData.animationImageData[0], true);
+        const canvas_1 = document.createElement('canvas');
+        const canvas_2 = document.createElement('canvas');
+        const ctx_1 = canvas_1.getContext('2d');
+        const ctx_2 = canvas_2.getContext('2d');
+        canvas_1.width = data.canv.width;
+        canvas_1.height = data.canv.height;
+        if (frameData.animationImageData[0]) {
+          ctx_1.putImageData(frameData.animationImageData[0], 0, 0);
+        }
+
+        let image = new Image();
+        image.src = canvas_1.toDataURL('image/png', 1.0);
+
+        image.onload = function () {
+          canvas_1.width = image.width;
+          canvas_1.height = image.height;
+          ctx_1.drawImage(image, 0, 0);
+
+          canvas_2.width = widthInput.value || widthInput.placeholder;
+          canvas_2.height = heightInput.value || heightInput.placeholder;
+          ctx_2.imageSmoothingEnabled = false;
+          ctx_2.drawImage(canvas_1, 0, 0, canvas_2.width, canvas_2.height);
+
+          array.push(ctx_2.getImageData(0, 0, canvas_2.width, canvas_2.height));
+          counter++;
+
+          if (counter === length) {
+            for (let item of array) {
+              encoder.addFrame(item, true);
+            }
+            encoder.finish();
+            encoder.download('download.gif');
+          }
+        }
       }
-      encoder.finish();
-      encoder.download('download.gif');
-      //console.log(encoder)
     }
 
     if (e.target === cleanURL) {
@@ -144,8 +180,10 @@ function asidePanelManager() {
       const value = Number(range.value);
 
       multiplier.textContent = value.toFixed(1) + 'x';
-      widthInput.placeholder = `${Math.round(data.canv.width * value)}`;
-      heightInput.placeholder = `${Math.round(data.canv.height * value)}`;
+      widthInput.placeholder = Math.round(data.canv.width * value);
+      heightInput.placeholder = Math.round(data.canv.height * value);
+      widthInput.value = Math.round(data.canv.width * value);
+      heightInput.value = Math.round(data.canv.height * value);
     }
 
     function save() {

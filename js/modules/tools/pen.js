@@ -58,6 +58,7 @@ function pen() {
       }
     }
   });
+  console.log(data.currentCtx.getImageData(0,0,data.canv.width,data.canv.height))
 }
 
 pen.setColFunc = () => {
