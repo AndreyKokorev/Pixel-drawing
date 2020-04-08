@@ -10,8 +10,8 @@ function eraser() {
   data.canv.addEventListener('mousedown', (e) => {
     isMouseDown = true;
     if (data.tools.isEraser === true) {
-      const x0 = Math.floor(e.offsetX / data.canvIndex);
-      const y0 = Math.floor(e.offsetY / data.canvIndex);
+      x0 = Math.floor(e.offsetX / data.canvIndex);
+      y0 = Math.floor(e.offsetY / data.canvIndex);
 
       data.currentCtx.clearRect(x0 - data.deflection, y0 - data.deflection, data.pixelSize, data.pixelSize);
     }
@@ -23,8 +23,8 @@ function eraser() {
 
   data.canv.addEventListener('mousemove', (e) => {
     if (data.tools.isEraser === true && isMouseDown === true) {
-      const x = Math.floor(e.offsetX / data.canvIndex);
-      const y = Math.floor(e.offsetY / data.canvIndex);
+      x = Math.floor(e.offsetX / data.canvIndex);
+      y = Math.floor(e.offsetY / data.canvIndex);
 
       drawBresLine(x0, y0, x, y);
 

@@ -46,91 +46,91 @@
             <ul class="upper-panel">
                 <li class="upper-panel__item-1 upper-panel__item" id="isPen" data-original-title="
                 <div class='tooltip-container'>
-                  <div>pen tool <span class='tooltip-shortcut'>(p)</span></div>          
+                  <div>pen tool <span class='tooltip-shortcut'>(p)</span></div>
                 </div>"></li>
                 <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen" data-original-title="
                 <div class='tooltip-container'>
-                  <div>vertical mirror pen 
+                  <div>vertical mirror pen
                       <span class='shortcut'>(v)</span>
                     </div>
-                  
+
                 <div class='tooltip-descriptor'>
                   <span class='tooltip-descriptor-button'>SHIFT</span>
                   use horizontal axis
                 </div>
-              
+
                 <div class='tooltip-descriptor'>
                   <span class='tooltip-descriptor-button'>CTRL</span>
                   use horizontal and vertical axis
-                </div>  
+                </div>
                 </div> "></li>
-                <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket" data-original-title="     
+                <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket" data-original-title="
                 <div class='tooltip-container'>
                     <div>paint bucket tool <span class='tooltip-shortcut'>(b)</span></div>
                 </div>"></li>
                 <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll" data-original-title="
                 <div class='tooltip-container'>
                       <div>paint all pixels of the same color <span class='tooltip-shortcut'>(a)</span></div>
-                      
+
                     <div class='tooltip-descriptor'>
                       <span class='tooltip-descriptor-button'>CTRL</span>
                       apply to all layers
                     </div>
-                  
+
                     <div class='tooltip-descriptor'>
                       <span class='tooltip-descriptor-button'>SHIFT</span>
                       apply to all frames
                     </div>
-                  
+
                     </div>"></li>
                 <li class="upper-panel__item-5 upper-panel__item" id="isEraser" data-original-title="
                 <div class='tooltip-container'>
-                  <div>eraser tool <span class='tooltip-shortcut'>(e)</span></div>           
+                  <div>eraser tool <span class='tooltip-shortcut'>(e)</span></div>
                 </div>"></li>
                 <li class="upper-panel__item-6 upper-panel__item" id="isLine" data-original-title="
                 <div class='tooltip-container'>
-                  <div>stroke tool <span class='tooltip-shortcut'>(l)</span></div>                 
+                  <div>stroke tool <span class='tooltip-shortcut'>(l)</span></div>
                 </div>"></li>
                 <li class="upper-panel__item-7 upper-panel__item" id="isRectangle" data-original-title="
                 <div class='tooltip-container'>
-                  <div>rectangle tool <span class='tooltip-shortcut'>(r)</span></div>                
+                  <div>rectangle tool <span class='tooltip-shortcut'>(r)</span></div>
                 </div>"></li>
                 <li class="upper-panel__item-8 upper-panel__item" id="isCircle" data-original-title="
                 <div class='tooltip-container'>
-                  <div>circle tool <span class='tooltip-shortcut'>(c)</span></div>                
+                  <div>circle tool <span class='tooltip-shortcut'>(c)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-9 upper-panel__item" id="isColor" data-original-title="
+                <li class="upper-panel__item-9 upper-panel__item" id="isColorPicker" data-original-title="
                 <div class='tooltip-container'>
-                  <div>color picker <span class='tooltip-shortcut'>(o)</span></div>                
+                  <div>color picker <span class='tooltip-shortcut'>(o)</span></div>
                 </div>"></li>
                 <li class="upper-panel__item-10 upper-panel__item" id="isMove" data-original-title="
                 <div class='tooltip-container'>
-                  <div>move tool <span class='tooltip-shortcut'>(m)</span></div>                 
+                  <div>move tool <span class='tooltip-shortcut'>(m)</span></div>
                 <div class='tooltip-descriptor'>
                   <span class='tooltip-descriptor-button'>CTRL</span>
                   apply to all layers
-                </div>              
+                </div>
                 <div class='tooltip-descriptor'>
                   <span class='tooltip-descriptor-button'>SHIFT</span>
                   apply to all frames
-                </div>                      
+                </div>
                 </div>"></li>
                 <li class="upper-panel__item-11 upper-panel__item" id="isLighten" data-original-title="
                 <div class='tooltip-container'>
                   <div>lighten <span class='tooltip-shortcut'>(u)</span></div>
-                  
+
                 <div class='tooltip-descriptor'>
                   <span class='tooltip-descriptor-button'>SHIFT</span>
                   Darken
                 </div>
-              
+
                 <div class='tooltip-descriptor'>
                   <span class='tooltip-descriptor-button'>CTRL</span>
                   apply only once per pixel
                 </div>
                 <div class='tooltip-descriptor'>
                     <span class='tooltip-descriptor-button'>ALT</span>
-                 disable action on click 
+                 disable action on click
                   </div>
                 </div>"></li>
             </ul>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="animation-wrapper__control-panel">
                     <span class="animation-wrapper__fps-monitor"></span>
-                    <input class="animation-wrapper__fps-slider" type="range" min="0" max="24" step="1">
+                    <input class="animation-wrapper__fps-slider" type="range" min="0" max="24" step="1" value="4">
                 </div>
             </div>
             <!-- Manipulation with layers -->
@@ -195,7 +195,7 @@
                 <input class="canvas-width-input" type="text" value="94">
                 <div class="x">x</div>
                 <input class="canvas-height-input" type="text" value="92">
-                <button class='button-submit' type='button'>set size</button> 
+                <button class='button-submit' type='button'>set size</button>
             </div>
             <div class="transform-panel">
                 <!-- <div class="title">transform</div> -->
@@ -205,7 +205,7 @@
                     <button class='button-rotate-image button' type='button'></button>
                     <div class="partition"></div>
                     <button class='button-clone-image button' type='button'></button>
-                </div>            
+                </div>
             </div>
             <div class="parameters">
                 <div class="zoom-wrapper">zoom: <span class='zoom'></span></div>
@@ -284,10 +284,7 @@
     </main>
     <script type="module" src="./js/main.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script type="text/javascript" src="./lib/tiny-color/tiny-color.js"></script>
-    <script type="text/javascript" src="./js/modules/jsgif/LZWEncoder.js"></script>
-    <script type="text/javascript" src="./js/modules/jsgif/NeuQuant.js"></script>
-    <script type="text/javascript" src="./js/modules/jsgif/GIFEncoder.js"></script>
+    <script type="text/javascript" src="./lib/tiny-color/tiny-color.js"></script> 
 </body>
 
 </html>
