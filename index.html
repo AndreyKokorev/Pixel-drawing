@@ -15,8 +15,7 @@
 
 <body>
     <header>
-        <ul class="menu"></ul>
-        <h1>CodeJam - Palette</h1>
+        <h1>Pixel drawing</h1>
     </header>
     <main>
         <!-- Tools and colors -->
@@ -44,11 +43,11 @@
             </div>
             <!-- Tools -->
             <ul class="upper-panel">
-                <li class="upper-panel__item-1 upper-panel__item" id="isPen" data-original-title="
+                <li class="upper-panel__item-1 upper-panel__item" id="isPen" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>pen tool <span class='tooltip-shortcut'>(p)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen" data-original-title="
+                <li class="upper-panel__item-2 upper-panel__item" id="isMirrorPen" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>vertical mirror pen
                       <span class='shortcut'>(v)</span>
@@ -64,11 +63,11 @@
                   use horizontal and vertical axis
                 </div>
                 </div> "></li>
-                <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket" data-original-title="
+                <li class="upper-panel__item-3 upper-panel__item" id="isPaintBucket" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                     <div>paint bucket tool <span class='tooltip-shortcut'>(b)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll" data-original-title="
+                <li class="upper-panel__item-4 upper-panel__item" id="isPaintAll" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                       <div>paint all pixels of the same color <span class='tooltip-shortcut'>(a)</span></div>
 
@@ -83,27 +82,27 @@
                     </div>
 
                     </div>"></li>
-                <li class="upper-panel__item-5 upper-panel__item" id="isEraser" data-original-title="
+                <li class="upper-panel__item-5 upper-panel__item" id="isEraser" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>eraser tool <span class='tooltip-shortcut'>(e)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-6 upper-panel__item" id="isLine" data-original-title="
+                <li class="upper-panel__item-6 upper-panel__item" id="isLine" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>stroke tool <span class='tooltip-shortcut'>(l)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-7 upper-panel__item" id="isRectangle" data-original-title="
+                <li class="upper-panel__item-7 upper-panel__item" id="isRectangle" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>rectangle tool <span class='tooltip-shortcut'>(r)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-8 upper-panel__item" id="isCircle" data-original-title="
+                <li class="upper-panel__item-8 upper-panel__item" id="isCircle" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>circle tool <span class='tooltip-shortcut'>(c)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-9 upper-panel__item" id="isColorPicker" data-original-title="
+                <li class="upper-panel__item-9 upper-panel__item" id="isColorPicker" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>color picker <span class='tooltip-shortcut'>(o)</span></div>
                 </div>"></li>
-                <li class="upper-panel__item-10 upper-panel__item" id="isMove" data-original-title="
+                <li class="upper-panel__item-10 upper-panel__item" id="isMove" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>move tool <span class='tooltip-shortcut'>(m)</span></div>
                 <div class='tooltip-descriptor'>
@@ -115,7 +114,7 @@
                   apply to all frames
                 </div>
                 </div>"></li>
-                <li class="upper-panel__item-11 upper-panel__item" id="isLighten" data-original-title="
+                <li class="upper-panel__item-11 upper-panel__item" id="isLighten" data-placement="right" data-original-title="
                 <div class='tooltip-container'>
                   <div>lighten <span class='tooltip-shortcut'>(u)</span></div>
 
@@ -179,12 +178,30 @@
             <!-- Manipulation with layers -->
             <div class="layers-panel">
                 <div class="layers-panel__control">
-                    <button class="button-add-layer button" type="button"></button>
-                    <button class="button-change-name button" type="button"></button>
-                    <button class="button-up-layer button" type="button"></button>
-                    <button class="button-down-layer button" type="button"></button>
-                    <button class="button-merge-layer button" type="button"></button>
-                    <button class="button-delete-layer button" type="button"></button>
+                    <button class="button-add-layer button" type="button" data-placement="top" data-original-title="
+                    <div class='tooltip-container'>
+                      <div>create a layer</div>          
+                    </div>"></button>
+                    <button class="button-change-name button" type="button" data-placement="top" data-original-title="
+                    <div class='tooltip-container'>
+                      <div>edit layer name</div>
+                    </div>"></button>
+                    <button class="button-up-layer button" type="button" data-placement="top" data-original-title="
+                    <div class='tooltip-container'>
+                      <div>move layer up</div>                   
+                    </div>"></button>
+                    <button class="button-down-layer button" type="button" data-placement="top" data-original-title="
+                    <div class='tooltip-container'>
+                      <div>move layer down</div>
+                    </div>"></button>
+                    <button class="button-merge-layer button" type="button" data-placement="top" data-original-title="
+                    <div class='tooltip-container'>
+                      <div>merge with layer below</div>
+                    </div>"></button>
+                    <button class="button-delete-layer button" type="button" data-placement="top" data-original-title="
+                    <div class='tooltip-container'>
+                       <div>delete selected layer</div>
+                    </div>"></button>
                 </div>
                 <ul class="layers-panel__layers-list">
                     <li class="list-layer-1 list-layer">layer 1</li>
@@ -192,19 +209,60 @@
                 <!-- <button  class="button-animation" type="button">run animation</button>-->
             </div>
             <div class="canvas-size-wrapper">
-                <input class="canvas-width-input" type="text" value="94">
+                <input class="canvas-width-input" type="text">
                 <div class="x">x</div>
-                <input class="canvas-height-input" type="text" value="92">
+                <input class="canvas-height-input" type="text">
                 <button class='button-submit' type='button'>set size</button>
             </div>
             <div class="transform-panel">
                 <!-- <div class="title">transform</div> -->
                 <div class="button-wrapper">
-                    <button class='button-flip-image button' type='button'></button>
+                    <button class='button-flip-image button' type='button' data-original-title="
+                    <div class='tooltip-container'>
+                      <div>flip vertically</div>
+                      
+                    <div class='tooltip-descriptor'>
+                      <span class='tooltip-descriptor-button'>SHIFT</span>
+                      flip horizontally
+                    </div>
+                  
+                    <div class='tooltip-descriptor'>
+                      <span class='tooltip-descriptor-button'>CTRL</span>
+                      apply to all layers
+                    </div>
+                  
+                    <div class='tooltip-descriptor'>
+                      <span class='tooltip-descriptor-button'>ALT</span>
+                      apply to all frames
+                    </div>
+                  
+                    </div>"></button>
                     <div class="partition"></div>
-                    <button class='button-rotate-image button' type='button'></button>
+                    <button class='button-rotate-image button' type='button' data-original-title="
+                    <div class='tooltip-container'>
+                      <div>clockwise rotation</div>
+                      
+                    <div class='tooltip-descriptor'>
+                      <span class='tooltip-descriptor-button'>SHIFT</span>
+                      counter-clockwise rotation
+                    </div>
+                  
+                    <div class='tooltip-descriptor'>
+                      <span class='tooltip-descriptor-button'>CTRL</span>
+                      Apply to all layers
+                    </div>
+                  
+                    <div class='tooltip-descriptor'>
+                      <span class='tooltip-descriptor-button'>ALT</span>
+                      Apply to all frames
+                    </div>
+                  
+                    </div>"></button>
                     <div class="partition"></div>
-                    <button class='button-clone-image button' type='button'></button>
+                    <button class='button-clone-image button' type='button' data-original-title="
+                    <div class='tooltip-container'>
+                      <div>clone current layer to all frames <span class='tooltip-shortcut'></span></div>            
+                    </div>"></button>
                 </div>
             </div>
             <div class="parameters">

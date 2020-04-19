@@ -11,20 +11,12 @@ function toolsManager() {
   toolsPanel.addEventListener('mouseover', (e) => {
     if (e.target.nodeName === 'LI') {
       e.target.classList.add('active');
-      if (e.target.dataset) {
-        const tipWrapper = e.target.dataset.originalTitle;
-        e.target.innerHTML = tipWrapper;
-
-      }
     }
   });
 
   toolsPanel.addEventListener('mouseout', (e) => {
     if (e.target.classList.contains('chosen') === false) {
       e.target.classList.remove('active');
-    }
-    if (e.target.dataset.originalTitle) {
-      e.target.querySelector('.tooltip-container').remove();
     }
   });
 
