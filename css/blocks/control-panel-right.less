@@ -1,7 +1,4 @@
 .selected {
-  //margin: 1px 0;
-  // border-top: 1px solid black;
-  // border-bottom: 1px solid black;
   background: linear-gradient(to bottom, red, white, red);
 }
 
@@ -37,13 +34,8 @@
 
     &__mini-map {
       position: absolute;
-      right: 0;
-      bottom: 0;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      margin: auto;
       opacity: 0;
       box-sizing: border-box;
       border: 2px solid black;
@@ -75,11 +67,12 @@
   }
 
   .layers-panel {
-    min-height: 200px;
+    height: 200px;
     margin-top: 20px;
     font-size: 15px;
     border: 6px inset rgb(255, 255, 255);
     border-radius: 5px;
+    overflow-x: auto;
 
     &__control {
       display: grid;
@@ -88,7 +81,6 @@
       border-top: 1px solid grey;
       border-bottom: 1px solid rgb(48, 47, 47);
       background: linear-gradient(to bottom, rgba(194, 193, 193, 0.993), white, white, white, white);
-      ;
 
       .button-add-layer {
         background: url(../img/icons/plus.svg) 50% 50% no-repeat;
@@ -107,7 +99,7 @@
       }
 
       .button-merge-layer {
-        transform: rotate(180deg);
+        //transform: rotate(180deg);
         background: url(../img/icons/merge.svg) 50% 50% no-repeat;
       }
 
@@ -115,13 +107,16 @@
         background: url(../img/icons/clear.svg) 50% 50% no-repeat;
       }
 
-      .button:not(:nth-child(6)) {
+      .button {
         border-right: 1px solid black;
+        border-left: 1px solid black;
         //border-left: 1px solid black;
         background-size: 16px 16px;
+        
 
         &:active {
-          transform: scale(0.75)
+          transform: scale(0.95);
+          box-shadow: inset 0px 2px 2px 0 black;
         }
       }
 

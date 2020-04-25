@@ -18,28 +18,16 @@ function setCanvasWrapperSize() {
   const canvasBase = document.querySelector('.canvas-base');
   const canvasWrapper = document.querySelector('.canvas-wrapper');
   const sizeSubmitButton = document.querySelector('.canvas-size-wrapper .button-submit');
-  const zoom = document.querySelector('.zoom');
   const widthField = document.querySelector('.canvas-width-input');
   const heightField = document.querySelector('.canvas-height-input');
   const canvasResolution = document.querySelector('.canvas-resolution .text');
   let canvasRatio = data.canv.width / data.canv.height;
   let wrapperRatio = canvasWrapper.offsetWidth / canvasBase.offsetWidth;
   let baseWidth = canvasBase.offsetWidth;
-  let scale = 1;
 
   canvasResolution.textContent = 'resol: ' + `${data.canv.width} x ${data.canv.height}`
   widthField.placeholder = `< ${Math.floor(canvasBase.offsetWidth * 0.99)}`;
   heightField.placeholder = `< ${Math.floor(canvasBase.offsetHeight * 0.99)}`;
-
-  zoom.textContent = 100 + ' %';
-
-  canvasBase.addEventListener('wheel', (e) => {
-    scale += e.deltaY * (-0.0004);
-    scale = Math.min(Math.max(0.125, scale), 4);
-
-    zoom.textContent = `${Math.round(scale * 100)}%`;
-    canvasWrapper.style.transform = `scale(${scale})`;
-  });
 
   window.addEventListener('resize', () => {
     baseWidth = canvasBase.offsetWidth;
@@ -129,8 +117,6 @@ function setCanvasWrapperSize() {
     }
     canvasResolution.textContent = 'resol: ' + `${data.canv.width} x ${data.canv.height}`
   });
-
-  sizeSubmitButton.click()
 }
 
 export default setCanvasWrapperSize;

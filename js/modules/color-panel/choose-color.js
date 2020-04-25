@@ -8,15 +8,8 @@ const colors = document.querySelectorAll('.lower-panel__item');
 let colorCounter = 0;
 let chosenColor;
 
-function chooseColor() {
-  
+function chooseColor() { 
   pickr.on('save', (color) => {
-    //console.log(color.toRGBA()[3].toFixed(2))
-    // const r = color.toRGBA()[0].toFixed(0);
-    // const g = color.toRGBA()[1].toFixed(0);
-    // const b = color.toRGBA()[2].toFixed(0);
-    // const alpha = color.toRGBA()[3].toFixed(2)
-    // const rgba = `rgba(${[r, g, b, alpha]})`;
     chosenColor = color.toHEXA().toString()
     getColor();
     pickr.hide();
@@ -56,7 +49,6 @@ function chooseColor() {
     currentColor.style.color = `${data.colors.get(colors[0])}`;
     currentColor.style.filter = 'hue-rotate(180deg)';
     apiPicker.click();
-    //colorPicker.click();
 
     colorPicker.addEventListener('input', function func() {
       getColor();
@@ -66,7 +58,6 @@ function chooseColor() {
 };
 
 function getColor(pickColor) {
-  //const color = colorPicker.value;
   const colorPanel = document.querySelector('.lower-panel__item-3');
   const newColor = document.createElement('div');
   

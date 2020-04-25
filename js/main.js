@@ -27,70 +27,97 @@ import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
 import setHotKeys from './modules/hot-keys.js';
 import transform from './modules/right-control-panel/transform-manager.js';
 import miniMapInit from './modules/right-control-panel/mini-map.js';
+import tips from './modules/tips.js';
+let data;
 
+runApp();
 
-const canvasBase = document.querySelector('.canvas-base');
-const canvasLayer_1 = document.querySelector('.canvas-layer-1');
-const canvasUpper = document.querySelector('.canvas-layer-upper');
-const ctxLayer_1 = canvasLayer_1.getContext('2d');
-const ctxUpper = canvasUpper.getContext('2d');
-const canvPrevFrame = document.querySelector('.canvas-prev-frame');
-const canvNextFrame = document.querySelector('.canvas-next-frame');
-const canvPrevFrameCtx = canvPrevFrame.getContext('2d');
-const canvNextFrameCtx = canvNextFrame.getContext('2d');
-const canvasWrapper = document.querySelector('.canvas-wrapper');
-let canvasPixelWidth;
+async function runApp() {
+  const canvasBase = document.querySelector('.canvas-base');
+  const canvasLayer_1 = document.querySelector('.canvas-layer-1');
+  const canvasUpper = document.querySelector('.canvas-layer-upper');
+  const ctxLayer_1 = canvasLayer_1.getContext('2d');
+  const ctxUpper = canvasUpper.getContext('2d');
+  const canvPrevFrame = document.querySelector('.canvas-prev-frame');
+  const canvNextFrame = document.querySelector('.canvas-next-frame');
+  const canvPrevFrameCtx = canvPrevFrame.getContext('2d');
+  const canvNextFrameCtx = canvNextFrame.getContext('2d');
+  const canvasWrapper = document.querySelector('.canvas-wrapper');
+  let canvasPixelWidth;
 
-renderCanvas();
+  canvasLayer_1.width = 40;
 
-export const data = {
-  canvasBase,
-  canvasWrapper,
-  canvPrevFrame,
-  canvNextFrame,
-  canvPrevFrameCtx,
-  canvNextFrameCtx,
-  basicLayer: canvasLayer_1,
-  basicCtx: ctxLayer_1,
-  canv: canvasUpper,
-  ctx: ctxUpper,
-  currentLayer: canvasLayer_1,
-  currentCtx: ctxLayer_1,
-  canvIndex: canvasPixelWidth,
-  pixelSize: 1,
-  deflection: localStorage.getItem('deflection') || 0,
-  tools: {
-    isPen: false,
-    isMirrorPen: false,
-    isPaintBucket: false,
-    isPaintAll: false,
-    isEraser: false,
-    isRectangle: false,
-    isLine: false,
-    isCircle: false,
-    isColorPicker: false,
-    isMove: false,
-    isLighten: false
-  },
-  offTools() {
-    this.tools.isPen = false;
-    this.tools.isMirrorPen = false;
-    this.tools.isPaintBucket = false;
-    this.tools.isPaintAll = false;
-    this.tools.isChooseColor = false;
-    this.tools.isEraser = false;
-    this.tools.isLine = false;
-    this.tools.isRectangle = false;
-    this.tools.isCircle = false;
-    this.tools.isColorPicker = false;
-    this.tools.isMove = false;
-    this.tools.isLighten = false;
-  }
+  let promise = new Promise((resolve) => {
+    const interval = setInterval(() => {
+      if (canvasBase.offsetWidth > 0) {
+        clearInterval(interval)
+        resolve();
+      };
+    }, 30);
+  });
+  await promise;
+
+  canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width); //здесь проблема с canvasBase.offsetWidth
+  canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
+  canvasLayer_1.height = Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
+  canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
+
+  canvPrevFrame.width = canvasLayer_1.width;
+  canvPrevFrame.height = canvasLayer_1.height;
+  canvNextFrame.width = canvasLayer_1.width;
+  canvNextFrame.height = canvasLayer_1.height;
+  canvasUpper.width = canvasLayer_1.width;
+  canvasUpper.height = canvasLayer_1.height;
+
+  data = {
+    canvasBase,
+    canvasWrapper,
+    canvPrevFrame,
+    canvNextFrame,
+    canvPrevFrameCtx,
+    canvNextFrameCtx,
+    basicLayer: canvasLayer_1,
+    basicCtx: ctxLayer_1,
+    canv: canvasUpper,
+    ctx: ctxUpper,
+    currentLayer: canvasLayer_1,
+    currentCtx: ctxLayer_1,
+    canvIndex: canvasPixelWidth,
+    pixelSize: 1,
+    deflection: localStorage.getItem('deflection') || 0,
+    tools: {
+      isPen: false,
+      isMirrorPen: false,
+      isPaintBucket: false,
+      isPaintAll: false,
+      isEraser: false,
+      isRectangle: false,
+      isLine: false,
+      isCircle: false,
+      isColorPicker: false,
+      isMove: false,
+      isLighten: false
+    },
+    offTools() {
+      this.tools.isPen = false;
+      this.tools.isMirrorPen = false;
+      this.tools.isPaintBucket = false;
+      this.tools.isPaintAll = false;
+      this.tools.isChooseColor = false;
+      this.tools.isEraser = false;
+      this.tools.isLine = false;
+      this.tools.isRectangle = false;
+      this.tools.isCircle = false;
+      this.tools.isColorPicker = false;
+      this.tools.isMove = false;
+      this.tools.isLighten = false;
+    }
+  };
+
+  data.tools.isPen = true;
+
+  initModules();
 }
-
-data.tools.isPen = true;
-
-initModules();
 
 function initModules() {
   styleColor();
@@ -116,29 +143,18 @@ function initModules() {
   transform();
   miniMapInit();
   setHotKeys();
+  tips();
 }
-function renderCanvas() {
-  canvasLayer_1.width = 55;
-  canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width);
-  canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
-
-  canvasLayer_1.height = Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
-  canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
-
-  canvPrevFrame.width = canvasLayer_1.width;
-  canvPrevFrame.height = canvasLayer_1.height;
-  canvNextFrame.width = canvasLayer_1.width;
-  canvNextFrame.height = canvasLayer_1.height;
-  canvasUpper.width = canvasLayer_1.width;
-  canvasUpper.height = canvasLayer_1.height;
-}
+export {
+  data
+};
 
 //To do:
+//дергается подсказка
 //Cors при загрузке картинки
 //Оптимизировать lighten tool
 //При удалении фрейма остаются слои след. и пред. фрейма
 // Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
 //Сделать отмену изменений
 //Удаление изображений фреймов
-//Добавить инструменты
 //Удалить иди доделать изменение цвета текста при выборе цвета
