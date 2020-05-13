@@ -10,19 +10,13 @@ import colorPickerTool from './modules/tools/color-picker-tool.js';
 import move from './modules/tools/move.js';
 import lighten from './modules/tools/lighten.js';
 import styleColor from './modules/style-color.js';
-import {
-  chooseColor
-} from './modules/color-panel/choose-color.js';
+import {chooseColor} from './modules/color-panel/choose-color.js';
 import setPixelSize from './modules/tools/pixel-size.js';
 import layersManager from './modules/right-control-panel/layers-manager.js';
-import {
-  frameManager
-} from './modules/frame-manager.js';
+import {frameManager} from './modules/frame-manager.js';
 import setCanvasWrapperSize from './modules/right-control-panel/canvas-size.js';
 import pointer from './modules/pointer.js';
-import {
-  startAnimation
-} from './modules/right-control-panel/animation-manager.js';
+import {startAnimation} from './modules/right-control-panel/animation-manager.js';
 import asidePanelManager from './modules/aside-panel/aside-panel-manager.js';
 import setHotKeys from './modules/hot-keys.js';
 import transform from './modules/right-control-panel/transform-manager.js';
@@ -86,7 +80,7 @@ async function runApp() {
     pixelSize: 1,
     deflection: localStorage.getItem('deflection') || 0,
     tools: {
-      isPen: false,
+      isPen: true,
       isMirrorPen: false,
       isPaintBucket: false,
       isPaintAll: false,
@@ -114,8 +108,10 @@ async function runApp() {
     }
   };
 
-  data.tools.isPen = true;
-
+  if (navigator.appCodeName === 'Mozilla') {
+    document.querySelector('.frame-column').style.width = '135px';
+  }
+  
   initModules();
 }
 
@@ -145,9 +141,8 @@ function initModules() {
   setHotKeys();
   tips();
 }
-export {
-  data
-};
+
+export {data};
 
 //To do:
 //дергается подсказка

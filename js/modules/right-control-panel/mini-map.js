@@ -111,7 +111,6 @@ function miniMapInit() {
         const shift = (miniMapWidthBefore - miniMapWidthAfter) / 2;
 
         if (stopShiftX === false) {
-          console.log('stopShift')
           if (e.deltaY < 0) {
             left = currentLeft + shift;
             miniMap.style.left = left + 'px';

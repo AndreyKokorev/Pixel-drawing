@@ -1,0 +1,260 @@
+.selected {
+  background: linear-gradient(to bottom, red, white, red);
+}
+
+.control-panel-right {
+  display: grid;
+  align-content: flex-start;
+  width: 220px;
+  height: calc(75%);
+  padding: 7px;
+  box-shadow: 0 -3px 3px 0px rgba(45, 51, 49, 0.178), 0 3px 3px 0px rgba(45, 51, 49, 0.178);
+  background: linear-gradient(to bottom, rgba(245, 221, 7, 0.836) 14%, rgba(250, 192, 0, 0.836) 28%, rgba(245, 170, 7, 0.836) 34%, transparent, transparent, rgba(255, 0, 0, 0.719) 68%);
+}
+
+.control-panel-right .animation-wrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.control-panel-right .animation-wrapper__monitor-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin: -5px 0 13px 0;
+  border-radius: 2px;
+  background: #ffffff;
+}
+
+.control-panel-right .animation-wrapper__background {
+  position: relative;
+  background: url(../img/canvas-bg/bg-1.png);
+}
+
+.control-panel-right .animation-wrapper__mini-map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.control-panel-right .animation-wrapper__monitor {
+  width: 100%;
+  height: 100%;
+}
+
+.control-panel-right .animation-wrapper__control-panel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 200px;
+}
+
+.control-panel-right .animation-wrapper__fps-monitor {
+  height: 15px;
+  margin-right: 13px;
+  text-align: right;
+}
+
+.control-panel-right .animation-wrapper__fps-slider {
+  width: 136px;
+}
+
+.control-panel-right .layers-panel {
+  height: 200px;
+  margin-top: 20px;
+  font-size: 15px;
+  border: 6px inset #ffffff;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.control-panel-right .layers-panel__control {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  height: 20px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid #302f2f;
+  background: linear-gradient(to bottom, rgba(194, 193, 193, 0.993), white, white, white, white);
+}
+
+.control-panel-right .layers-panel__control .button-add-layer {
+  background: url(../img/icons/plus.svg) 50% 50% no-repeat;
+}
+
+.control-panel-right .layers-panel__control .button-change-name {
+  background: url(../img/icons/edit.svg) 50% 50% no-repeat;
+}
+
+.control-panel-right .layers-panel__control .button-up-layer {
+  background: url(../img/icons/up-arrow.svg) 50% 50% no-repeat;
+}
+
+.control-panel-right .layers-panel__control .button-down-layer {
+  background: url(../img/icons/down-arrow.svg) 50% 50% no-repeat;
+}
+
+.control-panel-right .layers-panel__control .button-merge-layer {
+  background: url(../img/icons/merge.svg) 50% 50% no-repeat;
+}
+
+.control-panel-right .layers-panel__control .button-delete-layer {
+  background: url(../img/icons/clear.svg) 50% 50% no-repeat;
+}
+
+.control-panel-right .layers-panel__control .button {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  background-size: 16px 16px;
+}
+
+.control-panel-right .layers-panel__control .button:active {
+  transform: scale(0.95);
+  box-shadow: inset 0px 2px 2px 0 black;
+}
+
+.control-panel-right .layers-panel__control .button-merge-layer {
+  border-collapse: none;
+}
+
+.control-panel-right .layers-panel .layers-panel {
+  display: grid;
+  justify-items: flex-end;
+}
+
+.control-panel-right .layers-panel .list-layer {
+  margin: 1px 0;
+  line-height: 20px;
+  text-indent: 5px;
+}
+
+.control-panel-right .layers-panel .list-layer {
+  color: #070707;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.control-panel-right .canvas-size-wrapper {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  border: 4px solid white;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.control-panel-right .canvas-size-wrapper input {
+  grid-row: 1;
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+.control-panel-right .canvas-size-wrapper .x {
+  grid-row: 1;
+}
+
+.control-panel-right .canvas-size-wrapper .button-submit {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row: 0.5;
+  width: 100%;
+  height: 24px;
+  margin-top: 10px;
+  font-family: Comics;
+  vertical-align: middle;
+  border: 2px solid black;
+  border-radius: 2px;
+  box-shadow: 0 0 2px #111111;
+  background: rgba(8, 80, 236, 0.658);
+}
+
+.control-panel-right .canvas-size-wrapper .button-submit:hover {
+  color: white;
+  background: rgba(8, 80, 236, 0.966);
+  transition: 0.2s;
+}
+
+.control-panel-right .canvas-size-wrapper .button-submit:active {
+  transform: scale(0.95);
+  color: black;
+  box-shadow: none;
+}
+
+.control-panel-right .transform-panel {
+  margin-top: 40px;
+  border: 4px solid white;
+  border-radius: 4px;
+}
+
+.control-panel-right .transform-panel .title {
+  text-align: center;
+  margin: 5px 0 0 0;
+}
+
+.control-panel-right .transform-panel .button-wrapper {
+  display: grid;
+  height: 60px;
+  align-content: center;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  grid-template-rows: 40px;
+}
+
+.control-panel-right .transform-panel .partition {
+  align-self: center;
+  width: 1px;
+  height: 30px;
+  border-right: 1px solid black;
+}
+
+.control-panel-right .transform-panel .button-flip-image {
+  background: url('../img/icons/flip.svg') 50% 50% no-repeat;
+}
+
+.control-panel-right .transform-panel .button-rotate-image {
+  background: url('../img/icons/rotate.svg') 50% 50% no-repeat;
+}
+
+.control-panel-right .transform-panel .button-clone-image {
+  background: url('../img/icons/clone.svg') 50% 50% no-repeat;
+}
+
+.control-panel-right .transform-panel .button {
+  height: 40px;
+  background-size: 50%;
+}
+
+.control-panel-right .transform-panel .button:hover {
+  filter: drop-shadow(0px 0px 3px yellow);
+  background-size: 55%;
+}
+
+.control-panel-right .transform-panel .button:active {
+  filter: none;
+  background-size: 45%;
+}
+
+.control-panel-right .transform-panel button:last-child {
+  border: none;
+}
+
+.control-panel-right .parameters {
+  align-self: flex-end;
+  margin-top: 40px;
+  padding: 5px;
+  border: 4px solid white;
+  border-radius: 4px;
+}
+
+.control-panel-right .parameters .canvas-resolution {
+  margin-top: 10px;
+}
