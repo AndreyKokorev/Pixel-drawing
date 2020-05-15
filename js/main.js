@@ -108,7 +108,7 @@ async function runApp() {
     }
   };
 
-  if (navigator.appCodeName === 'Mozilla') {
+  if (navigator.vendor !== 'Google Inc.') {
     document.querySelector('.frame-column').style.width = '135px';
   }
   

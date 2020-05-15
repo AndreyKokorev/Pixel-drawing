@@ -29,9 +29,19 @@ function miniMapInit() {
   data.canvasBase.addEventListener('wheel', (e) => {
     ratioX = data.canvasWrapper.getBoundingClientRect().width / bg.offsetWidth;
     ratioY = data.canvasWrapper.getBoundingClientRect().height / bg.offsetHeight;
-    scale += e.deltaY * (-0.0004);
+
+    let deltaY;
+
+    if (Math.abs(e.deltaY) == 4) {
+      deltaY = e.deltaY * (133/4);
+    } else {
+      deltaY = e.deltaY;
+    }
+    scale += deltaY * (-0.0004);
+    console.log('scale', e.deltaY)
     scale = Math.min(Math.max(0.125, scale), 4);
     zoom.textContent = `${Math.round(scale * 100)}%`;
+    console.log(Math.round(scale * 100));
     data.canvasWrapper.style.transform = `scale(${scale})`;
 
     isWidth = data.canvasWrapper.getBoundingClientRect().width > data.canvasBase.offsetWidth * 0.99;
