@@ -1,3 +1,8 @@
+@import 'blocks/control-panel-left.less';
+@import 'blocks/control-panel-right.less';
+@import 'blocks/control-panel-frame.less';
+@import 'blocks/aside-panel.less';
+
 @blue: rgba(0, 60, 255, 0.623);
 
 @font-face {
@@ -9,7 +14,6 @@
   font-family: 'CS Nancy';
   src: url('../fonts/CS\ Nancy.ttf') format('truetype');
 }
-
 
 * {
   margin: 0;
@@ -69,6 +73,7 @@
     transform: rotate(0deg);
   }
 }
+
 .right-tip {
   &::before {
     content: '';
@@ -81,6 +86,7 @@
     transform: rotate(90deg);
   }
 }
+
 .left-tip {
   &::before {
     content: '';
@@ -103,7 +109,7 @@ body {
   user-select: none;
   display: grid;
   grid-template-rows: 48px auto;
-  min-height: 890px;
+  min-height: 800px;
   height: 100vh;
   font-family: Roboto;
   background: url(../img/pictures/pixel_art_8_bit_retro_games-1364327.png);
@@ -233,10 +239,3 @@ input[type="range"]::slider-thumb {
   border: 2px solid rgb(247, 247, 248);
   border-radius: 10px;
 }
-
-
-
-@import 'blocks/control-panel-left.less';
-@import 'blocks/control-panel-right.less';
-@import 'blocks/control-panel-frame.less';
-@import 'blocks/aside-panel.less';
