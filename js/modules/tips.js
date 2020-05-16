@@ -1,8 +1,7 @@
 function tips() {
-  const controlPanel = document.querySelector('.control-panel-right');
 
   document.body.addEventListener('mouseover', (e) => {
-    if (e.target.dataset.originalTitle) {
+    if (e.target.dataset.originalTitle) {    
       const tip = e.target.dataset.originalTitle;
       const wrapper = document.createElement('div');
 
@@ -30,10 +29,10 @@ function tips() {
         wrapper.style.top = `${e.target.getBoundingClientRect().top - (tipWrapper.offsetHeight / 2 - e.target.getBoundingClientRect().height / 2)}px`;
       }
 
-      e.target.addEventListener('mouseout', function removeWrapper() {
+      e.target.addEventListener('mouseleave', function removeWrapper() {
         wrapper.remove();
 
-        this.removeEventListener('mouseout', removeWrapper);
+        this.removeEventListener('mouseleave', removeWrapper);
       });
     }
   });

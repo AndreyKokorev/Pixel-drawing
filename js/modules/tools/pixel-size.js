@@ -9,14 +9,14 @@ function setPixelSize() {
 
   for (let wrapper of pixelsWrapper) {
     wrapper.classList.add('transition');
-    if (wrapper.getAttribute('data') == data.pixelSize) {
+    if (wrapper.dataset.size == data.pixelSize) {
       wrapper.classList.add('activePixelSize');
     }
   }
 
   pixelSizePanel.addEventListener('click', (e) => {
     if (e.target !== pixelSizePanel) {
-      data.pixelSize = e.target.getAttribute('data');
+      data.pixelSize = e.target.dataset.size;
       data.deflection = Math.floor(data.pixelSize / 2);
 
       for (let wrapper of pixelsWrapper) {

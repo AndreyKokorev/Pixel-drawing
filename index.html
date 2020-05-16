@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
     <title>Document</title>
     <link rel="shortcut icon" href="./img/favicon/favicon.svg">
     <link rel="stylesheet/less" href="./css/index.less">
@@ -22,23 +22,23 @@
         <div class="control-panel-left">
             <!-- Choose pixel size -->
             <div class="pixel-size-panel">
-                <div class="pixel-size-panel__wrapper" data="1">
-                    <div class="pixel-size-panel__pixel-1" data="1"></div>
+                <div class="pixel-size-panel__wrapper" data-size="1">
+                    <div class="pixel-size-panel__pixel-1" data-size="1"></div>
                 </div>
-                <div class="pixel-size-panel__wrapper" data="2">
-                    <div class="pixel-size-panel__pixel-2" data="2"></div>
+                <div class="pixel-size-panel__wrapper" data-size="2">
+                    <div class="pixel-size-panel__pixel-2" data-size="2"></div>
                 </div>
-                <div class="pixel-size-panel__wrapper" data="3">
-                    <div class="pixel-size-panel__pixel-3" data="3"></div>
+                <div class="pixel-size-panel__wrapper" data-size="3">
+                    <div class="pixel-size-panel__pixel-3" data-size="3"></div>
                 </div>
-                <div class="pixel-size-panel__wrapper" data="4">
-                    <div class="pixel-size-panel__pixel-4" data="4"></div>
+                <div class="pixel-size-panel__wrapper" data-size="4">
+                    <div class="pixel-size-panel__pixel-4" data-size="4"></div>
                 </div>
-                <div class="pixel-size-panel__wrapper" data="5">
-                    <div class="pixel-size-panel__pixel-5" data="5"></div>
+                <div class="pixel-size-panel__wrapper" data-size="5">
+                    <div class="pixel-size-panel__pixel-5" data-size="5"></div>
                 </div>
-                <div class="pixel-size-panel__wrapper" data="6">
-                    <div class="pixel-size-panel__pixel-6" data="6"></div>
+                <div class="pixel-size-panel__wrapper" data-size="6">
+                    <div class="pixel-size-panel__pixel-6" data-size="6"></div>
                 </div>
             </div>
             <!-- Tools -->
@@ -135,7 +135,7 @@
             </ul>
             <!-- Color -->
             <ul class="lower-panel">
-                <div class="color-picker"></div>
+                <li class="color-picker"></li>
                 <li class="lower-panel__item-1 lower-panel__item">
                     <div class="wrapper"><span class='name name-1'>choose color</span></div>
                 </li>
@@ -144,7 +144,6 @@
                 </li>
                 <li class="lower-panel__item-3 lower-panel__item">
                 </li>
-                <input class="lower-panel__color-picker" type="color" style="display: none">
             </ul>
         </div>
         <!-- Manipulations with frames -->
@@ -167,7 +166,7 @@
                 <div class="animation-wrapper__monitor-wrapper">
                     <div class="animation-wrapper__background">
                         <div class="animation-wrapper__mini-map"></div>
-                        <img class="animation-wrapper__monitor">
+                        <img class="animation-wrapper__monitor" alt="monitor">
                     </div>
                 </div>
                 <div class="animation-wrapper__control-panel">
@@ -340,9 +339,9 @@
             </div>
         </div>
     </main>
-    <script type="module" src="./js/main.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script type="text/javascript" src="./lib/tiny-color/tiny-color.js"></script> 
+    <script  src="./js/main.js" type="module"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script  src="./lib/tiny-color/tiny-color.js"></script> 
 </body>
 
 </html>
