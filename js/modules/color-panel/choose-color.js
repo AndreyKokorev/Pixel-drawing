@@ -16,7 +16,6 @@ function chooseColor() {
   })
  
   const apiPicker = document.querySelector('.pcr-button');
-  const colorPicker = document.querySelector('.lower-panel__color-picker');
   const colorHistory = document.querySelector('.lower-panel__item-3');
   
   data.colorArray = new Map();
@@ -49,11 +48,6 @@ function chooseColor() {
     currentColor.style.color = `${data.colors.get(colors[0])}`;
     currentColor.style.filter = 'hue-rotate(180deg)';
     apiPicker.click();
-
-    colorPicker.addEventListener('input', function func() {
-      getColor();
-      colorPicker.removeEventListener('input', func);
-    });
   });
 };
 

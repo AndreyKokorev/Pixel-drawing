@@ -51,7 +51,7 @@ async function runApp() {
   });
   await promise;
 
-  canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width); //здесь проблема с canvasBase.offsetWidth
+  canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width); 
   canvasWrapper.style.width = `${canvasLayer_1.width * canvasPixelWidth}px`;
   canvasLayer_1.height = Math.floor(canvasBase.offsetHeight * 0.99 / canvasPixelWidth);
   canvasWrapper.style.height = `${canvasLayer_1.height * canvasPixelWidth}px`;
