@@ -41,14 +41,14 @@ async function runApp() {
 
   canvasLayer_1.width = 40;
 
-  let promise = new Promise((resolve) => {
+  function promise (){
     const interval = setInterval(() => {
       if (canvasBase.offsetWidth > 0) {
         clearInterval(interval)
-        resolve();
+        return;
       };
     }, 30);
-  });
+  }
   await promise;
 
   canvasPixelWidth = Math.floor((canvasBase.offsetWidth * 0.99) / canvasLayer_1.width); 
@@ -144,7 +144,8 @@ function initModules() {
 
 export {data};
 
-//To do:
+//Todo:
+
 //дергается подсказка
 //Cors при загрузке картинки
 //Оптимизировать lighten tool
@@ -152,4 +153,3 @@ export {data};
 // Разработать алгоритм отрабатывания инструмента при выходе за границы канваса
 //Сделать отмену изменений
 //Удаление изображений фреймов
-//Удалить иди доделать изменение цвета текста при выборе цвета
