@@ -15,7 +15,6 @@ function paintBucket() {
   });
 
   function hexDec(h) {
-    console.log(h)
     const m = h.slice(1).match(/.{2}/g);
 
     m[0] = parseInt(m[0], 16);
@@ -38,10 +37,13 @@ function floodFill(x, y, workColors, pixelColor) {
   ];
   let pixel;
   let point = 0;
-  let k = 1200000;
+  const width = data.basicLayer.width;
+  const height = data.basicLayer.height;
+  let operAmount = width*height*4;
 
-  while (stack.length > 0) {
-    k -= 1;
+
+  while (operAmount > 0) {
+    operAmount -= 1;
 
     pixel = stack.pop();
 
